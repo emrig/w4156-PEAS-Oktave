@@ -37,6 +37,8 @@ test:
   override:
     # run local unit tests
     - python tests/test_main.py
+    # test Spotify Search
+    - python tests/test_sp_search.py
 
 deployment:
     staging:
