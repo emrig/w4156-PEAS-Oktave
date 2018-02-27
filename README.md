@@ -1,4 +1,9 @@
 # Team PEAS Specific Instructions
+## Get PyCharm Professional
+
+I recommend getting PyCharm Professional, but the Community version should be fine. You can get a 1 year trial as a student:  
+
+<https://www.jetbrains.com/student/>
 
 ## Setting Path variable to recognize lib
 
