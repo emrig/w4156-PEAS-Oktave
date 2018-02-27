@@ -32,6 +32,5 @@ if __name__ == '__main__':
     results_list = results['artists']['items']
 
     for result in results_list:
-        # thing = 'uri'
-        # print(type(result[thing]))
+
         print((result['name'], result['id'], result['popularity'], result['type']))
