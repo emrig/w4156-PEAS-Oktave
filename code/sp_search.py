@@ -19,7 +19,7 @@ class sp_search:
     def artist(self, artist_name, limit=None):
 
         spotify = spotipy.Spotify(client_credentials_manager=self.client_credentials_manager)
-        result = spotify.search(q='artist:' + artist_name, limit=limit, type='Artist')
+        result = spotify.search(q='artist:' + str(artist_name), limit=limit, type='Artist')
 
         return result
 
