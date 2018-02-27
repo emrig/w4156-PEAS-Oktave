@@ -1,8 +1,26 @@
 # Team PEAS Specific Instructions
+
 ## PyCharm
 I recommend getting PyCharm Professional, but the Community version should be fine.  
 
 You can get a 1 year trial as a student: <https://www.jetbrains.com/student/>
+
+### Pull/Push the latest code
+
+Always pull the latest code from github before starting work, and push the latest code once you get done with work at every session. This ensures that we won't have merge requests midway.
+
+Pulling Code:
+Go to your local clone of this repository and run:
+```python 
+git pull origin master
+```
+
+Pushing Code:
+Go to your local clone of this repository and run
+```python
+git push origin master
+```
+
 
 ### Setting Path variable to recognize lib
 
