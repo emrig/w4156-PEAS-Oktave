@@ -1,3 +1,25 @@
+# Team PEAS Specific Instructions
+## PyCharm
+I recommend getting PyCharm Professional, but the Community version should be fine.  
+
+You can get a 1 year trial as a student: <https://www.jetbrains.com/student/>
+
+### Setting Path variable to recognize lib
+
+In PyCharm, you have to set the path to individual folders within your local project:
+
+Assuming you have already created a virtual environment per **all of the steps in the instructions below** and cloned the latest code locally,
+
+1. Go to File > Settings > Project w4156-PEASE-Oktave > Project Interpreter
+2. Click the drop-down menu at the top and select 'Show All..."
+3. Click the bottom button on the right which is an icon of a directory structure and add these folders to the list (your local paths will differ from mine)
+  * C:\Github\w4156-PEASE-Oktave\
+  * C:\Github\w4156-PEASE-Oktave\code\
+  * C:\Github\w4156-PEASE-Oktave\tests\
+  * C:\Github\w4156-PEASE-Oktave\lib\
+
+# Default Instructions
+
 This code is used for the purposes of COMS 4156 - Advanced Software Engineering course at Columbia University, New York. 
 This is a boilerplate python flask code along with configurations for Circle CI and Google Cloud.
 
