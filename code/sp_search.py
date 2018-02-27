@@ -21,17 +21,17 @@ class sp_search:
         spotify = spotipy.Spotify(client_credentials_manager=self.client_credentials_manager)
         result = spotify.search(q='artist:' + artist_name, limit=limit, type='Artist')
 
-
         return result
 
 if __name__ == '__main__':
 
     # Use this for local testing, reference for how this works
     model = sp_search()
-    results = model.artist("Michael")
+    results = model.artist("Michael", 10)
 
     results_list = results['artists']['items']
 
     for result in results_list:
-
-        print((result['name'], result['id'], result['popularity']))
+        # thing = 'uri'
+        # print(type(result[thing]))
+        print((result['name'], result['id'], result['popularity'], result['type']))
