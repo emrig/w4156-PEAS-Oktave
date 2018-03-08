@@ -39,6 +39,12 @@ test:
     - python tests/test_main.py
     # test Spotify Search
     - python tests/test_sp_search.py
+    # test int
+    - python tests/test_fail_int.py
+    # test str
+    - python tests/test_fail_str.py
+    # test bool
+    - python tests/test_fail_bool.py
 
 deployment:
     staging:
