@@ -38,7 +38,8 @@ test:
     # run local unit tests
 
     # run all tests
-    - python tests/test_all_tests
+    - python tests/test_all_tests.py
+
 
 
 deployment:
