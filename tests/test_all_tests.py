@@ -4,12 +4,15 @@ Author: Erin Riglin
 
 import sys
 import os.path
-import inspect
 import unittest
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir, 'tests')))
 
+ignore_file = "ignore_tests.txt"
+directory = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir, 'tests'))
+print(directory)
+
 """Enter the names of modules in tests folder to omit"""
-no_include = open("ignore_tests.txt", 'r').read().splitlines()
+no_include = open(directory + '\\' + ignore_file, 'r').read().splitlines()
 
 modules = [x.strip('.py') for x in os.listdir(os.path.join(os.path.dirname(__file__), os.path.pardir, 'tests'))
               if x.endswith('.py') and x not in no_include]
