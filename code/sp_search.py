@@ -1,3 +1,7 @@
+"""
+Author: Erin Riglin
+"""
+
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 from sp_dev_key import SPOTIFY_CLIENT_ID
