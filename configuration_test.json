@@ -2,7 +2,7 @@
   "markets":["US"],
   "genres_ignore": [],
   "rating_minimum": 50,
-  "max_total_artists": 0,
+  "max_total_artists": 50,
   "max_albums_per_artist": 0,
   "max_related_artists": 5,
   "max_tracks_per_artist": 0,
