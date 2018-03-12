@@ -75,6 +75,13 @@ class sp_search:
 
         return result
 
+    def artist_related_artist(self, artist_id):
+
+        spotify = spotipy.Spotify(client_credentials_manager=self.client_credentials_manager)
+        result = spotify.artist_related_artists(artist_id)
+
+        return result
+
 
 
 if __name__ == '__main__':
@@ -82,11 +89,12 @@ if __name__ == '__main__':
     # Use this for local testing, reference for how this works
 
     model = sp_search()
-    artist_results = model.artist("Michael", 5)
+    artist_results = model.artist("Drake", 5)
     artist_results_list = artist_results['artists']['items']
 
     for result in artist_results_list:
         print((result['name'], result['id'], result['popularity'], result['type']))
+
 
     #Albums for first artist
     album_results = model.artist_albums(artist_results_list[0]['id'])
@@ -111,3 +119,9 @@ if __name__ == '__main__':
 
     for audio_feature in audio_features_results_list:
         print((audio_feature['id'], audio_feature['key'], audio_feature['tempo'], audio_feature['time_signature']))
+
+    related_artists_list = model.artist_related_artist(artist_results_list[0]['id'])
+
+    for result in related_artists_list['artists']:
+        something = 0
+        print((result['name'], result['id'], result['popularity'], result['type']))
