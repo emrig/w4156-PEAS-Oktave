@@ -76,15 +76,15 @@ class artist_crawler():
         df = df.reset_index(drop=True)
         return df
         
-        """try:
-            Note atomic consideration here for updating parent artist
-            df.to_csv(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir, "artist_queue.csv")), index=False)
-            return True
-        
-        except Exception as e:
-            print("[log]: " + str(e))
-            return False
-            """
+        # """try:
+        #     Note atomic consideration here for updating parent artist
+        #     df.to_csv(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir, "artist_queue.csv")), index=False)
+        #     return True
+        #
+        # except Exception as e:
+        #     print("[log]: " + str(e))
+        #     return False
+        #     """
       
     
         
@@ -94,4 +94,3 @@ if __name__ == '__main__':
     while (pd.read_csv(test.queue_file)['artist_id'].size < test.config['max_total_artists']):
 
         test.pop_from_artist_queue()
-        
