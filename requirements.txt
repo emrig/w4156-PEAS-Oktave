@@ -6,4 +6,5 @@
 # Note: The `lib` directory is added to `sys.path` by `appengine_config.py`.
 Flask==0.10
 Spotipy==2.4.4
-firebase-admin
+firebase-admin==2.9.0
+pyrebase==3.0.27
