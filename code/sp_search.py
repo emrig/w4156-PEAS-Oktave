@@ -65,7 +65,7 @@ class sp_search:
         return result
 
     """
-    Takes a LIST of track IDs and returns the audio features
+    Takes track ID(s) and returns the audio features
     """
 
     def audio_features(self, tracks):
