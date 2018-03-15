@@ -4,7 +4,7 @@ Author: Alexandra Taylor-Gutt
 
 import sys
 import os.path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir, 'code')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir, 'backend')))
 
 
 from sp_search import sp_search
