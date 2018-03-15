@@ -1,7 +1,8 @@
 import os
-import json
 import sp_search
 import datetime
+import environment
+import pyrebase
 
 """Remove after initial dev with csv"""
 import pandas as pd
@@ -10,8 +11,15 @@ class artist_crawler():
     
     def __init__(self):
 
-        config_file = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir, "configuration_test.json"))
-        self.config = json.loads(open(config_file, 'r').read())
+        env_data = environment.Data()
+
+        """ Dirty way to ensure file paths work across all OS, feel free to recommend better approach"""
+        pyrebase_config = env_data.config['pyrebaseConfig']
+
+        self.firebase = pyrebase.initialize_app(pyrebase_config)
+        self.db = self.firebase.database()
+
+        self.config = env_data.config['crawlerConfig']
         self.search = sp_search.sp_search()
         
         # remove after inital csv dev
@@ -20,6 +28,13 @@ class artist_crawler():
         self.initialized_artists = self.initialize_artist_queue()
         
     """ For initial csv and file output only. Modify or remove for cloud DB """
+
+    def test_write(self):
+
+        self.db.child("test").set({"name2": "henry4"})
+        print(self.db.child('test').get().val())
+
+
     def initialize_artist_queue(self):
         
         loaded_artists = pd.read_csv(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir, "artists.csv")))
@@ -88,9 +103,14 @@ class artist_crawler():
       
     
         
-if __name__ == '__main__': 
+if __name__ == '__main__':
+
+
 
     test = artist_crawler()
-    while (pd.read_csv(test.queue_file)['artist_id'].size < test.config['max_total_artists']):
+    test.test_write()
+    print(test.config)
 
-        test.pop_from_artist_queue()
+    #while (pd.read_csv(test.queue_file)['artist_id'].size < test.config['max_total_artists']):
+
+     #   test.pop_from_artist_queue()
