@@ -1,11 +1,23 @@
+"""
+Author: Erin Riglin
+"""
+
 import os
 import sp_search
 import datetime
 import environment
 import pyrebase
+import json
 
 """Remove after initial dev with csv"""
 import pandas as pd
+
+"""
+Useful documentation: 
+https://firebase.google.com/docs/reference/admin/python/firebase_admin.db
+https://github.com/thisbejim/Pyrebase
+https://firebase.google.com/docs/database/security/indexing-data
+"""
 
 class artist_crawler():
     
@@ -13,38 +25,45 @@ class artist_crawler():
 
         env_data = environment.Data()
 
-        """ Dirty way to ensure file paths work across all OS, feel free to recommend better approach"""
-        pyrebase_config = env_data.config['pyrebaseConfig']
+        self.crawler_config = env_data.config['crawlerConfig']
+        self.init_artists = json.load(open(self.crawler_config['initArtists']))
 
+        self.artist_config = env_data.config['databaseConfig']['crawlerTable']['artist_q']['artist_id']
+
+        pyrebase_config = env_data.config['pyrebaseConfig']
         self.firebase = pyrebase.initialize_app(pyrebase_config)
         self.db = self.firebase.database()
 
         self.config = env_data.config['crawlerConfig']
         self.search = sp_search.sp_search()
         
-        # remove after inital csv dev
+        # remove after initial csv dev
         self.queue_file = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir, "artist_queue.csv"))
         
         self.initialized_artists = self.initialize_artist_queue()
         
     """ For initial csv and file output only. Modify or remove for cloud DB """
 
-    def test_write(self):
-
-        self.db.child("test").set({"name2": "henry4"})
-        print(self.db.child('test').get().val())
-
-
     def initialize_artist_queue(self):
-        
-        loaded_artists = pd.read_csv(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir, "artists.csv")))
-        df = pd.read_csv(self.queue_file)
-        
-        for artist in loaded_artists.iterrows():
-            if artist[1]['id'] not in list(df['artist_id']):
-                df = df.append(pd.DataFrame([[artist[1]['id'], df['index'].argmax()+1, None, None, artist[1]['genres']]], columns=df.columns))
-                df = df.reset_index(drop=True)
-                df.to_csv(self.queue_file, index=False)
+
+        for artist_id in self.init_artists.keys():
+
+            entry = self.artist_config
+            last = self.db.child('crawlerTable').child('artist_q').order_by_child('index').limit_to_last(1).get()
+
+            """ If table empty and if artist already exists in table"""
+            if not last.pyres:
+                entry['index'] = 1
+                entry['genres'] = self.init_artists[artist_id]['genres']
+                self.db.child('crawlerTable').child('artist_q').update({artist_id: entry})
+
+            elif not self.db.child('crawlerTable').child('artist_q').child(artist_id).get().pyres:
+                last_index = last.val().popitem()[1]['index']
+                if last_index < self.crawler_config['max_total_artists']:
+                    entry['index'] = last.val().popitem()[1]['index'] + 1
+                    entry['genres'] = self.init_artists[artist_id]['genres']
+                    self.db.child('crawlerTable').child('artist_q').update({artist_id: entry})
+
     
     def pop_from_artist_queue(self):
         
@@ -106,10 +125,9 @@ class artist_crawler():
 if __name__ == '__main__':
 
 
-
     test = artist_crawler()
-    test.test_write()
-    print(test.config)
+    #test.initialize_artist_queue()
+    #print(test.config)
 
     #while (pd.read_csv(test.queue_file)['artist_id'].size < test.config['max_total_artists']):
 

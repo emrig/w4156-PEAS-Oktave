@@ -7,7 +7,32 @@
       "storageBucket": "coms4156-oktave.appspot.com",
       "serviceAccount": "credentials/coms4156-oktave-firebase-adminsdk-dev.json"
     },
+    "databaseConfig":{
+      "rules": {
+        "crawlerTable": {
+            "artist_q": {
+                    ".indexOn": ["index", "get_related_time"]
+                    }
+                  },
+          ".read": "auth != null",
+          ".write": "auth != null"
+        },
+      "crawlerTable": {
+        "artist_q": {
+          "artist_id": {
+            "index": "",
+            "get_related_time": "",
+            "albums": 0,
+            "genres": []
+          }
+        }
+        },
+      "featuresTable":{
+        "TBD":""
+      }
+    },
     "crawlerConfig":{
+      "initArtists": "configuration/initArtists.json",
       "markets":["US"],
       "genres_ignore": [],
       "rating_minimum": 50,
