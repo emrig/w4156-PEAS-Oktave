@@ -1,0 +1,133 @@
+/* at3022*/
+
+
+body { 
+    font-family: "Times New Roman", Times, serif;
+    background: url("../images/paper-stacks.jpg") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    text-align: center;
+    margin: 0;
+    padding: 0;}
+
+
+   
+   .wrapper {
+width: 720 px;
+margin: 0px auto;
+padding: 20px;}
+
+.header { margin: 40px 0px 20px 0px
+
+          }
+
+.imagebanner { 
+      border: 2px dotted purple;
+      }
+   
+   ul {
+  list-style-type: none;
+  text-align: left;
+}
+
+
+.navbar {
+             top: 5px;
+             color: purple;
+             margin-left: 1px;
+             background-color: white;
+            margin-top: 0px;
+             }
+a {
+     color: black;
+     font-size: 16px;
+     }
+
+
+p {
+    margin: 0 0 0 50px;
+    padding: 30px 0 25px 0;
+    font-weight: bold;
+    text-align: center;
+   }
+   
+   
+
+    
+    
+}
+.navbar a:hover {
+    background-color: #fff;
+}
+.active a {
+    background-color: tomato;
+}
+
+#home-interface {
+color: black;
+background-color: white;
+float: left;
+margin-left: -5px;
+padding: 10px;
+display:  none;
+}
+
+
+
+.genre {
+
+margin-left: 500px;
+}
+
+.reams {
+float: left;
+margin-left: 50px;
+}
+
+#textbox {
+
+float: left;
+margin-left: 50px;
+}
+
+#records2 {
+
+float: left;
+background-color: white;
+height: 500px;
+width: 731px; 
+margin-left: 115px;
+margin-top: 10px;
+}
+
+.button {
+ background-color: tomato;
+ }
+ 
+#party {
+float: left;
+background-color: white;
+height: 900px;
+width: 731px; 
+margin-left: 115px;
+margin-top: 10px;
+display: none;
+}
+
+#non-ppc {
+float: left;
+margin-top; -100px;
+width: 200px;
+
+}
+
+
+/* Border under box when you move script in the last example */
+p + script + h3 {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #bcbdc0;}
+
+
+
