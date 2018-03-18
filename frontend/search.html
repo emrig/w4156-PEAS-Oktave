@@ -8,6 +8,19 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="genre_search.css">
+  <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyDY4ltIHyeUtJSqXT4_U3Jmjqu5recNuH0",
+      authDomain: "coms4156-oktave.firebaseapp.com",
+      databaseURL: "https://coms4156-oktave.firebaseio.com",
+      projectId: "coms4156-oktave",
+      storageBucket: "coms4156-oktave.appspot.com",
+      messagingSenderId: "498674979042"
+    };
+    firebase.initializeApp(config);
+  </script>
   <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -23,22 +36,29 @@
 <body>
 
 <!-- Search bar -->
-  <form class="form-inline">
-    <div class="row">
-       
-      <div class="col-md-10">
-        <div class="input-group" id="search-form">
-            <input type="text" class="form-control" id="search-bar" placeholder="Search for artists by genre">
-        </div>
-      </div>  
+  <div>
+    <form class="form-inline" id="search-form-master">
+      <div class="row">
+         
+        <div class="col-md-10">
+          <div class="input-group" id="search-form">
+              <input type="text" class="form-control" id="search-bar" placeholder="Search for artists by genre">
+          </div>
+        </div>  
 
-      <!-- Submit button -->
-      <div class="col-md-2">
-        <button class="btn btn-lg" type="submit" id="search-button">Search</button>
-      </div>  
+        <!-- Submit button -->
+        <div class="col-md-2">
+          <button class="btn btn-lg" type="submit" id="search-button">Search</button>
+        </div>  
 
-    </div>    
-  </form>  
+      </div>    
+    </form> 
+
+    <!-- Where the log entries will go --> 
+    <div id="search-results">
+    </div> 
+  
+  </div>  
 
 </body>
 </html>

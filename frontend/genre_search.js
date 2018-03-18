@@ -73,4 +73,15 @@ $(document).ready(function() {
 	$( "#search-bar" ).autocomplete({
 	    source: genres
 	});
+
+
+	$("#search-form-master").submit(function(event) {
+		//console.log("Button clicked");
+
+	});
+
+
+	var artists = [];
+
+
 });
