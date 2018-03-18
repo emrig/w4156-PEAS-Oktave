@@ -1,133 +1,66 @@
-/* at3022*/
-
-
-body { 
-    font-family: "Times New Roman", Times, serif;
-    background: url("../images/paper-stacks.jpg") no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    text-align: center;
-    margin: 0;
-    padding: 0;}
-
-
-   
-   .wrapper {
-width: 720 px;
-margin: 0px auto;
-padding: 20px;}
-
-.header { margin: 40px 0px 20px 0px
-
-          }
-
-.imagebanner { 
-      border: 2px dotted purple;
-      }
-   
-   ul {
-  list-style-type: none;
-  text-align: left;
+.banner {
+  text-align: center;
+  color: white;
+  background: lightblue;
+  font-size: 20px;
 }
 
-
-.navbar {
-             top: 5px;
-             color: purple;
-             margin-left: 1px;
-             background-color: white;
-            margin-top: 0px;
-             }
-a {
-     color: black;
-     font-size: 16px;
-     }
-
-
-p {
-    margin: 0 0 0 50px;
-    padding: 30px 0 25px 0;
-    font-weight: bold;
-    text-align: center;
-   }
-   
-   
-
-    
-    
-}
-.navbar a:hover {
-    background-color: #fff;
-}
-.active a {
-    background-color: tomato;
+.selected { 
+    background-color: lightblue;
 }
 
-#home-interface {
-color: black;
-background-color: white;
-float: left;
-margin-left: -5px;
-padding: 10px;
-display:  none;
+#search-form {
+  min-width: 1000px;
+  width: 100%;
+  margin-top: 300px;
 }
 
-
-
-.genre {
-
-margin-left: 500px;
+#search-bar {
+  text-align: center;
+  height: 50px;
 }
 
-.reams {
-float: left;
-margin-left: 50px;
+#search-button {
+  background-color:lightgrey;
+  margin-top: 300px;
 }
 
-#textbox {
-
-float: left;
-margin-left: 50px;
+#reams-form {
+  min-width: 200px;
 }
 
-#records2 {
-
-float: left;
-background-color: white;
-height: 500px;
-width: 731px; 
-margin-left: 115px;
-margin-top: 10px;
+.party-header {
+  text-align: center;
 }
 
-.button {
- background-color: tomato;
- }
- 
-#party {
-float: left;
-background-color: white;
-height: 900px;
-width: 731px; 
-margin-left: 115px;
-margin-top: 10px;
-display: none;
+.highlight {
+    border: 1px solid yellow;
+    background-color:yellow;
+}
+
+.draggable {
+  border-style: solid;
+  max-width: 100px;
+}
+
+.draggable:hover {
+  background-color: lightyellow;
+  cursor: move;
+}
+
+#ppc {
+  height: 400px;
 }
 
 #non-ppc {
-float: left;
-margin-top; -100px;
-width: 200px;
-
+  height: 400px;
 }
 
+.shade_change {
+  background-color: #999;
+}
 
-/* Border under box when you move script in the last example */
-p + script + h3 {
-    padding-bottom: 20px;
-    border-bottom: 1px solid #bcbdc0;}
-
-
+.shade_change2 {
+  background-color: #555;
+}
 
