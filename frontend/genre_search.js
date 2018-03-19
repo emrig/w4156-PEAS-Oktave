@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
 
 	var genres = [
@@ -77,7 +78,8 @@ $(document).ready(function() {
 
 	$("#search-form-master").submit(function(event) {
 		//console.log("Button clicked");
-
+		var genre = $("#search-bar").val();
+		//console.log(genre);
 	});
 
 
