@@ -2,58 +2,67 @@
 Author: Pankhuri Kumar
 """
 
-import os
+import pyrebase
 import sp_search
+import environment
 from datetime import datetime
-
-# for reading artists - remove once added to DB
-import pandas as pd
-# for easy display of API while developing
-import json
 
 class album_crawler():
 
     def __init__(self):
 
-        config_file = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir, "configuration_test.json"))
-        self.config = json.loads(open(config_file, 'r').read())
+        envData = environment.Data()
+
+        pyrebaseConfig = envData.config['pyrebaseConfig']
+        self.firebase = pyrebase.initialize_app(pyrebaseConfig)
+        self.database = self.firebase.database()
+
         self.search = sp_search.sp_search()
 
-        self.artistFile = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir, "artist_queue.csv"))
         self.read_input()
 
     def read_input(self):
 
-        artistQueue = pd.read_csv(self.artistFile)
+        lastUpdatedTime = ""
+        lastUpdated = self.database.child("crawlerTable").child("artist_q").order_by_child("get_music_time").limit_to_last(1).get().val()
+        for a in lastUpdated:
+            lastUpdatedTime = lastUpdated[a]["get_music_time"]
 
         # find max datetime in get_music_time
-        lastUpdated = artistQueue["get_music_time"].max()
         # store all artists who weren't updated fully previous time/were never updated
-        notUpdatedArtists = artistQueue[artistQueue["get_music_time"] <= lastUpdated]
-        notUpdatedArtists = notUpdatedArtists.append(artistQueue[artistQueue["get_music_time"].isnull()])
-        updatedArtists = []
+        nullArtists = self.database.child("crawlerTable").child("artist_q").order_by_child("get_music_time").equal_to("").get()
+        if lastUpdated.pyres:
+            notUpdatedArtists = self.database.child("crawlerTable").child("artist_q").order_by_child("get_music_time").start_at(lastUpdatedTime).get()
 
         # store music for all these artists
-        for artist in notUpdatedArtists.iterrows():
-            albums = self.search.artist_albums(artist[1]["artist_id"])
-            # compare with no. of albums in DB (csv)
+        self.findTracks(nullArtists)
+        self.findTracks(notUpdatedArtists)
+
+    def findTracks(self, toBeUpdated):
+
+        updatedArtists = []
+
+        for item in toBeUpdated.each():
+            albums = self.search.artist_albums(item.key())
+            artist = item.val()
             #TODO: figure how to keep track of albums when Spotify deletes album and adds another
-            if (albums["total"] > artist[1]["albums"]):
+            if (albums["total"] > artist["albums"]):
                 # find missing album(s)
                 missingAlbums = self.findMissingAlbums(artist, albums)
-                # update tracks to DB (csv) - track_crawler
                 updateCount = self.updateTracks(missingAlbums)
-                # update number of albums in DB (csv)
-                artistQueue.ix[artistQueue["artist_id"] == artist[1]["artist_id"], ["albums"]] = artist[1]["albums"] + updateCount
+                # update number of albums
+                artist["albums"] = albums["total"] + updateCount
             # keep track of all successfully traversed artists
-            updatedArtists.append(artist[1]["artist_id"])
+            updatedArtists.append(item.key())
 
-        # update artists_queue with get_music_time
+        # update artists_queue with get_music_time and new album count
         updateTime = datetime.now()
-        for id in updatedArtists:
-            artistQueue.ix[artistQueue["artist_id"] == id, ["get_music_time"]] = updateTime
-        # write updates to DB (csv)
-        artistQueue.to_csv(self.artistFile, index=False)
+        for item in toBeUpdated.each():
+            artist = item.val()
+            if item.key() in updatedArtists:
+                artist["get_music_time"] = updateTime
+                # write updates to DB (csv)
+                self.database.child("crawlerTable").child("artist_q").update({item.key(): artist})
 
     def findMissingAlbums(self, artist, albums):
         missingAlbums = []

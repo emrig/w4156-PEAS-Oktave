@@ -11,7 +11,7 @@
       "rules": {
         "crawlerTable": {
             "artist_q": {
-                    ".indexOn": ["index", "get_related_time"]
+                    ".indexOn": ["index", "get_related_time", "get_music_time"]
                     }
                   },
           ".read": "auth != null",
@@ -22,13 +22,24 @@
           "artist_id": {
             "index": "",
             "get_related_time": "",
+            "get_music_time": "",
             "albums": 0,
             "genres": []
           }
         }
         },
       "featuresTable":{
-        "TBD":""
+        "track_q": {
+          "track_id": {
+            "artist_id": "",
+            "album_id": "",
+            "danceability": 0.0,
+            "key": 0.0,
+            "valence": 0.0,
+            "tempo": 0.0,
+            "time_signature": 0.0
+          }
+        }
       }
     },
     "crawlerConfig":{

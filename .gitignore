@@ -3,4 +3,4 @@
 *.pyc
 lib/
 .idea/
-artist_queue.csv
+*.csv
