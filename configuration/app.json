@@ -12,11 +12,16 @@
         "crawlerTable": {
             "artist_q": {
                     ".indexOn": ["index", "get_related_time", "get_music_time"]
-                    }
-                  },
-          ".read": "auth != null",
-          ".write": "auth != null"
+            }
         },
+        "track_features": {
+            "track_q": {
+                    ".indexOn": ["artist_id", "album_id", "name", "danceability", "key", "valence", "tempo", "time_signature"]
+            }
+        },
+        ".read": "auth != null",
+        ".write": "auth != null"
+      },
       "crawlerTable": {
         "artist_q": {
           "artist_id": {
@@ -28,9 +33,10 @@
           }
         }
         },
-      "featuresTable":{
+      "track_features":{
         "track_q": {
           "track_id": {
+            "name": "",
             "artist_id": "",
             "album_id": "",
             "danceability": 0.0,
