@@ -1,67 +1,38 @@
-.banner {
-  text-align: center;
-  color: white;
-  background: lightblue;
-  font-size: 20px;
+
+body {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.selected { 
-    background-color: lightblue;
-}
 
-#search-form {
-  min-width: 1000px;
+#genre-search-form {
   width: 100%;
-  margin-top: 300px;
+  margin-top: 25%;
 }
 
-#search-bar {
+#genre-search-bar {
   text-align: center;
-  margin-left: 20px;
-  height: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  height: auto;
+}
+
+#tempo-search-form {
+  width: 100%;
+}
+
+#tempo-search-bar {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+  height: auto;
 }
 
 #search-button {
   background-color:lightgrey;
-  margin-top: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
 }
-
-#reams-form {
-  min-width: 200px;
-}
-
-.party-header {
-  text-align: center;
-}
-
-.highlight {
-    border: 1px solid yellow;
-    background-color:yellow;
-}
-
-.draggable {
-  border-style: solid;
-  max-width: 100px;
-}
-
-.draggable:hover {
-  background-color: lightyellow;
-  cursor: move;
-}
-
-#ppc {
-  height: 400px;
-}
-
-#non-ppc {
-  height: 400px;
-}
-
-.shade_change {
-  background-color: #999;
-}
-
-.shade_change2 {
-  background-color: #555;
-}
-

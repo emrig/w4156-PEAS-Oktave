@@ -96,7 +96,7 @@ $(document).ready(function() {
 		// Encode JSON string
 		var json_string = JSON.stringify(array);
 
-		console.log(json_string);
+		//console.log(json_string);
 	});
 
 

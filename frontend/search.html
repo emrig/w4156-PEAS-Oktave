@@ -35,23 +35,34 @@
 
 <body>
 
-<!-- Search bar -->
+<!-- Search bar, drop-downs, etc. -->
   <div>
     <form class="form-inline" onsubmit="return false;" id="search-form-master">
+      
       <div class="row">
-         
-        <div class="col-md-10">
-          <div class="input-group" id="search-form">
-              <input type="text" class="form-control" id="search-bar" placeholder="Search for artists by genre">
+        <div class="col-md-12">
+          <div class="input-group" id="genre-search-form">
+              <input type="text" class="form-control" id="genre-search-bar" placeholder="Search for artists by genre">
           </div>
         </div>  
-
-        <!-- Submit button -->
-        <div class="col-md-2">
-          <button class="btn btn-lg" type="submit" id="search-button">Search</button>
-        </div>  
-
       </div>    
+
+      <!-- Tempo search bar -->
+      <div class="row">
+      	<div class="col-md-12">
+      		<div class="input-group" id="tempo-search-form">
+              <input type="text" class="form-control" id="tempo-search-bar" placeholder="Enter the BPM number you would like">
+          	</div>
+      	</div>
+      </div>
+
+      <div class="row">
+      	<!-- Submit button -->
+        <div class="col-md-12">
+          <center><button class="btn btn-lg" type="submit" id="search-button">Search</button></center>
+        </div>  
+      </div>
+
     </form> 
 
     <!-- Where the log entries will go --> 
