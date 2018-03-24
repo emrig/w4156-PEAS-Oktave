@@ -76,14 +76,31 @@ $(document).ready(function() {
 	});
 
 
+
 	$("#search-form-master").submit(function(event) {
 		//console.log("Button clicked");
 		var genre = $("#search-bar").val();
 		//console.log(genre);
+
+		// Create empty array
+		var array = [];
+
+		// Create JSON object with property "genre_label"
+		var json_object = {
+			genre_label: genre   
+		}
+
+		// Add object to array
+		array.push(json_object);
+
+		// Encode JSON string
+		var json_string = JSON.stringify(array);
+
+		console.log(json_string);
 	});
 
 
-	var artists = [];
+	// var artists = [];
 
 
 });
