@@ -5,10 +5,25 @@ body {
   margin-right: auto;
 }
 
+#title-space {
+  margin-top: 10%
+}
+
+#title {
+  font: Helvetica;
+  text-align: center;
+  font-size: 100px;
+}
+
+#subtitle {
+  font: Helvetica;
+  text-align: center;
+  font-size: 40px;
+}
 
 #genre-search-form {
   width: 100%;
-  margin-top: 25%;
+  margin-top: 10%;
 }
 
 #genre-search-bar {
@@ -28,6 +43,20 @@ body {
   margin-right: auto;
   margin-top: 2%;
   height: auto;
+}
+
+#time-sig-list {
+  margin-top: 2%;
+  width: 50%;
+  text-align: center;
+  margin-left: 25%;
+}
+
+#key-list {
+  margin-top: 2%;
+  width: 50%;
+  text-align: center;
+  margin-left: 25%;
 }
 
 #search-button {
