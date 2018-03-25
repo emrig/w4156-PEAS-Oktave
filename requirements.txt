@@ -7,4 +7,3 @@
 Flask==0.10
 Spotipy==2.4.4
 firebase-admin==2.9.0
-pyrebase==3.0.27

@@ -1,10 +1,7 @@
 {
   "dev":{
     "pyrebaseConfig":{
-      "apiKey": "AIzaSyDY4ltIHyeUtJSqXT4_U3Jmjqu5recNuH0",
-      "authDomain": "coms4156-oktave.firebaseapp.com",
-      "databaseURL": "https://coms4156-oktave-dev.firebaseio.com/",
-      "storageBucket": "coms4156-oktave.appspot.com",
+      "projectId" : "coms4156-oktave-2",
       "serviceAccount": "credentials/coms4156-oktave-firebase-adminsdk-dev.json"
     },
     "databaseConfig":{
@@ -22,16 +19,14 @@
         ".read": "auth != null",
         ".write": "auth != null"
       },
-      "crawlerTable": {
-        "artist_q": {
+      "artist_q": {
           "artist_id": {
-            "index": "",
-            "get_related_time": "",
-            "get_music_time": "",
+            "index": 0,
+            "get_related_time": 0,
+            "get_music_time": 0,
             "albums": 0,
             "genres": []
           }
-        }
         },
       "track_features":{
         "track_q": {
@@ -53,7 +48,7 @@
       "markets":["US"],
       "genres_ignore": [],
       "rating_minimum": 50,
-      "max_total_artists": 50,
+      "max_total_artists": 50000,
       "max_albums_per_artist": 0,
       "max_related_artists": 5,
       "max_tracks_per_artist": 0,
