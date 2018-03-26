@@ -79,7 +79,8 @@ $(document).ready(function() {
 
 	$("#search-form-master").submit(function(event) {
 		//console.log("Button clicked");
-		var genre = $("#search-bar").val();
+		var genre = $("#genre-search-bar").val();
+		var tempo = $("#tempo-search-bar").val();
 		//console.log(genre);
 
 		// Create empty array
@@ -87,7 +88,8 @@ $(document).ready(function() {
 
 		// Create JSON object with property "genre_label"
 		var json_object = {
-			genre_label: genre   
+			genre_label: genre,   
+			tempo_label: tempo
 		}
 
 		// Add object to array
@@ -96,7 +98,7 @@ $(document).ready(function() {
 		// Encode JSON string
 		var json_string = JSON.stringify(array);
 
-		//console.log(json_string);
+		console.log(json_string);
 	});
 
 
