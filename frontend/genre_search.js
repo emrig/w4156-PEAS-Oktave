@@ -71,7 +71,7 @@ $(document).ready(function() {
 	 'urban contemporary',
 	 'vocal jazz'
 	 ];
-	$( "#search-bar" ).autocomplete({
+	$( "#genre-search-bar" ).autocomplete({
 	    source: genres
 	});
 
@@ -81,6 +81,8 @@ $(document).ready(function() {
 		//console.log("Button clicked");
 		var genre = $("#genre-search-bar").val();
 		var tempo = $("#tempo-search-bar").val();
+		var key = $("#key-list").val();
+		var time_sig = $("#time-sig-list").val();
 		//console.log(genre);
 
 		// Create empty array
@@ -89,7 +91,9 @@ $(document).ready(function() {
 		// Create JSON object with property "genre_label"
 		var json_object = {
 			genre_label: genre,   
-			tempo_label: tempo
+			tempo_label: tempo,
+			key_label: key,
+			time_sig_label: time_sig
 		}
 
 		// Add object to array
@@ -98,7 +102,7 @@ $(document).ready(function() {
 		// Encode JSON string
 		var json_string = JSON.stringify(array);
 
-		console.log(json_string);
+		//console.log(json_string);
 	});
 
 
