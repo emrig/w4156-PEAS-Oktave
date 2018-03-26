@@ -1,6 +1,8 @@
 
 $(document).ready(function() {
 
+	$("#search-results").hide();
+
 	var genres = [
 	'adult standards',
 	 'afrobeat',
@@ -101,6 +103,8 @@ $(document).ready(function() {
 
 		// Encode JSON string
 		var json_string = JSON.stringify(array);
+
+		$("#search-results").show();
 
 		//console.log(json_string);
 	});
