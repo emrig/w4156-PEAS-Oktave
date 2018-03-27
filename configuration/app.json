@@ -28,8 +28,7 @@
             "genres": []
           }
         },
-      "track_features":{
-        "track_q": {
+      "track_q": {
           "track_id": {
             "name": "",
             "artist_id": "",
@@ -41,7 +40,6 @@
             "time_signature": 0.0
           }
         }
-      }
     },
     "crawlerConfig":{
       "initArtists": "configuration/initArtists.json",
