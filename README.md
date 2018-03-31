@@ -1,5 +1,17 @@
 # Team PEAS Specific Instructions
 
+## Flask
+
+#### Please pull before making ANY changes
+
+I would recommend going through [this](https://cloud.google.com/appengine/docs/standard/python/getting-started/python-standard-env) to be more familiar with Flask and how it works. This is also the documentation I used to setup Flask, so it might help if you guys are familiar with it. The instructions build two small forms to show how Flask helps frontend and backend communicate. 
+
+In short, all HTML (and JS, I think) files go into the "templates" folder and all CSS goes into the "static" folder. The path for the CSS files will change in the HTML now, please be mindful of that (I changed it in search.html already).
+
+Currently the API is in "trackQuery.py" in the "backend" folder, but it will be referred to from "main.py" which is in the root. Erin and I have worked with Flask this semester for another course (I think Sam also worked on it last sem), but feel free to ask us how to use Flask in the HTML files.
+
+The app is technically live on <https://coms4156-oktave-2.appspot.com/> but it's showing an error right now, so hopefully we can fix that soon. But if you pull the code and then run the "python2 main.py" command from the root directory, you can host the website locally and it will communicate with the database, which will be useful for testing.
+
 ## PyCharm
 I recommend getting PyCharm Professional, but the Community version should be fine.  
 
