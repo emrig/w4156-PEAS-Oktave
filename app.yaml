@@ -16,7 +16,7 @@ handlers:
 - url: /static
   static_dir: static
 - url: .*  # This regex directs all routes to main.app
-  script: backend.main.app
+  script: main.app
 
 # temporary workaround around gcloud issue
 skip_files:
