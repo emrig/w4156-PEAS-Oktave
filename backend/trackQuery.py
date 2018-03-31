@@ -62,14 +62,14 @@ class trackQuery:
             maxRange['key'] = choiceList['key'] + 1
         else:
             minRange['key'] = 0
-            maxRange['key'] = 12
+            maxRange['key'] = 11
 
         if 'time_sig_label' in choiceList:
             minRange['time_signature'] = choiceList['time_sig_label'] - 2
             maxRange['time_signature'] = choiceList['time_sig_label'] + 2
         else:
             minRange['time_signature'] = 1
-            maxRange['time_signature'] = 9
+            maxRange['time_signature'] = 7
 
         return minRange, maxRange
 

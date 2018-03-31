@@ -98,8 +98,6 @@ $(document).ready(function() {
 			time_sig_label: time_sig
 		}
 
-
-
 		// Add object to array
 		array.push(json_object);
 

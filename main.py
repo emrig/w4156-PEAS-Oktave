@@ -1,7 +1,7 @@
-from google.appengine.ext import vendor
-vendor.add('lib')
+from flask import Flask, render_template, request
+from backend import artist_crawler as artistReference
+from backend import album_crawler as trackReference
 
-from flask import Flask
 app = Flask(__name__)
 
 
@@ -15,8 +15,8 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def index():
-    return "Hello, World (lets see how long a change takes III)!"
+def homePage():
+    return render_template('search.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
