@@ -10,7 +10,7 @@ In short, all HTML (and JS, I think) files go into the "templates" folder and al
 
 Currently the API is in "trackQuery.py" in the "backend" folder, but it will be referred to from "main.py" which is in the root. Erin and I have worked with Flask this semester for another course (I think Sam also worked on it last sem), but feel free to ask us how to use Flask in the HTML files.
 
-The app is technically live on <https://coms4156-oktave-2.appspot.com/> but it's showing an error right now, so hopefully we can fix that soon. But if you follow the instructions on the first link on your local machine, you can host the website locally and it will communicate with the database, which will be useful for testing.
+The app is technically live on <https://coms4156-oktave-2.appspot.com/> but it's showing an error right now, so hopefully we can fix that soon. But if you pull the code and then run the "python2 main.py" command from the root directory, you can host the website locally and it will communicate with the database, which will be useful for testing.
 
 ## PyCharm
 I recommend getting PyCharm Professional, but the Community version should be fine.  
