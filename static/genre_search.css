@@ -1,6 +1,6 @@
 
 body {
-  width: 70%;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -50,6 +50,9 @@ body {
   width: 50%;
   text-align: center;
   margin-left: 25%;
+  border-style: solid;
+  border-width: 2px;
+  border-color: darkgrey;
 }
 
 #key-list {
@@ -70,10 +73,38 @@ body {
 }
 
 .album_art {
-  width:300px;
-  height:300px;
+  width:30%;
+  height:30%
+}
+
+#result-row {
+  border-top: solid;
+  border-width: 2px;
+  border-color: black;
+  padding: 1%;
 }
 
 .album_info {
   font-family: Times New Roman;
+}
+
+.song-info-row {
+  font-family: TImes New Roman;
+  margin-bottom: 2%;
+}
+
+#info1 {
+  font-size: medium;
+}
+
+#info2 {
+  font-size: small;
+}
+
+#info3 {
+  font-size: x-small;
+}
+
+.song-br {
+  margin-bottom: : 5%;
 }
