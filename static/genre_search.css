@@ -73,8 +73,7 @@ body {
 }
 
 .album_art {
-  width:30%;
-  height:30%
+  width:100%;
 }
 
 #result-row {
