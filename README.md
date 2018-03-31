@@ -8,7 +8,7 @@ I would recommend going through [this](https://cloud.google.com/appengine/docs/s
 
 In short, all HTML (and JS, I think) files go into the "templates" folder and all CSS goes into the "static" folder. The path for the CSS files will change in the HTML now, please be mindful of that (I changed it in search.html already).
 
-Currently the API is in "trackQuery.py" in the "backend" folder, but we will be moving that to "main.py" which is in the root. Erin and I have worked with Flask this semester for another course (I think Sam also worked on it last sem), but feel free to ask us how to use Flask in the HTML files.
+Currently the API is in "trackQuery.py" in the "backend" folder, but it will be referred to from "main.py" which is in the root. Erin and I have worked with Flask this semester for another course (I think Sam also worked on it last sem), but feel free to ask us how to use Flask in the HTML files.
 
 The app is technically live on <https://coms4156-oktave-2.appspot.com/> but it's showing an error right now, so hopefully we can fix that soon. But if you follow the instructions on the first link on your local machine, you can host the website locally and it will communicate with the database, which will be useful for testing.
 
