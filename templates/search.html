@@ -39,6 +39,8 @@
 		<h1 id="title">OKTAVE</h1>
 
 		<h2 id="subtitle">Search for songs according to musical characteristics.<h2>
+
+    <h3 id="about"><a href="about.html">What do these musical terms mean?</a></h3>
 	</div>	
 
 
@@ -49,7 +51,7 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="input-group" id="genre-search-form">
-              <input type="text" class="form-control" id="genre-search-bar" placeholder="Search for artists by genre">
+              <input type="text" class="form-control" id="genre-search-bar" placeholder="Search for songs by genre">
           </div>
         </div>  
       </div>    
@@ -58,7 +60,7 @@
       <div class="row">
       	<div class="col-xs-12">
       		<div class="input-group" id="tempo-search-form">
-              <input type="text" class="form-control" id="tempo-search-bar" placeholder="Enter the BPM number you would like">
+              <input type="text" class="form-control" id="tempo-search-bar" placeholder="Search by tempo (enter BPM)">
           	</div>
       	</div>
       </div>
@@ -69,6 +71,7 @@
       	<!-- Key -->
 		    <div class="col-xs-12">
       		<select multiple="multiple" id="key-list" name="key">
+            <option value="" disabled selected><center>Key:</center></option>
       			<option value='0'>C</option>
       			<option value='1'>C#/Db</option>
       			<option value='2'>D</option>
