@@ -21,3 +21,7 @@ handlers:
 # temporary workaround around gcloud issue
 skip_files:
 - ^venv/.*$
+
+libraries:
+- name: grpcio
+  version: latest

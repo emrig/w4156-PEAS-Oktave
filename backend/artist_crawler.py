@@ -9,6 +9,7 @@ import environment
 import json
 import firebase_admin
 from firebase_admin import credentials
+from google.cloud import firestore
 from firebase_admin import firestore
 from google.cloud.exceptions import NotFound
 

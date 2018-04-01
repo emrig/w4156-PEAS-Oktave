@@ -1,5 +1,9 @@
 # Team PEAS Specific Instructions
 
+## Deployment
+
+Link to follow: <https://cloud.google.com/functions/docs/deploying/repo>
+
 ## Flask
 
 #### Please pull before making ANY changes

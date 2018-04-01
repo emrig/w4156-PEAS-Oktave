@@ -2,11 +2,13 @@
 Author: Pankhuri Kumar
 """
 
+import os
 import sp_search
 import environment
 from datetime import datetime
 import firebase_admin
 from firebase_admin import credentials
+from google.cloud import firestore
 from firebase_admin import firestore
 from google.cloud.exceptions import NotFound
 
@@ -44,9 +46,8 @@ class album_crawler():
         found1 = 0
         while found != 0:
             try:
-                nullArtist = self.artistReference.where(u'get_music_time', u'==', 0).order_by(u'index').limit(20).get()
-                for i in range(0, 20):
-                    self.findTracks(nullArtist[i], lastUpdatedTime)
+                nullArtist = self.artistReference.where(u'get_music_time', u'==', 0).order_by(u'index').limit(1).get()
+                self.findTracks(nullArtist, lastUpdatedTime)
                 found += 1
             except NotFound:
                 found1 = found
@@ -84,6 +85,9 @@ class album_crawler():
             #TODO: figure how to keep track of albums when Spotify deletes album and adds another
             if (albums["total"] > artist["albums"]):
                 # find missing album(s)
+                print("Starting " + str(item.id))
+                print(".... albums " + str(artist["albums"]))
+                print(".... time   " + str(artist["get_music_time"]))
                 missingAlbums = self.findMissingAlbums(item.id, albums)
                 updateCount = self.updateTracks(item.id, missingAlbums)
                 # update number of albums
@@ -112,6 +116,8 @@ class album_crawler():
         for album in albums["items"]:
             if (album["id"] not in existingAlbums) and set(self.market).issubset(set(album['available_markets'])):
                 missingAlbums.append(album["id"])
+                if len(existingAlbums) > 5:
+                    break
 
         return missingAlbums
 
