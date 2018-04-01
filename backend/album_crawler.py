@@ -86,8 +86,6 @@ class album_crawler():
             if (albums["total"] > artist["albums"]):
                 # find missing album(s)
                 print("Starting " + str(item.id))
-                print(".... albums " + str(artist["albums"]))
-                print(".... time   " + str(artist["get_music_time"]))
                 missingAlbums = self.findMissingAlbums(item.id, albums)
                 updateCount = self.updateTracks(item.id, missingAlbums)
                 # update number of albums
@@ -96,8 +94,9 @@ class album_crawler():
             # write updates to DB (csv)
             self.artistReference.document(item.id).update(artist)
 
-    def findMissingAlbums(self, artist, albums):
+    def findMissingAlbums(self, a, albums):
         missingAlbums = []
+        artist = a.encode("utf-8")
 
         # retrieve list of 'artist's album names from DB (csv)
         existingAlbums = []
@@ -105,9 +104,12 @@ class album_crawler():
         while found != 0:
             # if artist is new to DB
             try:
-                existsInDB = self.trackReference.where(u'artist_id', u'==', artist).limit(1).get()
+                existsInDB = self.trackReference.where(u'artist_id', u'==', artist).get()
                 for item in existsInDB:
                     existingAlbums.append(item.id)
+                found += 1
+                if (found > 1 and len(existingAlbums) == 0):
+                    found = 0
             except NotFound:
                 found = 0
                 pass
