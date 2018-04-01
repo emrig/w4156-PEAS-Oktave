@@ -35,6 +35,13 @@ class sp_search:
 
         return result
 
+    def single_artist(self, artist_id):
+
+        spotify = spotipy.Spotify(client_credentials_manager=self.client_credentials_manager)
+        result = spotify.artist(artist_id)
+
+        return result
+
     """
     Returns a list of albums from an artist given the artist ID
     
@@ -56,6 +63,12 @@ class sp_search:
     album_type - album, single, appears_on, compilation
     
     """
+    def albums(self, album_ids):
+
+        spotify = spotipy.Spotify(client_credentials_manager=self.client_credentials_manager)
+        result = spotify.albums(album_ids)
+
+        return result
 
     def album_tracks(self, album_id, limit=None):
 

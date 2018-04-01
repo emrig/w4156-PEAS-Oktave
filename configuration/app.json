@@ -25,7 +25,9 @@
             "get_related_time": 0,
             "get_music_time": 0,
             "albums": 0,
-            "genres": []
+            "genres": [],
+            "name": "",
+            "popularity": 0
           }
         },
       "track_q": {
@@ -52,7 +54,7 @@
       "initArtists": "configuration/initArtists.json",
       "markets":["US"],
       "genres_ignore": [],
-      "rating_minimum": 50,
+      "rating_minimum": 20,
       "max_total_artists": 50000,
       "max_albums_per_artist": 0,
       "max_related_artists": 5,
