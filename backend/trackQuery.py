@@ -11,14 +11,19 @@ import sp_search
 
 class trackQuery:
 
-    def __init__(self, test=False):
+    def __init__(self, test=False, verbose=False):
         envData = environment.Data()
 
         config = envData.config['pyrebaseConfig']
+        self.test = test
+        self.verbose = verbose
 
-        if test:
+        if self.test:
             localCredentials = credentials.Certificate(config['serviceAccount'])
-            firebase_admin.initialize_app(localCredentials)
+            try:
+                firebase_admin.initialize_app(localCredentials)
+            except:
+                None
 
         self.database = firestore.client()
         self.artistReference = self.database.collection(u'artist_q')
@@ -35,6 +40,9 @@ class trackQuery:
     #     matchingArtists = self.artistReference.where(u'genre',)
 
     def searchTracks(self, choiceList):
+
+        if self.verbose:
+            print("[searchTracks] choiceList:{0}".format(choiceList))
 
         minRange, maxRange = self.setRanges(choiceList)
         unformatted_results = {}
@@ -60,9 +68,12 @@ class trackQuery:
             pass
         #TODO: equate results and add to results
 
-        results = self.formatResults(unformatted_results)
+        if unformatted_results:
+            results = self.formatResults(unformatted_results)
+            return results
 
-        return results
+        else:
+            return []
 
     def setRanges(self, choiceList):
         #TODO: Add more features
@@ -92,7 +103,8 @@ class trackQuery:
 
         return minRange, maxRange
 
-    # TODO For now, we have to get the name of the artist from the artist_q. Mayabe we should put in track_q to speed things up?
+    # TODO For now, we have to get the name of the artist from the artist_q. Maybe we should put in track_q to speed things up?
+    # TODO return a list of json instead a list of lists
     def formatResults(self, results):
 
         formatted_results = []
@@ -102,6 +114,11 @@ class trackQuery:
         album_list = self.search.albums(album_ids)
         albums = {}
 
+        # TODO: Incorporate in config
+        audio_attributes = ['tempo','key','time_signature','danceability',
+                            'energy','loudness','speechiness','acousticness',
+                            'instrumentalness','liveness','valence']
+
         for album in album_list['albums']:
             albums[album['id']] = album['images'][1]['url']
 
@@ -109,23 +126,25 @@ class trackQuery:
             doc_ref = self.artistReference.document(u'{0}'.format(results[song_id]['artist_id']))
             artist = self.search.single_artist(results[song_id]['artist_id'])
             try:
+
                 doc = doc_ref.get().to_dict()
                 artist_name = artist['name']
-                list = [results[song_id]['name'],
-                        artist_name,
-                        results[song_id]['tempo'],
-                        results[song_id]['key'],
-                        results[song_id]['time_signature'],
-                        results[song_id]['danceability'],
-                        results[song_id]['energy'],
-                        results[song_id]['loudness'],
-                        results[song_id]['speechiness'],
-                        results[song_id]['acousticness'],
-                        results[song_id]['instrumentalness'],
-                        results[song_id]['liveness'],
-                        results[song_id]['valence'],
-                        albums[results[song_id]['album_id']]
-                        ]
+
+                if self.verbose:
+                    print("[formatResults] results[song_id]:{0} artist:{1}".format(results[song_id], artist))
+
+                list = [results[song_id]['name'], artist_name]
+
+                for attribute in audio_attributes:
+
+                    if attribute in results[song_id]:
+                        list.append(results[song_id][attribute])
+                    else:
+                        # TODO: There shouldn't be any attributes missing in the DB
+                        list.append("None")
+
+                list.append(albums[results[song_id]['album_id']])
+
                 formatted_results.append(list)
 
             except NotFound:

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from backend import trackQuery
 from backend import environment
 from firebase_admin import credentials
@@ -18,7 +18,7 @@ app = Flask(__name__)
 # Initialize Firebase Admin
 envData = environment.Data()
 config = envData.config['pyrebaseConfig']
-localCredentials = credentials.Certificate(config['serviceAccount_fromRoot'])
+localCredentials = credentials.Certificate(config['serviceAccount'])
 firebase_admin.initialize_app(localCredentials)
 
 
@@ -32,7 +32,7 @@ def search():
     input = {
         "tempo_label": int(request.form['tempo']),
         "key_label": int(request.form['key']),
-        "time_sig_label": int(request.form['key'])
+        "time_sig_label": int(request.form['time_sig'])
     }
 
     search = trackQuery.trackQuery()
@@ -41,6 +41,22 @@ def search():
     context = dict(data=results)
 
     return render_template("track_search.html", **context)
+
+@app.route('/song_search_test_temp', methods=['GET'])
+def search_test():
+
+    input = {
+        "tempo_label": int(request.form['tempo']),
+        "key_label": int(request.form['key']),
+        "time_sig_label": int(request.form['time_sig'])
+    }
+
+    search = trackQuery.trackQuery()
+    results = search.searchTracks(input)
+
+    context = dict(data=results)
+
+    return jsonify(data=results)
 
 if __name__ == '__main__':
     app.run(debug=True)

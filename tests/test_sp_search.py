@@ -7,7 +7,7 @@ import os.path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir, 'backend1')))
 
 
-from sp_search import sp_search
+from backend import sp_search
 import unittest
 
 class SearchTest(unittest.TestCase):
@@ -15,7 +15,7 @@ class SearchTest(unittest.TestCase):
     returned by the Spotify API in sp_search.py"""
 
     def setUp(self):
-        self.search = sp_search()
+        self.search = sp_search.sp_search()
 
     def test_limit(self):
         limitCases = [('Michael', 4, 4),

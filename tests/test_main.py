@@ -13,10 +13,13 @@
 # limitations under the License.
 import sys
 import os.path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir, 'code')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir, 'backend')))
 
-from backend import main
+import main
 import unittest
+import datetime
+import json
+from flask import jsonify
 
 class MainTest(unittest.TestCase):
     """This class uses the Flask tests app to run an integration test against a
@@ -24,11 +27,26 @@ class MainTest(unittest.TestCase):
 
     def setUp(self):
         self.app = main.app.test_client()
+        self.performance_time_seconds = 5
 
-    def test_hello_world(self):
-        rv = self.app.get('/')
-        print(rv.data)
-        assert("hello" in rv.data.lower())
+
+    def test_performance(self):
+
+        self.push_assertTime(100, 4, 4)
+
+    def push_assertTime(self, tempo, key, time_sig):
+
+        input = {
+            "tempo": tempo,
+            "key": key,
+            "time_sig": time_sig
+        }
+
+        start = datetime.datetime.now()
+        rv = self.app.get('/song_search_test_temp', data=input)
+        stop = datetime.datetime.now()
+        execution_time = stop-start
+        self.assertGreater(self.performance_time_seconds, execution_time.seconds)
 
 if __name__ == '__main__':
     unittest.main()
