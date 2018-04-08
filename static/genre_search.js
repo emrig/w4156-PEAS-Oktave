@@ -108,7 +108,7 @@ $(document).ready(function() {
 		//$("#search-results").show();
 		//$("#search-results").hide();
 
-		var data = $.get("/song_search_test_temp", parse(data));
+		var data = $.get("/song_search_test_temp", json_string, parse(data));
 	});
 
 	function parse(data)
