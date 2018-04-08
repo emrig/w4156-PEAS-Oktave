@@ -34,7 +34,9 @@
           "track_id": {
             "name": "",
             "artist_id": "",
+            "artist_name": "",
             "album_id": "",
+            "album_art": "",
             "danceability": 0.0,
             "energy": 0.0,
             "key": 0.0,
@@ -82,6 +84,17 @@
       "max_tempo": 0,
       "min_time_signature": 0,
       "max_time_signature": 0
+    },
+    "searchAlg": {
+      "w_danceability": 0.0,
+      "w_energy": 0.0,
+      "w_loudness": 0.0,
+      "w_speechiness": 0.0,
+      "w_acousticness": 0.0,
+      "w_instrumentalness": 0.0,
+      "w_liveness": 0.0,
+      "w_valence": 0.0,
+      "w_tempo": 0.0
     }
   },
   "test":{
