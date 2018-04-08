@@ -42,6 +42,13 @@ class sp_search:
 
         return result
 
+    def track(self, track_name, limit=None):
+
+        spotify = spotipy.Spotify(client_credentials_manager=self.client_credentials_manager)
+        result = spotify.search(q='track:' + str(track_name), limit=limit, type='Track')
+
+        return result
+
     """
     Returns a list of albums from an artist given the artist ID
     

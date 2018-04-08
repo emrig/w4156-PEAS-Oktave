@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 from backend import trackQuery
 from backend import environment
+from backend import sp_search
 from firebase_admin import credentials
 import  firebase_admin
 
@@ -54,7 +55,39 @@ def search_test():
     search = trackQuery.trackQuery()
     results = search.searchTracks(input)
 
-    context = dict(data=results)
+    #context = dict(data=results)
+
+    return jsonify(data=results)
+
+@app.route('/search_by_track', methods=['GET'])
+def search_by_track():
+
+    input = {
+        "track_name": request.form['track_name']
+    }
+
+    search = sp_search.sp_search()
+    results_raw = search.track(input['track_name'])
+
+    results = []
+
+    for track in results_raw['tracks']['items']:
+
+        json = {}
+        json['name'] = track['name']
+        json['artist_name'] = track['artists'][0]['name']
+        json['album_name'] = track['album']['name']
+        json['id'] = track['id']
+        json['album_id'] = track['album']['id']
+        json['album_art'] = track['album']['images'][0]['url']
+        json['artist_id'] = track['artists'][0]['id']
+        json['preview_url'] = track['preview_url']
+        json['duration_ms'] = track['duration_ms']
+        json['uri'] = track['uri']
+
+        results.append(json)
+
+    #context = dict(data=results)
 
     return jsonify(data=results)
 

@@ -30,20 +30,27 @@ class MainTest(unittest.TestCase):
         self.performance_time_seconds = 5
 
 
-    def test_performance(self):
-
-        self.push_assertTime(100, 4, 4)
-
-    def push_assertTime(self, tempo, key, time_sig):
+    def test_performance_attr_search(self):
 
         input = {
-            "tempo": tempo,
-            "key": key,
-            "time_sig": time_sig
+            "tempo": 100,
+            "key": 4,
+            "time_sig": 4
         }
+        self.push_assertTime(input, '/song_search_test_temp')
+
+    def test_performance_track_search(self):
+
+        input = {
+            "track_name": "love",
+        }
+        self.push_assertTime(input, '/search_by_track')
+
+
+    def push_assertTime(self, input, route):
 
         start = datetime.datetime.now()
-        rv = self.app.get('/song_search_test_temp', data=input)
+        rv = self.app.get(route, data=input)
         stop = datetime.datetime.now()
         execution_time = stop-start
         self.assertGreater(self.performance_time_seconds, execution_time.seconds)
