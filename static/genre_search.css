@@ -115,6 +115,6 @@ body {
 }
 
 #search_results {
-  display: none;
+  return:false;
 }
 
