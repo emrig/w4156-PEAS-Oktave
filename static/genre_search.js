@@ -108,7 +108,7 @@ $(document).ready(function() {
 		//$("#search-results").show();
 		//$("#search-results").hide();
 
-		$.get("127.0.0.1:5000", parse(data));
+		var data = $.get("127.0.0.1:5000", parse(data));
 	});
 
 	function parse(data)
