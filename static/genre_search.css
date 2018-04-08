@@ -113,3 +113,8 @@ body {
 .song-br {
   margin-bottom: : 5%;
 }
+
+#search_results {
+  display: none;
+}
+
