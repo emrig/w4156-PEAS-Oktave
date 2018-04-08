@@ -108,7 +108,7 @@ $(document).ready(function() {
 		//$("#search-results").show();
 		//$("#search-results").hide();
 
-		var data = $.get("/song_search_test_temp");
+		var data = $.get("127.0.0.1:5000");
 		console.log("GOT HERE");
 
 
