@@ -113,7 +113,7 @@ $(document).ready(function() {
 
 	function parse(data)
 	{
-		console.log(data[0]);
+		console.log(data.data[0]);
 	}
 
 
