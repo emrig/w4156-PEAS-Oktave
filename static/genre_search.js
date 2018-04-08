@@ -92,10 +92,10 @@ $(document).ready(function() {
 
 		// Create JSON object with property "genre_label"
 		var json_object = {
-			genre_label: genre,   
-			tempo_label: tempo,
-			key_label: key,
-			time_sig_label: time_sig
+			genre: genre,   
+			tempo: tempo,
+			key: key,
+			time_sig: time_sig
 		}
 
 		// Add object to array
