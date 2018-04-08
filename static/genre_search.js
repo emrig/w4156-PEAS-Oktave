@@ -108,7 +108,7 @@ $(document).ready(function() {
 		//$("#search-results").show();
 		//$("#search-results").hide();
 
-		var data = $.getJSON("/song_search_test_temp");
+		var data = $.get("/song_search_test_temp");
 		console.log("GOT HERE");
 
 
