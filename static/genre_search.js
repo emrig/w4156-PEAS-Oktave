@@ -1,7 +1,7 @@
 
 $(document).ready(function() {
 
-	// $("#search-results").hide();
+	$("#search-results").hide();
 
 	var genres = [
 	'adult standards',
@@ -105,8 +105,8 @@ $(document).ready(function() {
 		var json_string = JSON.stringify(array);
 
 
-		// $("#search-results").show();
-		$("#search-results").hide();
+		$("#search-results").show();
+		//$("#search-results").hide();
 
 		//var data = $.getJSON("/song_search_test_temp");
 
