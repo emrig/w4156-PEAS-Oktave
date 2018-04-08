@@ -108,11 +108,13 @@ $(document).ready(function() {
 		//$("#search-results").show();
 		//$("#search-results").hide();
 
-		var data = $.get("/song_search_test_temp");
-		console.log("GOT HERE");
-
-
+		var data = $.get("127.0.0.1:5000", parse(data));
 	});
+
+	function parse(data)
+	{
+		console.log(data[0]);
+	}
 
 
 	// var artists = [];
