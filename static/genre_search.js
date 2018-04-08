@@ -108,12 +108,12 @@ $(document).ready(function() {
 		//$("#search-results").show();
 		//$("#search-results").hide();
 
-		var obj = $.get("127.0.0.1:5000", parse(obj));
+		var data = $.get("127.0.0.1:5000", parse(data));
 	});
 
 	function parse(data)
 	{
-		console.log(obj.data[0]);
+		console.log("HELLO WORLD");
 	}
 
 
