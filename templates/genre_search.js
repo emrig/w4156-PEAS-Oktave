@@ -104,7 +104,7 @@ $(document).ready(function() {
 		// Encode JSON string
 		var json_string = JSON.stringify(array);
 
-		$("#search-results").show();
+		//$("#search-results").show();
 		// $("#search-results").hide();
 
 		var data = $.get("/song_search_test_temp");
