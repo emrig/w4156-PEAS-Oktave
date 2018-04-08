@@ -97,14 +97,17 @@ class artist_crawler:
 
         docs = self.db.collection(u'artist_q').get()
         artist_batch = []
+        batch_size = 100
 
         # Process in bulk to save on number of requests made
         for doc in docs:
-            artist_batch.append(doc.id)
+            if 'name' not in doc.to_dict() or 'popularity' not in doc.to_dict():
+                artist_batch.append(doc.id)
 
         count = 0
+        batch = self.db.batch()
 
-        for artist_id in artist_batch:
+        for inx, artist_id in enumerate(artist_batch):
 
             artist = self.search.single_artist(artist_id)
             doc_ref = self.db.collection(u'artist_q').document(u'{0}'.format(artist_id))
@@ -117,10 +120,19 @@ class artist_crawler:
                     "popularity": artist['popularity']
 
                 }
-                result = doc_ref.update(values)
-                print('{0}/{1} update: {2}'.format(count, len(artist_batch), values))
+
+                batch.update(doc_ref, values)
+                #result = doc_ref.update(values)
+                print('{0}/{1} update: {2}'.format(inx, len(artist_batch), values))
             else:
                 print("{0} not found!".format(artist_id))
+
+            if count == batch_size or inx == len(artist_batch)-1:
+                batch.commit()
+                print("Commit!")
+                print(doc_ref.get().to_dict())
+                batch = self.db.batch()
+                count = 0
 
 
 class add_artist(artist_crawler):

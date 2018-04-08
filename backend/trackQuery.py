@@ -45,7 +45,7 @@ class trackQuery:
             print("[searchTracks] choiceList:{0}".format(choiceList))
 
         minRange, maxRange = self.setRanges(choiceList)
-        unformatted_results = {}
+        results = []
 
         #TODO: querying if parameter is missing
         try:
@@ -56,7 +56,9 @@ class trackQuery:
 
             for doc in docs:
 
-                unformatted_results[doc.id] = doc.to_dict()
+                json = doc.to_dict()
+                json[u'track_id'] = doc.id
+                results.append(json)
 
             """
             matchingTempo = self.trackReference.where(u'tempo', u'>=', minRange['tempo']).where(u'key', u'<=', maxRange['tempo']).limit(1).get()
@@ -68,12 +70,8 @@ class trackQuery:
             pass
         #TODO: equate results and add to results
 
-        if unformatted_results:
-            results = self.formatResults(unformatted_results)
-            return results
+        return results
 
-        else:
-            return []
 
     def setRanges(self, choiceList):
         #TODO: Add more features
@@ -103,54 +101,6 @@ class trackQuery:
 
         return minRange, maxRange
 
-    # TODO For now, we have to get the name of the artist from the artist_q. Maybe we should put in track_q to speed things up?
-    # TODO return a list of json instead a list of lists
-    def formatResults(self, results):
-
-        formatted_results = []
-
-        # TODO Get the album photo since, for now, it is not in the database
-        album_ids = [x['album_id'] for x in results.values()]
-        album_list = self.search.albums(album_ids)
-        albums = {}
-
-        # TODO: Incorporate in config
-        audio_attributes = ['tempo','key','time_signature','danceability',
-                            'energy','loudness','speechiness','acousticness',
-                            'instrumentalness','liveness','valence']
-
-        for album in album_list['albums']:
-            albums[album['id']] = album['images'][1]['url']
-
-        for song_id in results.keys():
-            doc_ref = self.artistReference.document(u'{0}'.format(results[song_id]['artist_id']))
-            artist = self.search.single_artist(results[song_id]['artist_id'])
-            try:
-
-                doc = doc_ref.get().to_dict()
-                artist_name = artist['name']
-
-                if self.verbose:
-                    print("[formatResults] results[song_id]:{0} artist:{1}".format(results[song_id], artist))
-
-                list = [results[song_id]['name'], artist_name]
-
-                for attribute in audio_attributes:
-
-                    if attribute in results[song_id]:
-                        list.append(results[song_id][attribute])
-                    else:
-                        # TODO: There shouldn't be any attributes missing in the DB
-                        list.append("None")
-
-                list.append(albums[results[song_id]['album_id']])
-
-                formatted_results.append(list)
-
-            except NotFound:
-                pass
-
-        return formatted_results
 
 if __name__ == '__main__':
 
