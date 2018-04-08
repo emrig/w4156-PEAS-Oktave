@@ -1,7 +1,7 @@
 
 $(document).ready(function() {
 
-	// $("#search-results").hide();
+	$("#search-results").hide();
 
 	var genres = [
 	'adult standards',
@@ -104,15 +104,12 @@ $(document).ready(function() {
 		// Encode JSON string
 		var json_string = JSON.stringify(array);
 
-		// $("#search-results").show();
-		$("#search-results").hide();
+		$("#search-results").show();
+		// $("#search-results").hide();
 
-		console.log("GOT HERE");
+		var data = $.get("/song_search_test_temp");
 
-		var data = $.getJSON("/song_search_test_temp");
-
-		console.log("GOT HERE 2");
-
+		console.log("GET WORKED");
 
 	});
 
