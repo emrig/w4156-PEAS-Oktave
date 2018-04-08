@@ -108,10 +108,13 @@ $(document).ready(function() {
 		//$("#search-results").show();
 		//$("#search-results").hide();
 
-		var data = $.get("127.0.0.1:5000", console.log("GET WORKED"));
-
-
+		$.get("127.0.0.1:5000", parse(data));
 	});
+
+	function parse(data)
+	{
+		console.log("Hello world");
+	}
 
 
 	// var artists = [];
