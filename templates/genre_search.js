@@ -108,6 +108,8 @@ $(document).ready(function() {
 		//$("#search-results").show();
 		// $("#search-results").hide();
 
+		console.log("BUTTON CLICK");
+
 		var data = $.get("/song_search_test_temp");
 
 		console.log("GET WORKED");

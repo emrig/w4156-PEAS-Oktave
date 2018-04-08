@@ -1,6 +1,7 @@
 
 $(document).ready(function() {
 
+	console.log("11111111");
 	// $("#search-results").hide();
 
 	var genres = [
@@ -104,10 +105,12 @@ $(document).ready(function() {
 		// Encode JSON string
 		var json_string = JSON.stringify(array);
 
+		console.log("222222222");
+
 		// $("#search-results").show();
 		$("#search-results").hide();
 
-		console.log("GOT HERE");
+		console.log("333333333");
 
 		//var data = $.getJSON("/song_search_test_temp");
 
