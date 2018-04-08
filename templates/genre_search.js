@@ -1,7 +1,7 @@
 
 $(document).ready(function() {
 
-	$("#search-results").hide();
+	// $("#search-results").hide();
 
 	var genres = [
 	'adult standards',
@@ -104,9 +104,10 @@ $(document).ready(function() {
 		// Encode JSON string
 		var json_string = JSON.stringify(array);
 
-		$("#search-results").show();
+		// $("#search-results").show();
+		$("#search-results").hide();
 
-		//console.log(json_string);
+		
 	});
 
 

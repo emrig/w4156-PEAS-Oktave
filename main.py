@@ -24,7 +24,7 @@ firebase_admin.initialize_app(localCredentials)
 
 @app.route('/')
 def homePage():
-    return render_template('track_search.html')
+    return render_template('search.html')
 
 @app.route('/song_search', methods=['POST'])
 def search():
