@@ -1,6 +1,7 @@
 
 $(document).ready(function() {
 
+	console.log("HELLO");
 	$("#search-results").hide();
 
 	var genres = [
