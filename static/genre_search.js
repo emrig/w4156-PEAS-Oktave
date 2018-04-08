@@ -108,12 +108,12 @@ $(document).ready(function() {
 		//$("#search-results").show();
 		//$("#search-results").hide();
 
-		var data = $.get("127.0.0.1:5000", parse(data));
+		var data = $.get("/song_search_test_temp", parse(data));
 	});
 
 	function parse(data)
 	{
-		console.log(data.data[0]);
+		console.log("HELLO");
 	}
 
 
