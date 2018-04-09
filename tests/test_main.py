@@ -27,7 +27,7 @@ class MainTest(unittest.TestCase):
 
     def setUp(self):
         self.app = main.app.test_client()
-        self.performance_time_seconds = 5
+        self.performance_time_seconds = 5.0
 
 
     def test_performance_attr_search(self):

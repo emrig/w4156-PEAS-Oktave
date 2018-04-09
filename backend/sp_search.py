@@ -45,7 +45,7 @@ class sp_search:
     def track(self, track_name, limit=None):
 
         spotify = spotipy.Spotify(client_credentials_manager=self.client_credentials_manager)
-        result = spotify.search(q='track:' + str(track_name), limit=limit, type='Track')
+        result = spotify.search(q=str(track_name), limit=limit, type='Track')
 
         return result
 

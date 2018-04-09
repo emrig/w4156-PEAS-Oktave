@@ -1,5 +1,5 @@
 """
-Author: Pankhuri Kumar
+Author: Pankhuri Kumar, Erin Riglin
 """
 
 import environment
@@ -25,6 +25,8 @@ class trackQuery:
             except:
                 None
 
+        self.searchAlgConfig = envData.config['searchAlg']
+
         self.database = firestore.client()
         self.artistReference = self.database.collection(u'artist_q')
         self.trackReference = self.database.collection(u'track_q')
@@ -47,70 +49,93 @@ class trackQuery:
         minRange, maxRange = self.setRanges(choiceList)
         results = []
 
-        #TODO: querying if parameter is missing
-        try:
-            # First attempt to match exact results, inequality filters not allowed on multiple properties..
-            query = self.trackReference.where(u'tempo', u'>=', minRange['tempo']).where(u'tempo', u'<=', maxRange['tempo']).where(u'key', u'==', choiceList['key_label']).where(u'time_signature', u'==', choiceList['time_sig_label']).limit(20)
+        # Collect results based on +/-
+        for attribute in self.searchAlgConfig['plusMinus'].keys():
+            if attribute in choiceList.keys():
 
-            docs = query.get()
+                try:
+                    # First attempt to match exact results, inequality filters not allowed on multiple properties..
+                    #query = self.trackReference.where(attribute, u'>=', minRange[attribute]).where(attribute, u'<=', maxRange[attribute]).limit(20)
 
-            for doc in docs:
+                    # TODO decide limit
+                    query = self.trackReference.where(attribute, u'>=', minRange[attribute]).where(attribute, u'<=', maxRange[attribute]).limit(100)
 
-                json = doc.to_dict()
-                json[u'track_id'] = doc.id
-                results.append(json)
+                    docs = query.get()
 
-            """
-            matchingTempo = self.trackReference.where(u'tempo', u'>=', minRange['tempo']).where(u'key', u'<=', maxRange['tempo']).limit(1).get()
-            matchingKey = self.trackReference.where(u'key', u'>=', minRange['key']).where(u'key', u'<=', maxRange['key']).limit(1).get()
-            matchingTS = self.trackReference.where(u'time_signature', u'>=', minRange['time_signature']).where(u'key', u'<=', maxRange['time_signature']).limit(1).get()
-            """
+                    for doc in docs:
+                        result = doc.to_dict()
+                        result[u'track_id'] = doc.id
 
-        except NotFound:
-            pass
-        #TODO: equate results and add to results
+                        # Calculate score based on weights
+                        score = 0.0
+                        for attribute in choiceList.keys():
 
-        return results
+                            # TODO omit zero values for now and missing attibutes
+                            # TODO filter very short songs, this would mean adding track length to DB
+                            try:
+                                if choiceList[attribute] != 0 and attribute in result:
+                                    difference = 1 - abs((choiceList[attribute] - result[attribute]) / (choiceList[attribute]))
+                                    if difference < 0:
+                                        difference = 0.0
+                                    score += difference * self.searchAlgConfig['weights'][attribute]
 
+                            except:
+                                pass
+
+                        if (score, result) not in results:
+                            results.append((score, result))
+
+                except NotFound:
+                    pass
+                #TODO: equate results and add to results
+
+        results.sort(key=lambda x: x[0], reverse=True)
+        ranked_results = [x[1] for x in results]
+        return ranked_results[:30]
 
     def setRanges(self, choiceList):
         #TODO: Add more features
         minRange = {}
         maxRange = {}
 
-        if 'tempo_label' in choiceList:
-            minRange['tempo'] = choiceList['tempo_label'] - 2
-            maxRange['tempo'] = choiceList['tempo_label'] + 2
-        else:
-            minRange['tempo'] = 0
-            maxRange['tempo'] = 500
-
-        if 'key_label' in choiceList:
-            minRange['key'] = choiceList['key_label'] - 1
-            maxRange['key'] = choiceList['key_label'] + 1
-        else:
-            minRange['key'] = 0
-            maxRange['key'] = 11
-
-        if 'time_sig_label' in choiceList:
-            minRange['time_signature'] = choiceList['time_sig_label'] - 0
-            maxRange['time_signature'] = choiceList['time_sig_label'] + 0
-        else:
-            minRange['time_signature'] = 1
-            maxRange['time_signature'] = 7
+        for attribute in choiceList.keys():
+            minRange[attribute] = choiceList[attribute] - self.searchAlgConfig['plusMinus'][attribute]
+            maxRange[attribute] = choiceList[attribute] + self.searchAlgConfig['plusMinus'][attribute]
 
         return minRange, maxRange
-
 
 if __name__ == '__main__':
 
     # Testing
 
+    # Test Audio Attributes only
+    """
     input = {
-        "tempo_label": 150,
-        "key_label": 4,
-        "time_sig_label": 4
+        "tempo": 150,
+        "key": 4,
+        "time_signature": 4
     }
+    """
 
+    # Test song input
+    search = sp_search.sp_search()
+    song_results = search.track("stairway to heaven")
+    song_id = song_results['tracks']['items'][0]['id']
+    attibutes = search.audio_features([song_id])[0]
+
+    input = {
+        "tempo": attibutes['tempo'],
+        "key": attibutes['key'],
+        "time_signature": attibutes['time_signature'],
+        "acousticness": attibutes['acousticness'],
+        "danceability": attibutes['danceability'],
+        "energy": attibutes['energy'],
+        "instrumentalness": attibutes['instrumentalness'],
+        "liveness": attibutes['liveness'],
+        "loudness": attibutes['loudness'],
+        "mode": attibutes['mode'],
+        "valence": attibutes['valence'],
+        "speechiness": attibutes['speechiness'],
+    }
     test = trackQuery(True)
     print(test.searchTracks(input))

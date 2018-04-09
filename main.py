@@ -31,9 +31,9 @@ def homePage():
 def search():
 
     input = {
-        "tempo_label": int(request.form['tempo']),
-        "key_label": int(request.form['key']),
-        "time_sig_label": int(request.form['time_sig'])
+        "tempo": int(request.form['tempo']),
+        "key": int(request.form['key']),
+        "time_signature": int(request.form['time_sig'])
     }
 
     search = trackQuery.trackQuery()
@@ -47,9 +47,9 @@ def search():
 def search_test():
 
     input = {
-        "tempo_label": int(request.form['tempo']),
-        "key_label": int(request.form['key']),
-        "time_sig_label": int(request.form['time_sig'])
+        "tempo": int(request.form['tempo']),
+        "key": int(request.form['key']),
+        "time_signature": int(request.form['time_sig'])
     }
 
     search = trackQuery.trackQuery()
