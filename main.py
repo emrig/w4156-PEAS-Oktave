@@ -46,11 +46,16 @@ def search():
 @app.route('/song_search_test_temp', methods=['GET'])
 def search_test():
 
-    input = {
-        "tempo": int(request.form['tempo']),
-        "key": int(request.form['key']),
-        "time_signature": int(request.form['time_sig'])
-    }
+    input = {}
+
+    for attribute in request.form.keys():
+        input[attribute] = float(request.form[attribute])
+
+    # TODO cleanup, ensure all incoming keys match the names in database
+
+    if 'time_sig' in input:
+        input['time_signature'] = input['time_sig']
+        input.pop('time_sig', None)
 
     search = trackQuery.trackQuery()
     results = search.searchTracks(input)

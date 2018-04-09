@@ -20,6 +20,7 @@ import unittest
 import datetime
 import json
 from flask import jsonify
+from backend import sp_search
 
 class MainTest(unittest.TestCase):
     """This class uses the Flask tests app to run an integration test against a
@@ -28,7 +29,7 @@ class MainTest(unittest.TestCase):
     def setUp(self):
         self.app = main.app.test_client()
         self.performance_time_seconds = 5.0
-
+        self.search = sp_search.sp_search()
 
     def test_performance_attr_search(self):
 
@@ -41,10 +42,25 @@ class MainTest(unittest.TestCase):
 
     def test_performance_track_search(self):
 
+        song_results = self.search.track("childish gambino redbone")
+        song_id = song_results['tracks']['items'][0]['id']
+        attibutes = self.search.audio_features([song_id])[0]
+
         input = {
-            "track_name": "love",
+            "tempo": attibutes['tempo'],
+            "key": attibutes['key'],
+            "time_signature": attibutes['time_signature'],
+            "acousticness": attibutes['acousticness'],
+            "danceability": attibutes['danceability'],
+            "energy": attibutes['energy'],
+            "instrumentalness": attibutes['instrumentalness'],
+            "liveness": attibutes['liveness'],
+            "loudness": attibutes['loudness'],
+            "mode": attibutes['mode'],
+            "valence": attibutes['valence'],
+            "speechiness": attibutes['speechiness'],
         }
-        self.push_assertTime(input, '/search_by_track')
+        self.push_assertTime(input, '/song_search_test_temp')
 
 
     def push_assertTime(self, input, route):
