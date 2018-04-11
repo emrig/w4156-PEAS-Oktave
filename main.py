@@ -48,8 +48,8 @@ def search_test():
 
     input = {}
 
-    for attribute in request.form.keys():
-        input[attribute] = float(request.form[attribute])
+    for attribute in request.values.keys():
+        input[attribute] = float(request.values[attribute])
 
     # TODO cleanup, ensure all incoming keys match the names in database
 
