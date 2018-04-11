@@ -58,7 +58,7 @@ class trackQuery:
                     #query = self.trackReference.where(attribute, u'>=', minRange[attribute]).where(attribute, u'<=', maxRange[attribute]).limit(20)
 
                     # TODO decide limit
-                    query = self.trackReference.where(attribute, u'>=', minRange[attribute]).where(attribute, u'<=', maxRange[attribute]).limit(100)
+                    query = self.trackReference.where(attribute, u'>=', minRange[attribute]).where(attribute, u'<=', maxRange[attribute]).limit(200)
 
                     docs = query.get()
 
@@ -70,13 +70,12 @@ class trackQuery:
                         score = 0.0
                         for attribute in choiceList.keys():
 
-                            # TODO omit zero values for now and missing attibutes
-                            # TODO filter very short songs, this would mean adding track length to DB
+                            # TODO omit zero values for now and missing attibutes.. log instead?
+                            # TODO maybe filter very short songs, this would mean adding track length to DB
                             try:
                                 if choiceList[attribute] != 0 and attribute in result:
-                                    difference = 1 - abs((choiceList[attribute] - result[attribute]) / (choiceList[attribute]))
-                                    if difference < 0:
-                                        difference = 0.0
+                                    # filter attributes with more than 100% difference
+                                    difference = max(0, 1 - abs((choiceList[attribute] - result[attribute]) / (choiceList[attribute])))
                                     score += difference * self.searchAlgConfig['weights'][attribute]
 
                             except:
@@ -87,14 +86,14 @@ class trackQuery:
 
                 except NotFound:
                     pass
-                #TODO: equate results and add to results
 
         results.sort(key=lambda x: x[0], reverse=True)
         ranked_results = [x[1] for x in results]
         return ranked_results[:30]
 
+    # Set +/- ranges based on configuration file
     def setRanges(self, choiceList):
-        #TODO: Add more features
+
         minRange = {}
         maxRange = {}
 
