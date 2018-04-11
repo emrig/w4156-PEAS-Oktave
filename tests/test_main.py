@@ -21,6 +21,7 @@ import datetime
 import json
 from flask import jsonify
 from backend import sp_search
+import random
 
 class MainTest(unittest.TestCase):
     """This class uses the Flask tests app to run an integration test against a
@@ -33,34 +34,39 @@ class MainTest(unittest.TestCase):
 
     def test_performance_attr_search(self):
 
-        input = {
-            "tempo": 100,
-            "key": 4,
-            "time_sig": 4
-        }
-        self.push_assertTime(input, '/song_search_test_temp')
+        for i in range(0, 5):
+            input = {
+                "tempo": random.randint(60,201),
+                "key": random.randint(0,11),
+                "time_signature": random.randint(1,7)
+                }
+            self.push_assertTime(input, '/song_search_test_temp')
 
     def test_performance_track_search(self):
 
-        song_results = self.search.track("childish gambino redbone")
-        song_id = song_results['tracks']['items'][0]['id']
-        attibutes = self.search.audio_features([song_id])[0]
+        songs = ["childish gambino redbone", "beatles here comes the sun", "nirvana smells like teen spirit",
+                 "darude sandstorm", "george clinton atomic dog"]
 
-        input = {
-            "tempo": attibutes['tempo'],
-            "key": attibutes['key'],
-            "time_signature": attibutes['time_signature'],
-            "acousticness": attibutes['acousticness'],
-            "danceability": attibutes['danceability'],
-            "energy": attibutes['energy'],
-            "instrumentalness": attibutes['instrumentalness'],
-            "liveness": attibutes['liveness'],
-            "loudness": attibutes['loudness'],
-            "mode": attibutes['mode'],
-            "valence": attibutes['valence'],
-            "speechiness": attibutes['speechiness'],
-        }
-        self.push_assertTime(input, '/song_search_test_temp')
+        for song in songs:
+            song_results = self.search.track(song)
+            song_id = song_results['tracks']['items'][0]['id']
+            attibutes = self.search.audio_features([song_id])[0]
+
+            input = {
+                "tempo": attibutes['tempo'],
+                "key": attibutes['key'],
+                "time_signature": attibutes['time_signature'],
+                "acousticness": attibutes['acousticness'],
+                "danceability": attibutes['danceability'],
+                "energy": attibutes['energy'],
+                "instrumentalness": attibutes['instrumentalness'],
+                "liveness": attibutes['liveness'],
+                "loudness": attibutes['loudness'],
+                "mode": attibutes['mode'],
+                "valence": attibutes['valence'],
+                "speechiness": attibutes['speechiness'],
+            }
+            self.push_assertTime(input, '/song_search_test_temp')
 
 
     def push_assertTime(self, input, route):
@@ -69,6 +75,8 @@ class MainTest(unittest.TestCase):
         rv = self.app.get(route, data=input)
         stop = datetime.datetime.now()
         execution_time = stop-start
+        print("Search of tempo={0}, key={1}, time={2} took {3} seconds with {4} results".format(
+            input['tempo'], input['key'], input['time_signature'], execution_time, len(eval(rv.data)['data'])))
         self.assertGreater(self.performance_time_seconds, execution_time.seconds)
 
 if __name__ == '__main__':
