@@ -69,7 +69,8 @@ class trackQuery:
                         # Calculate score based on weights
                         score = 0.0
                         for attribute in choiceList.keys():
-
+                            
+                            # TODO omit results that have a very similar name: saw results with [song name] original, [song name] remastered, etc.
                             # TODO omit zero values for now and missing attibutes.. log instead?
                             # TODO maybe filter very short songs, this would mean adding track length to DB
                             try:
