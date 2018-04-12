@@ -85,7 +85,7 @@ $(document).ready(function() {
 		var genre = $("#genre-search-bar").val();
 		var tempo = $("#tempo-search-bar").val();
 		var key = $("#key-list").val();
-		var time_sig = $("#time-sig-list").val();
+		var time_signature = $("#time-sig-list").val();
 		//console.log(genre);
 
 		// Create empty array
@@ -96,7 +96,7 @@ $(document).ready(function() {
 			genre_label: genre,   
 			tempo_label: tempo,
 			key_label: key,
-			time_sig_label: time_sig
+			time_sig_label: time_signature
 		}
 
 		// Add object to array
