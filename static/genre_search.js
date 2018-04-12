@@ -81,18 +81,20 @@ $(document).ready(function() {
 
 	$("#search-form-master").submit(function(event) {
 		//console.log("Button clicked");
-		var genre = $("#genre-search-bar").val();
+		//var genre = $("#genre-search-bar").val();
 		var tempo = $("#tempo-search-bar").val();
 		var key = $("#key-list").val();
 		var time_sig = $("#time-sig-list").val();
 		//console.log(genre);
+
+		console.log(key);
 
 		// Create empty array
 		var array = [];
 
 		// Create JSON object with property "genre_label"
 		var json_object = {
-			genre: genre,   
+			//genre: genre,   
 			tempo: tempo,
 			key: key,
 			time_sig: time_sig
@@ -113,7 +115,7 @@ $(document).ready(function() {
 
 	function parse(data)
 	{
-		console.log("HELLO");
+		console.log(data);
 	}
 
 
