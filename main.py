@@ -68,7 +68,7 @@ def search_test():
 def search_by_track():
 
     input = {
-        "track_name": request.form['track_name']
+        "track_name": request.values['track_name']
     }
 
     search = sp_search.sp_search()
