@@ -84,10 +84,10 @@ $(document).ready(function() {
 		//var genre = $("#genre-search-bar").val();
 		var tempo = $("#tempo-search-bar").val();
 		var key = $("#key-list").val();
-		var time_sig = $("#time-sig-list").val();
+		var time_signature = $("#time-sig-list").val();
 		//console.log(genre);
 
-		console.log(key);
+		//console.log(key);
 
 		// Create empty array
 		var array = [];
@@ -97,14 +97,23 @@ $(document).ready(function() {
 			//genre: genre,   
 			tempo: tempo,
 			key: key,
-			time_sig: time_sig
+			time_signature: time_signature
 		}
+
+		console.log("JSON object");
+		console.log(json_object);
 
 		// Add object to array
 		array.push(json_object);
 
+		console.log("Array");
+		console.log(array);
+
 		// Encode JSON string
 		var json_string = JSON.stringify(array);
+
+		console.log("JSON string");
+		console.log(json_string);
 
 
 		//$("#search-results").show();
