@@ -5,7 +5,8 @@ Author: Pankhuri Kumar, Erin Riglin
 import environment
 import firebase_admin
 from firebase_admin import credentials
-from firebase_admin import firestore
+#from firebase_admin import firestore
+from google.cloud import firestore
 from google.cloud.exceptions import NotFound
 import sp_search
 
@@ -26,8 +27,8 @@ class trackQuery:
                 None
 
         self.searchAlgConfig = envData.config['searchAlg']
-
-        self.database = firestore.client()
+        #TODO: setup credentials for this
+        self.database = firestore.Client()
         self.artistReference = self.database.collection(u'artist_q')
         self.trackReference = self.database.collection(u'track_q')
 
