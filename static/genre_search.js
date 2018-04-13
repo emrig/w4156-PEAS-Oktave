@@ -133,8 +133,8 @@ $(document).ready(function() {
 			var new_dom_2 = $("<div class='col-xs-2'>");
 			var albumart = $("<img src='https://images-na.ssl-images-amazon.com/images/I/510cBiPgbIL.jpg' class='img-responsive album_art'>");
 			var end_dom_1 = $("</div>");
-			var new_dom_2 = $("<div class='col-xs-10'>");
-			var end_dom_2 = $("</div>");
+			var new_dom_3 = $("<div class='col-xs-10'>");
+			var end_dom_3 = $("</div>");
 			var end_dom_2 = $("</div>");
 
 			$("#search-results").append(new_dom_1);
