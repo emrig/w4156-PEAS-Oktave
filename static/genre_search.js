@@ -126,7 +126,14 @@ $(document).ready(function() {
 
 	function parse(json)
 	{
-		console.log(json["data"]);
+		//console.log(json["data"]);
+		var d = json["data"];
+		d.forEach(function(element) {
+
+			console.log("hello");
+			});
+			
+
 	}
 
 
