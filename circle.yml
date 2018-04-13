@@ -25,7 +25,7 @@ dependencies:
     - echo $CLIENT_SECRET | base64 --decode > ${HOME}/client-secret.json
     # vendor our dependencies
     - mkdir -p lib
-    - pip install -r requirements.txt -t lib2
+    - pip install -r requirements.txt -t lib
     # Make sure gcloud is up to date
     - gcloud --quiet components update app
     # authenticate gcloud
