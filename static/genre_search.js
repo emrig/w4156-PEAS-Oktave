@@ -81,39 +81,83 @@ $(document).ready(function() {
 
 	$("#search-form-master").submit(function(event) {
 		//console.log("Button clicked");
-		var genre = $("#genre-search-bar").val();
+		//var genre = $("#genre-search-bar").val();
 		var tempo = $("#tempo-search-bar").val();
 		var key = $("#key-list").val();
-		var time_sig = $("#time-sig-list").val();
+		var time_signature = $("#time-sig-list").val();
 		//console.log(genre);
+
+		//console.log(key);
 
 		// Create empty array
 		var array = [];
 
 		// Create JSON object with property "genre_label"
 		var json_object = {
-			genre_label: genre,   
-			tempo_label: tempo,
-			key_label: key,
-			time_sig_label: time_sig
+			//genre: genre,   
+			tempo: tempo,
+			key: key,
+			time_signature: time_signature
 		}
+
+		console.log("JSON object");
+		console.log(json_object);
 
 		// Add object to array
 		array.push(json_object);
 
+		console.log("Array");
+		console.log(array);
+
 		// Encode JSON string
 		var json_string = JSON.stringify(array);
+
+		console.log("JSON string");
+		console.log(json_string);
 
 
 		//$("#search-results").show();
 		//$("#search-results").hide();
 
-		var data = $.get("127.0.0.1:5000", parse(data));
+		var json = $.get("/song_search_test_temp", json_object, function(json) {parse(json);});
+		//console.log(JSON.stringify(data));
+		//var json = JSON.parse(data);
 	});
 
-	function parse(data)
+	function parse(json)
 	{
-		console.log(data.data[0]);
+		//console.log(json["data"]);
+		var results = json["data"];
+		results.forEach(function(element) {
+			var new_dom_1 = $("<div class='row'>");
+
+			var new_dom_2 = $("<div class='col-xs-2'>");
+			var albumart = $("<img src='https://images-na.ssl-images-amazon.com/images/I/510cBiPgbIL.jpg' class='img-responsive album_art'>");
+			var end_dom_2 = $("</div>");
+
+			var new_dom_3 = $("<div class='col-xs-10'>");
+			var new_dom_4 = $("<div class='row song-info-row'><div id='info1'>");
+            var song_artist = $("<b>Superfly</b> • Curtis Mayfield"); 
+          	var end_dom_4 = $("</div></div>");
+			var end_dom_3 = $("</div>");
+
+			var end_dom_1 = $("</div>"); // End row
+
+			$("#search-results").append(new_dom_1);
+			$("#search-results").append(new_dom_2);
+			$("#search-results").append(albumart);
+			$("#search-results").append(end_dom_2);
+			$("#search-results").append(new_dom_3);
+			$("#search-results").append(new_dom_4);
+			$("#search-results").append(song_artist);
+			$("#search-results").append(end_dom_4);
+			$("#search-results").append(end_dom_3);
+			$("#search-results").append(end_dom_3);
+			});
+
+
+			
+
 	}
 
 

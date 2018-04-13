@@ -86,15 +86,34 @@
       "max_time_signature": 0
     },
     "searchAlg": {
-      "w_danceability": 0.0,
-      "w_energy": 0.0,
-      "w_loudness": 0.0,
-      "w_speechiness": 0.0,
-      "w_acousticness": 0.0,
-      "w_instrumentalness": 0.0,
-      "w_liveness": 0.0,
-      "w_valence": 0.0,
-      "w_tempo": 0.0
+      "weights": {
+        "danceability": 0.003,
+        "energy": 0.003,
+        "loudness": 0.003,
+        "speechiness": 0.003,
+        "acousticness": 0.003,
+        "instrumentalness": 0.003,
+        "liveness": 0.003,
+        "valence": 0.003,
+        "tempo": 0.1825,
+        "key": 0.1825,
+        "mode": 0.1825,
+        "time_signature": 0.1825
+      },
+      "plusMinus": {
+        "danceability": 0.8,
+        "energy": 0.11,
+        "loudness": 2.15,
+        "speechiness": 0.55,
+        "acousticness": 0.15,
+        "instrumentalness": 0.11,
+        "liveness": 0.15,
+        "valence": 0.12,
+        "tempo": 2.0,
+        "key": 1.0,
+        "mode": 1.0,
+        "time_signature": 1.0
+      }
     }
   },
   "test":{

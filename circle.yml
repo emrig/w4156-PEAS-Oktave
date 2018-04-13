@@ -13,7 +13,7 @@ machine:
     PYTHONPATH: ${PYTHONPATH}:${HOME}/google_appengine
 
     # Replace this with your project ID
-    GCLOUD_PROJECT: "$GCLOUD_PROJECT_ID"
+    GCLOUD_PROJECT: "coms4156-oktave-2"
 
 dependencies:
   pre:
