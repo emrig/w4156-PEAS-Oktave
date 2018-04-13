@@ -120,12 +120,12 @@ $(document).ready(function() {
 		//$("#search-results").hide();
 
 		var data = $.get("/song_search_test_temp", json_object, parse(data));
-
+		console.log(data);
 	});
 
 	function parse(data)
 	{
-		console.log(data);
+		//console.log(data);
 	}
 
 
