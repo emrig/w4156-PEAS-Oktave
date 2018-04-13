@@ -140,14 +140,19 @@ $(document).ready(function() {
             var song_artist = $("<b>Superfly</b> • Curtis Mayfield"); 
           	var end_dom_4 = $("</div></div>");
 			var end_dom_3 = $("</div>");
-			
+
 			var end_dom_1 = $("</div>"); // End row
 
 			$("#search-results").append(new_dom_1);
 			$("#search-results").append(new_dom_2);
 			$("#search-results").append(albumart);
-			$("#search-results").append(end_dom_1);
 			$("#search-results").append(end_dom_2);
+			$("#search-results").append(new_dom_3);
+			$("#search-results").append(new_dom_4);
+			$("#search-results").append(song_artist);
+			$("#search-results").append(end_dom_4);
+			$("#search-results").append(end_dom_3);
+			$("#search-results").append(end_dom_3);
 			});
 
 
