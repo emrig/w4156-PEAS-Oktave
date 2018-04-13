@@ -130,12 +130,18 @@ $(document).ready(function() {
 		var results = json["data"];
 		results.forEach(function(element) {
 			var new_dom_1 = $("<div class='row'>");
+
 			var new_dom_2 = $("<div class='col-xs-2'>");
 			var albumart = $("<img src='https://images-na.ssl-images-amazon.com/images/I/510cBiPgbIL.jpg' class='img-responsive album_art'>");
-			var end_dom_1 = $("</div>");
-			var new_dom_3 = $("<div class='col-xs-10'>");
-			var end_dom_3 = $("</div>");
 			var end_dom_2 = $("</div>");
+
+			var new_dom_3 = $("<div class='col-xs-10'>");
+			var new_dom_4 = $("<div class='row song-info-row'><div id='info1'>");
+            var song_artist = $("<b>Superfly</b> • Curtis Mayfield"); 
+          	var end_dom_4 = $("</div></div>");
+			var end_dom_3 = $("</div>");
+			
+			var end_dom_1 = $("</div>"); // End row
 
 			$("#search-results").append(new_dom_1);
 			$("#search-results").append(new_dom_2);
