@@ -7,9 +7,9 @@ import environment
 from datetime import datetime
 import firebase_admin
 from firebase_admin import credentials
+from google.cloud.exceptions import NotFound
 from google.cloud import firestore
 from firebase_admin import firestore
-from google.cloud.exceptions import NotFound
 
 
 class album_crawler():
