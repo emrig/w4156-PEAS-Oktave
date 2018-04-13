@@ -2,7 +2,6 @@
 Author: Pankhuri Kumar
 """
 
-import os
 import sp_search
 import environment
 from datetime import datetime
@@ -11,6 +10,7 @@ from firebase_admin import credentials
 from google.cloud import firestore
 from firebase_admin import firestore
 from google.cloud.exceptions import NotFound
+
 
 class album_crawler():
 
@@ -34,27 +34,28 @@ class album_crawler():
     def read_input(self):
 
         lastUpdatedTime = ''
-        lastUpdated = self.artistReference.order_by(u'get_music_time', direction=firestore.Query.DESCENDING).limit(1).get()
+        lastUpdated = self.artistReference.order_by(u'get_music_time', direction=firestore.Query.DESCENDING).limit(1502).get()
         for a in lastUpdated:
             lastUpdatedTime = (a.to_dict())["get_music_time"]
+        print(lastUpdatedTime)
 
         # update artists_queue with get_music_time and new album count
         self.updateTime = datetime.now()
 
         # store all artists who were never updated and store music for all these artists
         found = 1
-        found1 = 0
-        while found != 0:
-            try:
-                nullArtist = self.artistReference.where(u'get_music_time', u'==', 0).order_by(u'index').limit(1).get()
-                self.findTracks(nullArtist, lastUpdatedTime)
-                found += 1
-            except NotFound:
-                found1 = found
-                found = 0
-                pass
-        # store all artists who weren't updated fully previous time and store music for all these artists
-        found = found1
+        # found1 = 0
+        # while found != 0:
+        #     try:
+        #         nullArtist = self.artistReference.where(u'get_music_time', u'==', 0).order_by(u'index').limit(1).get()
+        #         self.findTracks(nullArtist, lastUpdatedTime)
+        #         found += 1
+        #     except NotFound:
+        #         found1 = found
+        #         found = 0
+        #         pass
+        # # store all artists who weren't updated fully previous time and store music for all these artists
+        # found = found1
         internalIndex = 1
         while found != 0:
             try:
@@ -76,7 +77,8 @@ class album_crawler():
             # to handle change in date format
             try:
                 # if artist was updated in last pass, assumes application was interrupted for some reason
-                if artist['get_music_time'] == lastUpdatedTime:
+                if artist['get_music_time'] >= lastUpdatedTime:
+                    print("Skipping " + str(item.id))
                     continue
             except TypeError:
                 pass
@@ -89,10 +91,10 @@ class album_crawler():
                 missingAlbums = self.findMissingAlbums(item.id, albums)
                 updateCount = self.updateTracks(item.id, missingAlbums)
                 # update number of albums
-                artist["albums"] += updateCount
+                artist["albums"] = updateCount
                 artist["get_music_time"] = self.updateTime
-            # write updates to DB (csv)
-            self.artistReference.document(item.id).update(artist)
+        # write updates to DB (csv)
+        self.artistReference.document(item.id).update(artist)
 
     def findMissingAlbums(self, a, albums):
         missingAlbums = []
@@ -130,13 +132,13 @@ class album_crawler():
         # update track DB (csv)
         for album in missingAlbums:
             # query spotify using id
+            print("....")
             tracks = self.search.album_tracks(album)
             # query for audio features
             for track in tracks["items"]:
                 # fill up entry with relevant information
                 entry = self.initializeEntry(track)
-                entry["artist_id"] = artist
-                entry["album_id"] = album
+                entry = self.addAuxillaryDetails(entry, artist, album)
 
                 # add song to DB if it doesn't exist
                 if (not self.exists(track['id'])):
@@ -157,6 +159,7 @@ class album_crawler():
 
         entry = self.trackConfig
         entry["name"] = track['name']
+
         features = self.search.audio_features(str(trackId))
 
         # when some features don't exist in Spotify DB
@@ -184,6 +187,20 @@ class album_crawler():
         except: pass
         try: entry["time_signature"] = features[0]["time_signature"]
         except: pass
+        return entry
+
+    def addAuxillaryDetails(self, entry, artist, album):
+        entry["artist_id"] = artist
+        entry["album_id"] = album
+        try:
+            artistDetails = self.search.single_artist(artist)
+            entry["artist_name"] = artistDetails["name"]
+
+            albumDetails = self.search.album(album)
+            entry["album_art"] = albumDetails["images"][0]["url"]
+        except:
+            pass
+
         return entry
 
     def exists(self, trackID):
