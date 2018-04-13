@@ -63,10 +63,10 @@ class sp_search:
     album_type - album, single, appears_on, compilation
     
     """
-    def albums(self, album_ids):
+    def album(self, album_ids):
 
         spotify = spotipy.Spotify(client_credentials_manager=self.client_credentials_manager)
-        result = spotify.albums(album_ids)
+        result = spotify.album(album_ids)
 
         return result
 
