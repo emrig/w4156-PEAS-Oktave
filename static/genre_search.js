@@ -120,17 +120,20 @@ $(document).ready(function() {
 		//$("#search-results").hide();
 
 		var json = $.get("/song_search_test_temp", json_object, function(json) {parse(json);});
-		console.log(JSON.stringify(data));
+		//console.log(JSON.stringify(data));
 		//var json = JSON.parse(data);
 	});
 
 	function parse(json)
 	{
 		//console.log(json["data"]);
-		var d = json["data"];
-		d.forEach(function(element) {
-
-			console.log("hello");
+		var results = json["data"];
+		results.forEach(function(element) {
+			var new_dom_1 = $("<div class='row'>");
+			var new_dom_2 = $("<div class='col-xs-2'>");
+			var albumart = $("<img src='https://images-na.ssl-images-amazon.com/images/I/510cBiPgbIL.jpg' class='img-responsive album_art'>");
+			var end_row_1 = $("</div>");
+			var end_row_2 = $("</div>");
 			});
 			
 
