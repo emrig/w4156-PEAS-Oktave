@@ -134,6 +134,12 @@ $(document).ready(function() {
 			var albumart = $("<img src='https://images-na.ssl-images-amazon.com/images/I/510cBiPgbIL.jpg' class='img-responsive album_art'>");
 			var end_row_1 = $("</div>");
 			var end_row_2 = $("</div>");
+
+			$("#search-results").append(new_dom_1);
+			$("#search-results").append(new_dom_2);
+			$("#search-results").append(albumart);
+			$("#search-results").append(end_dom_1);
+			$("#search-results").append(end_dom_2);
 			});
 			
 
