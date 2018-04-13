@@ -119,14 +119,14 @@ $(document).ready(function() {
 		//$("#search-results").show();
 		//$("#search-results").hide();
 
-		var data = $.get("/song_search_test_temp", json_object, parse(data));
-		console.log(data);
+		var json = $.get("/song_search_test_temp", json_object, function(json) {parse(json);});
+		console.log(JSON.stringify(data));
 		//var json = JSON.parse(data);
 	});
 
-	function parse(data)
+	function parse(json)
 	{
-		//console.log(data);
+		console.log(json["data"]);
 	}
 
 
