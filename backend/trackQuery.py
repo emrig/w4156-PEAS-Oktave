@@ -9,6 +9,9 @@ from firebase_admin import credentials
 from google.cloud import firestore
 from google.cloud.exceptions import NotFound
 import sp_search
+import os
+
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="../credentials/coms4156-oktave-firebase-adminsdk-dev.json"
 
 class trackQuery:
 
