@@ -1,3 +1,6 @@
+flag = 5
+flag2 = 3
+
 from flask import Flask, render_template, request, jsonify
 from backend import trackQuery
 from backend import environment
