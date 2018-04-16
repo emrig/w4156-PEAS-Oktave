@@ -122,42 +122,54 @@ $(document).ready(function() {
 		var json = $.get("/song_search_test_temp", json_object, function(json) {parse(json);});
 		//console.log(JSON.stringify(data));
 		//var json = JSON.parse(data);
+
+		// specify the columns
+	    var columnDefs = [
+	      {headerName: "Make", field: "make"},
+	      {headerName: "Model", field: "model"},
+	      {headerName: "Price", field: "price"}
+	    ];
+	    
+	    // specify the data
+	    var rowData = [
+	      {make: "Toyota", model: "Celica", price: 35000},
+	      {make: "Ford", model: "Mondeo", price: 32000},
+	      {make: "Porsche", model: "Boxter", price: 72000}
+	    ];
+	    
+	    // let the grid know which columns and what data to use
+	    var gridOptions = {
+	      columnDefs: columnDefs,
+	      rowData: rowData
+	    };
+
+	  // lookup the container we want the Grid to use
+	  var eGridDiv = document.querySelector('#myGrid');
+
+	  // create the grid passing in the div to use together with the columns & data we want to use
+	  new agGrid.Grid(eGridDiv, gridOptions);
 	});
 
 	function parse(json)
 	{
 		//console.log(json["data"]);
-		var results = json["data"];
-		results.forEach(function(element) {
-			var new_dom_1 = $("<div class='row'>");
+		// var results = json["data"];
+		// results.forEach(function(element) {
+		// 	var row = $("<div class='row'>");
 
-			var new_dom_2 = $("<div class='col-xs-2'>");
-			var albumart = $("<img src='https://images-na.ssl-images-amazon.com/images/I/510cBiPgbIL.jpg' class='img-responsive album_art'>");
-			var end_dom_2 = $("</div>");
+		// 	// Allocate space for album art; insert image
+		// 	var album_col = $("<div class='col-xs-2'>");
+		// 	var album_art = $("<img src='https://images-na.ssl-images-amazon.com/images/I/510cBiPgbIL.jpg' class='img-responsive album_art'>");
 
-			var new_dom_3 = $("<div class='col-xs-10'>");
-			var new_dom_4 = $("<div class='row song-info-row'><div id='info1'>");
-            var song_artist = $("<b>Superfly</b> • Curtis Mayfield"); 
-          	var end_dom_4 = $("</div></div>");
-			var end_dom_3 = $("</div>");
+		// 	// Allocate space for song information; insert information
+		// 	var song_info_col = $("<div class='col-xs-10'>");
+		// 	var song_info_row = $("<div class='row song-info-row'><div id='info1'>");
+  //           var song_artist = $("<b>Superfly</b> • Curtis Mayfield"); 
 
-			var end_dom_1 = $("</div>"); // End row
-
-			$("#search-results").append(new_dom_1);
-			$("#search-results").append(new_dom_2);
-			$("#search-results").append(albumart);
-			$("#search-results").append(end_dom_2);
-			$("#search-results").append(new_dom_3);
-			$("#search-results").append(new_dom_4);
-			$("#search-results").append(song_artist);
-			$("#search-results").append(end_dom_4);
-			$("#search-results").append(end_dom_3);
-			$("#search-results").append(end_dom_3);
-			});
-
-
-			
-
+  //           $(album_col).append(album_art);
+  //           $(row).append(album_col);
+		// 	$("#search-results").append(row);
+		// 	});
 	}
 
 
