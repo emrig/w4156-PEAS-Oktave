@@ -5,13 +5,13 @@ Author: Pankhuri Kumar, Erin Riglin
 import environment
 import firebase_admin
 from firebase_admin import credentials
-#from firebase_admin import firestore
-from google.cloud import firestore
+from firebase_admin import firestore
+# from google.cloud import firestore
 from google.cloud.exceptions import NotFound
 import sp_search
 import os
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="../credentials/coms4156-oktave-firebase-adminsdk-dev.json"
+# os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="../credentials/coms4156-oktave-firebase-adminsdk-dev.json"
 
 class trackQuery:
 
@@ -31,7 +31,7 @@ class trackQuery:
 
         self.searchAlgConfig = envData.config['searchAlg']
         #TODO: setup credentials for this
-        self.database = firestore.Client()
+        self.database = firestore.client()
         self.artistReference = self.database.collection(u'artist_q')
         self.trackReference = self.database.collection(u'track_q')
 
