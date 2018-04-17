@@ -100,20 +100,20 @@ $(document).ready(function() {
 			time_signature: time_signature
 		}
 
-		console.log("JSON object");
-		console.log(json_object);
+		// console.log("JSON object");
+		// console.log(json_object);
 
 		// Add object to array
 		array.push(json_object);
 
-		console.log("Array");
-		console.log(array);
+		// console.log("Array");
+		// console.log(array);
 
 		// Encode JSON string
 		var json_string = JSON.stringify(array);
 
-		console.log("JSON string");
-		console.log(json_string);
+		// console.log("JSON string");
+		// console.log(json_string);
 
 
 		//$("#search-results").show();
@@ -126,7 +126,6 @@ $(document).ready(function() {
 
 	function parse(json)
 	{
-		console.log("HI");
 		//console.log(json["data"]);
 		var results = json["data"];
 		results.forEach(function(element) {
@@ -144,7 +143,7 @@ $(document).ready(function() {
             $(album_col).append(album_art);
             $(row).append(album_col);
 			$("#search-results").append(row);
-			});
+		});
 	}
 
 
