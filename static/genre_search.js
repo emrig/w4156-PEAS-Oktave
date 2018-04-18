@@ -119,7 +119,8 @@ $(document).ready(function() {
 		//$("#search-results").show();
 		//$("#search-results").hide();
 
-		var json = $.get("/song_search_test_temp", json_object, function(json) {parse(json);});
+		// var json = $.get("/song_search_test_temp", json_object, function(json) {parse(json);});
+		var json = fetch('https://api.myjson.com/bins/15psn9');
 		//console.log(JSON.stringify(data));
 		//var json = JSON.parse(data);
 
@@ -151,7 +152,7 @@ $(document).ready(function() {
 		// create the grid passing in the div to use together with the columns & data we want to use
 		new agGrid.Grid(eGridDiv, gridOptions);
 
-		gridOptions.api.setRowData(json.data);
+		gridOptions.api.setRowData(json);
 	});
 
 	function parse(json)
