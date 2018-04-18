@@ -139,8 +139,8 @@ $(document).ready(function() {
 		// create the grid passing in the div to use together with the columns & data we want to use
 		new agGrid.Grid(eGridDiv, gridOptions);
 
-		console.log(json.data);
-		gridOptions.api.setRowData(json.data);
+		console.log(json.data.data);
+		gridOptions.api.setRowData(json.responseText.data);
 	});
 
 	function parse(json)
