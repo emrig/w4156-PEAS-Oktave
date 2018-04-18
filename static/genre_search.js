@@ -123,7 +123,7 @@ $(document).ready(function() {
 
 		// specify the columns
 		var columnDefs = [
-		{headerName: "Artist Name", field: "artist_name"},
+		{headerName: "Artist Name", field: "artist_name"}
 	    ];
 
 	    // let the grid know which columns and what data to use
