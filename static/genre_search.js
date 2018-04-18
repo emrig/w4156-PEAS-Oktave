@@ -123,9 +123,7 @@ $(document).ready(function() {
 
 		// specify the columns
 		var columnDefs = [
-		{headerName: "Make", field: "make"},
-	    {headerName: "Model", field: "model"},
-	    {headerName: "Price", field: "price"}
+		{headerName: "Artist Name", field: "artist_name"},
 	    ];
 
 	    // let the grid know which columns and what data to use
