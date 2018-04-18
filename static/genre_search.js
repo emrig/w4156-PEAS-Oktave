@@ -129,12 +129,11 @@ $(document).ready(function() {
 	    ];
 
 	    // let the grid know which columns and what data to use
-	    var gridOptions = {
-	    	columnDefs: columnDefs,
-		    rowData: rowData,
-		    enableSorting: true,
-		    enableFilter: true
-		};
+    	var gridOptions = {
+    		columnDefs: columnDefs,
+    		enableSorting: true,
+    		enableFilter: true
+    	};
 
 		// lookup the container we want the Grid to use
 		var eGridDiv = document.querySelector('#myGrid');
