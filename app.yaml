@@ -21,6 +21,7 @@ handlers:
 # temporary workaround around gcloud issue
 skip_files:
 - ^venv/.*$
+- ^(.*/)?.*\.py[co]$
 
 libraries:
 - name: grpcio
