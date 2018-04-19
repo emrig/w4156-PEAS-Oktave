@@ -120,7 +120,10 @@ $(document).ready(function() {
 		//$("#search-results").hide();
 
 		var json = $.get("/song_search_test_temp", json_object, function(json) {parse(json);});
+	});
 
+	function parse(json)
+	{
 		// specify the columns
 		var columnDefs = [
 		{headerName: "Artist Name", field: "artist_name"}
@@ -138,15 +141,10 @@ $(document).ready(function() {
 
 		// create the grid passing in the div to use together with the columns & data we want to use
 		new agGrid.Grid(eGridDiv, gridOptions);
-
-		//console.log(json["data"]);
-		//gridOptions.api.setRowData(json["data"]);
-	});
-
-	function parse(json)
-	{
 		console.log(json["data"]);
 		gridOptions.api.setRowData(json["data"]);
+
+		
 		// var results = json["data"];
 		// results.forEach(function(element) {
 		// 	var row = $("<div class='row'>");
