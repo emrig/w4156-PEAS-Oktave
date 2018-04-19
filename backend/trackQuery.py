@@ -94,7 +94,7 @@ class trackQuery:
 
         results.sort(key=lambda x: x[0], reverse=True)
         ranked_results = [x[1] for x in results]
-        return ranked_results[:30]
+        return ranked_results
 
     # Set +/- ranges based on configuration file
     def setRanges(self, choiceList):

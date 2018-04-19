@@ -1,6 +1,3 @@
-flag = 5
-flag2 = 3
-
 from flask import Flask, render_template, request, jsonify
 from backend import trackQuery
 from backend import environment
@@ -10,21 +7,28 @@ import  firebase_admin
 
 app = Flask(__name__)
 
+def start_firestore():
 
-# dynamodb = boto3.resource(
-#     'dynamodb',
-#     endpoint_url='http://localhost:8000',
-#     region_name='dummy_region',
-#     aws_access_key_id='dummy_access_key',
-#     aws_secret_access_key='dummy_secret_key',
-#     verify=False)
+    # Disable app if happens to be enabled
+    try:
+        firebase_admin.delete_app(firebase_admin.get_app())
+    except:
+        pass
 
-# Initialize Firebase Admin
-envData = environment.Data()
-config = envData.config['pyrebaseConfig']
-localCredentials = credentials.Certificate(config['serviceAccount'])
-firebase_admin.initialize_app(localCredentials)
+    try:
+        firebase_admin.initialize_app()
+    except:
+        envData = environment.Data('dev')
+        config = envData.config['pyrebaseConfig']
+        localCredentials = credentials.Certificate(config['serviceAccount'])
+        firebase_admin.initialize_app(localCredentials)
 
+def stop_firestore():
+
+    try:
+        firebase_admin.delete_app(firebase_admin.get_app())
+    except:
+        pass
 
 @app.route('/')
 def homePage():
@@ -32,6 +36,7 @@ def homePage():
 
 @app.route('/song_search', methods=['POST'])
 def search():
+    start_firestore()
 
     input = {
         "tempo": int(request.form['tempo']),
@@ -44,11 +49,13 @@ def search():
 
     context = dict(data=results)
 
+    stop_firestore()
+
     return render_template("track_search.html", **context)
 
 @app.route('/song_search_test_temp', methods=['GET'])
 def search_test():
-
+    start_firestore()
     input = {}
 
     for attribute in request.values.keys():
@@ -63,7 +70,7 @@ def search_test():
     search = trackQuery.trackQuery()
     results = search.searchTracks(input)
 
-    #context = dict(data=results)
+    stop_firestore()
 
     return jsonify(data=results)
 
@@ -95,7 +102,6 @@ def search_by_track():
 
         results.append(json)
 
-    #context = dict(data=results)
 
     return jsonify(data=results)
 

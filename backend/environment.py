@@ -4,8 +4,8 @@ from definitions import ROOT_DIR
 
 class Data():
 
-    def __init__(self):
-        self.env = 'dev'
+    def __init__(self, env='dev'):
+        self.env = env
 
         self.config_file = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir, "configuration", "app.json"))
         self.config = eval(open(self.config_file, 'r').read())[self.env]

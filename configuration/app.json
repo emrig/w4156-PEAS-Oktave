@@ -117,9 +117,237 @@
     }
   },
   "test":{
-
+    "pyrebaseConfig":{
+      "projectId" : "coms4156-oktave-2",
+      "serviceAccount": "credentials/coms4156-oktave-firebase-adminsdk-dev.json"
+    },
+    "databaseConfig":{
+      "rules": {
+        "crawlerTable": {
+            "artist_q": {
+                    ".indexOn": ["index", "get_related_time", "get_music_time"]
+            }
+        },
+        "track_features": {
+            "track_q": {
+                    ".indexOn": ["artist_id", "album_id", "name", "danceability", "key", "valence", "tempo", "time_signature"]
+            }
+        },
+        ".read": "auth != null",
+        ".write": "auth != null"
+      },
+      "artist_q": {
+          "artist_id": {
+            "index": 0,
+            "get_related_time": 0,
+            "get_music_time": 0,
+            "albums": 0,
+            "genres": [],
+            "name": "",
+            "popularity": 0
+          }
+        },
+      "track_q": {
+          "track_id": {
+            "name": "",
+            "artist_id": "",
+            "artist_name": "",
+            "album_id": "",
+            "album_art": "",
+            "danceability": 0.0,
+            "energy": 0.0,
+            "key": 0.0,
+            "loudness": 0.0,
+            "mode": 0.0,
+            "speechiness": 0.0,
+            "acousticness": 0.0,
+            "instrumentalness": 0.0,
+            "liveness": 0.0,
+            "valence": 0.0,
+            "tempo": 0.0,
+            "time_signature": 0.0
+          }
+        }
+    },
+    "crawlerConfig":{
+      "initArtists": "configuration/initArtists.json",
+      "markets":["US"],
+      "genres_ignore": [],
+      "rating_minimum": 20,
+      "max_total_artists": 50000,
+      "max_albums_per_artist": 0,
+      "max_related_artists": 5,
+      "max_tracks_per_artist": 0,
+      "max_total_songs": 0,
+      "min_danceability": 0,
+      "max_danceability": 0,
+      "min_energy": 0,
+      "max_energy": 0,
+      "min_key": 0,
+      "max_key": 0,
+      "min_loudness": 0,
+      "max_loudness": 0,
+      "min_speechiness": 0,
+      "max_speechiness": 0,
+      "min_acousticness": 0,
+      "max_acousticness": 0,
+      "min_instrumentalness": 0,
+      "max_instrumentalness": 0,
+      "min_livesness": 0,
+      "max_liveness": 0,
+      "min_valence": 0,
+      "max_valence": 0,
+      "min_tempo": 0,
+      "max_tempo": 0,
+      "min_time_signature": 0,
+      "max_time_signature": 0
+    },
+    "searchAlg": {
+      "weights": {
+        "danceability": 0.0832,
+        "energy": 0.1248,
+        "loudness": 0.1248,
+        "speechiness": 0.0416,
+        "acousticness": 0.0832,
+        "instrumentalness": 0.0416,
+        "liveness": 0.0832,
+        "valence": 0.1248,
+        "tempo": 0.1248,
+        "key": 0.1248,
+        "mode": 0.0416,
+        "time_signature": 0.1248
+      },
+      "plusMinus": {
+        "danceability": 0.05,
+        "energy": 0.11,
+        "loudness": 1.1,
+        "speechiness": 0.07,
+        "acousticness": 0.15,
+        "instrumentalness": 0.07,
+        "liveness": 0.12,
+        "valence": 0.08,
+        "tempo": 7.0,
+        "key": 1.0,
+        "mode": 1.0,
+        "time_signature": 1.0
+      }
+    }
   },
   "prod":{
-
+    "pyrebaseConfig":{
+      "projectId" : "coms4156-oktave-2",
+      "serviceAccount": "credentials/coms4156-oktave-firebase-adminsdk-dev.json"
+    },
+    "databaseConfig":{
+      "rules": {
+        "crawlerTable": {
+            "artist_q": {
+                    ".indexOn": ["index", "get_related_time", "get_music_time"]
+            }
+        },
+        "track_features": {
+            "track_q": {
+                    ".indexOn": ["artist_id", "album_id", "name", "danceability", "key", "valence", "tempo", "time_signature"]
+            }
+        },
+        ".read": "auth != null",
+        ".write": "auth != null"
+      },
+      "artist_q": {
+          "artist_id": {
+            "index": 0,
+            "get_related_time": 0,
+            "get_music_time": 0,
+            "albums": 0,
+            "genres": [],
+            "name": "",
+            "popularity": 0
+          }
+        },
+      "track_q": {
+          "track_id": {
+            "name": "",
+            "artist_id": "",
+            "artist_name": "",
+            "album_id": "",
+            "album_art": "",
+            "danceability": 0.0,
+            "energy": 0.0,
+            "key": 0.0,
+            "loudness": 0.0,
+            "mode": 0.0,
+            "speechiness": 0.0,
+            "acousticness": 0.0,
+            "instrumentalness": 0.0,
+            "liveness": 0.0,
+            "valence": 0.0,
+            "tempo": 0.0,
+            "time_signature": 0.0
+          }
+        }
+    },
+    "crawlerConfig":{
+      "initArtists": "configuration/initArtists.json",
+      "markets":["US"],
+      "genres_ignore": [],
+      "rating_minimum": 20,
+      "max_total_artists": 50000,
+      "max_albums_per_artist": 0,
+      "max_related_artists": 5,
+      "max_tracks_per_artist": 0,
+      "max_total_songs": 0,
+      "min_danceability": 0,
+      "max_danceability": 0,
+      "min_energy": 0,
+      "max_energy": 0,
+      "min_key": 0,
+      "max_key": 0,
+      "min_loudness": 0,
+      "max_loudness": 0,
+      "min_speechiness": 0,
+      "max_speechiness": 0,
+      "min_acousticness": 0,
+      "max_acousticness": 0,
+      "min_instrumentalness": 0,
+      "max_instrumentalness": 0,
+      "min_livesness": 0,
+      "max_liveness": 0,
+      "min_valence": 0,
+      "max_valence": 0,
+      "min_tempo": 0,
+      "max_tempo": 0,
+      "min_time_signature": 0,
+      "max_time_signature": 0
+    },
+    "searchAlg": {
+      "weights": {
+        "danceability": 0.0832,
+        "energy": 0.1248,
+        "loudness": 0.1248,
+        "speechiness": 0.0416,
+        "acousticness": 0.0832,
+        "instrumentalness": 0.0416,
+        "liveness": 0.0832,
+        "valence": 0.1248,
+        "tempo": 0.1248,
+        "key": 0.1248,
+        "mode": 0.0416,
+        "time_signature": 0.1248
+      },
+      "plusMinus": {
+        "danceability": 0.05,
+        "energy": 0.11,
+        "loudness": 1.1,
+        "speechiness": 0.07,
+        "acousticness": 0.15,
+        "instrumentalness": 0.07,
+        "liveness": 0.12,
+        "valence": 0.08,
+        "tempo": 7.0,
+        "key": 1.0,
+        "mode": 1.0,
+        "time_signature": 1.0
+      }
+    }
   }
 }
