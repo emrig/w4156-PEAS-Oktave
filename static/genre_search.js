@@ -126,7 +126,12 @@ $(document).ready(function() {
 	{
 		// specify the columns
 		var columnDefs = [
-		{headerName: "Artist Name", field: "artist_name"}
+		{headerName: "Song", field: "name"},
+		{headerName: "Artist Name", field: "artist_name"},
+		{headerName: "Tempo", field: "tempo"},
+		{headerName: "Key", field: "key"},
+		{headerName: "Time Signature", field: "time_signature"},
+		{headerName: "Album Art", field: "album_art"}
 	    ];
 
 	    // let the grid know which columns and what data to use
@@ -144,7 +149,7 @@ $(document).ready(function() {
 		console.log(json["data"]);
 		gridOptions.api.setRowData(json["data"]);
 
-		
+
 		// var results = json["data"];
 		// results.forEach(function(element) {
 		// 	var row = $("<div class='row'>");
