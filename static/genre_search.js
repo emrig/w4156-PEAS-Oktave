@@ -146,6 +146,7 @@ $(document).ready(function() {
 	function parse(json)
 	{
 		console.log(json["data"]);
+		gridOptions.api.setRowData(json["data"]);
 		// var results = json["data"];
 		// results.forEach(function(element) {
 		// 	var row = $("<div class='row'>");
