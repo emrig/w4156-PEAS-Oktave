@@ -100,63 +100,56 @@ $(document).ready(function() {
 			time_signature: time_signature
 		}
 
-		console.log("JSON object");
-		console.log(json_object);
+		// console.log("JSON object");
+		// console.log(json_object);
 
 		// Add object to array
 		array.push(json_object);
 
-		console.log("Array");
-		console.log(array);
+		// console.log("Array");
+		// console.log(array);
 
 		// Encode JSON string
 		var json_string = JSON.stringify(array);
 
-		console.log("JSON string");
-		console.log(json_string);
+		// console.log("JSON string");
+		// console.log(json_string);
 
 
 		//$("#search-results").show();
 		//$("#search-results").hide();
 
 		var json = $.get("/song_search_test_temp", json_object, function(json) {parse(json);});
-		console.log(JSON.stringify(data));
-		//var json = JSON.parse(data);
-
-		// // specify the columns
-	 //    var columnDefs = [
-	 //      {headerName: "Make", field: "make"},
-	 //      {headerName: "Model", field: "model"},
-	 //      {headerName: "Price", field: "price"}
-	 //    ];
-	    
-	 //    // specify the data
-	 //    var rowData = [
-	 //      {make: "Toyota", model: "Celica", price: 35000},
-	 //      {make: "Ford", model: "Mondeo", price: 32000},
-	 //      {make: "Porsche", model: "Boxter", price: 72000}
-	 //    ];
-	    
-	 //    // let the grid know which columns and what data to use
-	 //    var gridOptions = {
-	 //    	columnDefs: columnDefs,
-	 //    	rowData: rowData,
-	 //    	enableSorting: true,
-	 //    	enableFilter: true
-	 //    };
-
-	 //  // lookup the container we want the Grid to use
-	 //  var eGridDiv = document.querySelector('#myGrid');
-
-	 //  // create the grid passing in the div to use together with the columns & data we want to use
-	 //  new agGrid.Grid(eGridDiv, gridOptions);
-
-	 //  gridOptions.api.setRowData(json);
 	});
 
 	function parse(json)
 	{
-		//console.log(json["data"]);
+		// specify the columns
+		var columnDefs = [
+		{headerName: "Song", field: "name"},
+		{headerName: "Artist Name", field: "artist_name"},
+		{headerName: "Tempo", field: "tempo"},
+		{headerName: "Key", field: "key"},
+		{headerName: "Time Signature", field: "time_signature"},
+		{headerName: "Album Art", field: "album_art"}
+	    ];
+
+	    // let the grid know which columns and what data to use
+    	var gridOptions = {
+    		columnDefs: columnDefs,
+    		enableSorting: true,
+    		enableFilter: true
+    	};
+
+		// lookup the container we want the Grid to use
+		var eGridDiv = document.querySelector('#myGrid');
+
+		// create the grid passing in the div to use together with the columns & data we want to use
+		new agGrid.Grid(eGridDiv, gridOptions);
+		console.log(json["data"]);
+		gridOptions.api.setRowData(json["data"]);
+
+
 		// var results = json["data"];
 		// results.forEach(function(element) {
 		// 	var row = $("<div class='row'>");
@@ -173,7 +166,7 @@ $(document).ready(function() {
   //           $(album_col).append(album_art);
   //           $(row).append(album_col);
 		// 	$("#search-results").append(row);
-		// 	});
+		// });
 	}
 
 
