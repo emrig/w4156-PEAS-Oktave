@@ -133,7 +133,14 @@ $(document).ready(function() {
 		{headerName: "Artist Name", field: "artist_name"},
 		{headerName: "Tempo", field: "tempo"},
 		{headerName: "Key", field: "key"},
-		{headerName: "Time Signature", field: "time_signature"}
+		{headerName: "Time Signature", field: "time_signature"},
+		headerName: "Acousticness", field: "acousticness"},
+		headerName: "Danceability", field: "danceability"},
+		headerName: "Energy", field: "energy"},
+		headerName: "", field: "time_signature"},
+
+		headerName: "Duration (ms)", field: "duration_ms"}
+
 	    ];
 
 	    // let the grid know which columns and what data to use
