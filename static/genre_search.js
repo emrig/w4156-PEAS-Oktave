@@ -128,7 +128,7 @@ $(document).ready(function() {
 		var columnDefs = [
 		{headerName: "Album Art", field: "album_art", cellRenderer: function(params) {
       return '<img src="'+ params.value + '" height="600" width="600">'
-  }}
+  }},
 		{headerName: "Song", field: "name"},
 		{headerName: "Artist Name", field: "artist_name"},
 		{headerName: "Tempo", field: "tempo"},
