@@ -133,7 +133,7 @@ $(document).ready(function() {
 		{headerName: "Time Signature", field: "time_signature"},
 		{headerName: "Album Art", field: "album_art", cellRenderer: function(params) {
       return '<img src="'+ params.value + '" height="600" width="600">'
-  }}
+  }, autoHeight:true}
 	    ];
 
 	    // let the grid know which columns and what data to use
