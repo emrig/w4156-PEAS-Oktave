@@ -134,12 +134,15 @@ $(document).ready(function() {
 		{headerName: "Tempo", field: "tempo"},
 		{headerName: "Key", field: "key"},
 		{headerName: "Time Signature", field: "time_signature"},
-		headerName: "Acousticness", field: "acousticness"},
-		headerName: "Danceability", field: "danceability"},
-		headerName: "Energy", field: "energy"},
-		headerName: "", field: "time_signature"},
-
-		headerName: "Duration (ms)", field: "duration_ms"}
+		{headerName: "Acousticness", field: "acousticness"},
+		{headerName: "Danceability", field: "danceability"},
+		{headerName: "Energy", field: "energy"},
+		{headerName: "Instrumentalness", field: "instrumentalness"},
+		{headerName: "Liveness", field: "liveness"},
+		{headerName: "Loudness", field: "loudness"},
+		{headerName: "Speechiness", field: "speechiness"},
+		{headerName: "Happiness", field: "valence"},
+		{headerName: "Duration (ms)", field: "duration_ms"}
 
 	    ];
 
