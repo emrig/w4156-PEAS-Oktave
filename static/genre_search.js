@@ -148,7 +148,8 @@ $(document).ready(function() {
 
 		// create the grid passing in the div to use together with the columns & data we want to use
 		new agGrid.Grid(eGridDiv, gridOptions);
-		console.log(json["data"]);
+		//console.log(json["data"]);
+		gridOptions.rowHeight = 600;
 		gridOptions.api.setRowData(json["data"]);
 
 
