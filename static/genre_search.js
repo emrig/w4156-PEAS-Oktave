@@ -131,7 +131,9 @@ $(document).ready(function() {
 		{headerName: "Tempo", field: "tempo"},
 		{headerName: "Key", field: "key"},
 		{headerName: "Time Signature", field: "time_signature"},
-		{headerName: "Album Art", field: "album_art"}
+		{headerName: "Album Art", field: "album_art", cellRenderer: function(params) {
+      return '<a href="https://www.google.com" target="_blank">'+ params.value+'</a>'
+  }}
 	    ];
 
 	    // let the grid know which columns and what data to use
