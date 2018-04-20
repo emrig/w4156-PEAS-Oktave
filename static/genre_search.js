@@ -126,14 +126,14 @@ $(document).ready(function() {
 	{
 		// specify the columns
 		var columnDefs = [
+		{headerName: "Album Art", field: "album_art", cellRenderer: function(params) {
+      return '<img src="'+ params.value + '" height="600" width="600">'
+  }}
 		{headerName: "Song", field: "name"},
 		{headerName: "Artist Name", field: "artist_name"},
 		{headerName: "Tempo", field: "tempo"},
 		{headerName: "Key", field: "key"},
-		{headerName: "Time Signature", field: "time_signature"},
-		{headerName: "Album Art", field: "album_art", cellRenderer: function(params) {
-      return '<img src="'+ params.value + '">'
-  }}
+		{headerName: "Time Signature", field: "time_signature"}
 	    ];
 
 	    // let the grid know which columns and what data to use
