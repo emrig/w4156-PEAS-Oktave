@@ -34,6 +34,10 @@ def stop_firestore():
 def homePage():
     return render_template('search.html')
 
+@app.route('/about')
+def about():
+  return render_template("about.html")
+
 @app.route('/song_search', methods=['POST'])
 def search():
     start_firestore()
