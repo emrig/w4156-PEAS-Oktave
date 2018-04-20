@@ -132,7 +132,7 @@ $(document).ready(function() {
 		{headerName: "Key", field: "key"},
 		{headerName: "Time Signature", field: "time_signature"},
 		{headerName: "Album Art", field: "album_art", cellRenderer: function(params) {
-      return '<a href="https://www.google.com" target="_blank">'+ params.value+'</a>'
+      return '<img src="'+ params.value + '">'
   }}
 	    ];
 
