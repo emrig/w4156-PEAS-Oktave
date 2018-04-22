@@ -109,7 +109,7 @@ def search_for_id():
     songInfo['album_id'] = info[u'album'][u'id']
     songInfo['album_art'] = info[u'album'][u'images'][0][u'url']
     songInfo['artist_id'] = info[u'artists'][0][u'id']
-    songInfo['preview_url'] = info[u'preview_ur']
+    songInfo['preview_url'] = info[u'preview_url']
     songInfo['duration_ms'] = info[u'duration_ms']
     songInfo['uri'] = info[u'uri']
 
@@ -133,4 +133,5 @@ def search_for_id():
 
 
 if __name__ == '__main__':
+    #TODO turn this off?
     app.run(debug=True)
