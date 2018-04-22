@@ -1,9 +1,14 @@
 
 $(document).ready(function() {
 
-	//$("#search-results").hide();
+	// let the grid know which columns and what data to use
+	var gridOptions = {
+		columnDefs: columnDefs,
+	    enableSorting: true,
+	    enableFilter: true,
+	};
 
-	new agGrid;
+	new agGrid.Grid(eGridDiv, gridOptions);
 
 	var genres = [
 	'adult standards',
@@ -87,9 +92,6 @@ $(document).ready(function() {
 		var tempo = $("#tempo-search-bar").val();
 		var key = $("#key-list").val();
 		var time_signature = $("#time-sig-list").val();
-		//console.log(genre);
-
-		//console.log(key);
 
 		// Create empty array
 		var array = [];
@@ -102,24 +104,11 @@ $(document).ready(function() {
 			time_signature: time_signature
 		}
 
-		// console.log("JSON object");
-		// console.log(json_object);
-
 		// Add object to array
 		array.push(json_object);
 
-		// console.log("Array");
-		// console.log(array);
-
 		// Encode JSON string
 		var json_string = JSON.stringify(array);
-
-		// console.log("JSON string");
-		// console.log(json_string);
-
-
-		//$("#search-results").show();
-		//$("#search-results").hide();
 
 		var json = $.get("/attribute_search", json_object, function(json) {parse(json);});
 	});
@@ -149,45 +138,22 @@ $(document).ready(function() {
 
 	    ];
 
-	    // let the grid know which columns and what data to use
-    	var gridOptions = {
-    		columnDefs: columnDefs,
-    		enableSorting: true,
-    		enableFilter: true,
-    	};
+	    // // let the grid know which columns and what data to use
+    	// var gridOptions = {
+    	// 	columnDefs: columnDefs,
+    	// 	enableSorting: true,
+    	// 	enableFilter: true,
+    	// };
 
 		// loo	var eGridDiv = document.querySelector('#myGrid');kup the container we want the Grid to use
 	
 
 		// create the grid passing in the div to use together with the columns & data we want to use
-		agGrid.Grid(eGridDiv, gridOptions);
+		// new agGrid.Grid(eGridDiv, gridOptions);
 		//console.log(json["data"]);
-		aggridOptions.api.setRowData([]);
+		gridOptions.api.setRowData([]);
 		gridOptions.api.setRowData(json["data"]);
 		gridOptions.rowHeight = 600;
-
-
-		// var results = json["data"];
-		// results.forEach(function(element) {
-		// 	var row = $("<div class='row'>");
-
-		// 	// Allocate space for album art; insert image
-		// 	var album_col = $("<div class='col-xs-2'>");
-		// 	var album_art = $("<img src='https://images-na.ssl-images-amazon.com/images/I/510cBiPgbIL.jpg' class='img-responsive album_art'>");
-
-		// 	// Allocate space for song information; insert information
-		// 	var song_info_col = $("<div class='col-xs-10'>");
-		// 	var song_info_row = $("<div class='row song-info-row'><div id='info1'>");
-  //           var song_artist = $("<b>Superfly</b> • Curtis Mayfield"); 
-
-  //           $(album_col).append(album_art);
-  //           $(row).append(album_col);
-		// 	$("#search-results").append(row);
-		// });
 	}
-
-
-	// var artists = [];
-
 
 });
