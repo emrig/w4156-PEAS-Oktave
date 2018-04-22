@@ -3,7 +3,6 @@ from backend import trackQuery
 from backend import environment
 from backend import sp_search
 from firebase_admin import credentials
-from firebase_admin import firestore
 import  firebase_admin
 
 app = Flask(__name__)
@@ -116,7 +115,18 @@ def search_for_id():
     #TODO check format of ID
 
     search = sp_search.sp_search()
-    results = search.track_by_id(track_id)
+    info = search.track_by_id(track_id)
+
+    choices = search.audio_features(track_id)
+
+    # songInfo = {}
+    # for i in info:
+    #     if (i == '')
+
+
+
+
+
 
 
 
