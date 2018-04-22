@@ -38,32 +38,33 @@ def homePage():
 def about():
   return render_template("about.html")
 
-@app.route('/song_search', methods=['POST'])
-def search():
+# @app.route('/song_search', methods=['POST'])
+# def search():
+#     start_firestore()
+#
+#     input = {
+#         "tempo": int(request.form['tempo']),
+#         "key": int(request.form['key']),
+#         "time_signature": int(request.form['time_sig'])
+#     }
+#
+#     search = trackQuery.trackQuery()
+#     results = search.searchTracks(input)
+#
+#     context = dict(data=results)
+#
+#     stop_firestore()
+#
+#     return render_template("track_search.html", **context)
+
+@app.route('/attribute_search', methods=['GET'])
+def search_test(input = None):
     start_firestore()
 
-    input = {
-        "tempo": int(request.form['tempo']),
-        "key": int(request.form['key']),
-        "time_signature": int(request.form['time_sig'])
-    }
-
-    search = trackQuery.trackQuery()
-    results = search.searchTracks(input)
-
-    context = dict(data=results)
-
-    stop_firestore()
-
-    return render_template("track_search.html", **context)
-
-@app.route('/song_search_test_temp', methods=['GET'])
-def search_test():
-    start_firestore()
-    input = {}
-
-    for attribute in request.values.keys():
-        input[attribute] = float(request.values[attribute])
+    if (input == None):
+        input = {}
+        for attribute in request.values.keys():
+            input[attribute] = float(request.values[attribute])
 
     # TODO cleanup, ensure all incoming keys match the names in database
 
@@ -78,7 +79,7 @@ def search_test():
 
     return jsonify(data=results)
 
-@app.route('/search_by_track', methods=['GET'])
+@app.route('/track_search', methods=['GET'])
 def search_by_track():
 
     input = {
@@ -105,7 +106,6 @@ def search_by_track():
         json['uri'] = track['uri']
 
         results.append(json)
-
 
     return jsonify(data=results)
 
