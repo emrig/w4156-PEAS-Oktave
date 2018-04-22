@@ -32,11 +32,18 @@ body {
   margin-top: 10%;
 }
 
-#genre-search-bar {
+#song-search-bar {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
   height: auto;
+}
+
+#song-search-button {
+  background-color:lightgrey;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
 }
 
 #tempo-search-form {
