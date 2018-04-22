@@ -11,7 +11,6 @@ from google.cloud.exceptions import NotFound
 import sp_search
 import os
 
-# os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="../credentials/coms4156-oktave-firebase-adminsdk-dev.json"
 
 class trackQuery:
 
@@ -37,14 +36,6 @@ class trackQuery:
 
         self.search = sp_search.sp_search()
 
-    # TODO: Decide if we can query by genre or not
-    # def searchArtists(self, choices):
-    #
-    #     genre = choices['genre_label']
-    #     genreList = self.createGenreList(genre)
-    #
-    #     matchingArtists = self.artistReference.where(u'genre',)
-
     def searchTracks(self, choiceList, songInfo=None):
 
         if self.verbose:
@@ -58,8 +49,6 @@ class trackQuery:
             if attribute in choiceList.keys():
 
                 try:
-                    # First attempt to match exact results, inequality filters not allowed on multiple properties..
-                    #query = self.trackReference.where(attribute, u'>=', minRange[attribute]).where(attribute, u'<=', maxRange[attribute]).limit(20)
 
                     # TODO decide limit
                     query = self.trackReference.where(attribute, u'>=', minRange[attribute]).where(attribute, u'<=', maxRange[attribute]).limit(200)
