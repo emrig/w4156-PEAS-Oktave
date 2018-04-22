@@ -44,18 +44,18 @@ class album_crawler():
 
         # store all artists who were never updated and store music for all these artists
         found = 1
-        # found1 = 0
-        # while found != 0:
-        #     try:
-        #         nullArtist = self.artistReference.where(u'get_music_time', u'==', 0).order_by(u'index').limit(1).get()
-        #         self.findTracks(nullArtist, lastUpdatedTime)
-        #         found += 1
-        #     except NotFound:
-        #         found1 = found
-        #         found = 0
-        #         pass
-        # # store all artists who weren't updated fully previous time and store music for all these artists
-        # found = found1
+        found1 = 0
+        while found != 0:
+            try:
+                nullArtist = self.artistReference.where(u'get_music_time', u'==', 0).order_by(u'index').limit(1).get()
+                self.findTracks(nullArtist, lastUpdatedTime)
+                found += 1
+            except NotFound:
+                found1 = found
+                found = 0
+                pass
+        # store all artists who weren't updated fully previous time and store music for all these artists
+        found = found1
         internalIndex = 1
         while found != 0:
             try:
