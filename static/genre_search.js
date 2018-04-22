@@ -77,6 +77,10 @@ $(document).ready(function() {
 
 
 	$("#search-form-master").submit(function(event) {
+		document.getElementById("myGrid").remove();
+		var grid_element = $("<div id='myGrid' style='height: 600px;width:100%;' class='ag-theme-balham'>");
+		$("#search-results").append(grid_element);
+
 		//console.log("Button clicked");
 		//var genre = $("#genre-search-bar").val();
 		var tempo = $("#tempo-search-bar").val();
@@ -108,9 +112,9 @@ $(document).ready(function() {
 
 		// specify the columns
 		var columnDefs = [
-		// {headerName: "Album Art", field: "album_art", cellRenderer: function(params) {
-  //     return '<img src="'+ params.value + '" height="200" width="200">'
-  // }, autoHeight:true},
+		{headerName: "Album Art", field: "album_art", cellRenderer: function(params) {
+      return '<img src="'+ params.value + '" height="200" width="200">'
+  }, autoHeight:true},
 		{headerName: "Song", field: "name"},
 		{headerName: "Artist Name", field: "artist_name"},
 		{headerName: "Tempo", field: "tempo"},
