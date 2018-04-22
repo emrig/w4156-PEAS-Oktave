@@ -77,6 +77,10 @@ $(document).ready(function() {
 
 
 	$("#search-form-master").submit(function(event) {
+		document.getElementById("myGrid").remove();
+		var grid_element = $("<div id='myGrid' style='height: 600px;width:100%;' class='ag-theme-balham'>");
+		$("#search-results").append(grid_element);
+
 		//console.log("Button clicked");
 		//var genre = $("#genre-search-bar").val();
 		var tempo = $("#tempo-search-bar").val();
@@ -140,8 +144,7 @@ $(document).ready(function() {
 	
 
 		// create the grid passing in the div to use together with the columns & data we want to use
-		// new agGrid.Grid(eGridDiv, gridOptions);
-		//console.log(json["data"]);
+		new agGrid.Grid(eGridDiv, gridOptions);
 		gridOptions.api.setRowData(json["data"]);
 		gridOptions.rowHeight = 600;
 	}
