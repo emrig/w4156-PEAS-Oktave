@@ -103,6 +103,7 @@ class trackQuery:
         payload = {
             'genres': list(genres),
             'results': ranked_results,
+            'feature_ranges': self.searchAlgConfig['feature_ranges'],
             'search_song_features': None
         }
 
