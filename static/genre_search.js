@@ -108,9 +108,9 @@ $(document).ready(function() {
 
 		// specify the columns
 		var columnDefs = [
-		{headerName: "Album Art", field: "album_art", cellRenderer: function(params) {
-      return '<img src="'+ params.value + '" height="200" width="200">'
-  }, autoHeight:true},
+		// {headerName: "Album Art", field: "album_art", cellRenderer: function(params) {
+  //     return '<img src="'+ params.value + '" height="200" width="200">'
+  // }, autoHeight:true},
 		{headerName: "Song", field: "name"},
 		{headerName: "Artist Name", field: "artist_name"},
 		{headerName: "Tempo", field: "tempo"},
