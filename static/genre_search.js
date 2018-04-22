@@ -3,7 +3,7 @@ $(document).ready(function() {
 
 	//$("#search-results").hide();
 
-	new agGrid.Grid();
+	new agGrid;
 
 	var genres = [
 	'adult standards',
