@@ -30,6 +30,8 @@ $(document).ready(function() {
 	    enableFilter: true,
 	};
 
+	var eGridDiv = document.querySelector('#myGrid');
+
 	new agGrid.Grid(eGridDiv, gridOptions);
 
 	var genres = [
@@ -167,7 +169,8 @@ $(document).ready(function() {
     	// 	enableFilter: true,
     	// };
 
-		// loo	var eGridDiv = document.querySelector('#myGrid');kup the container we want the Grid to use
+		// // lookup the container we want the Grid to use
+		// var eGridDiv = document.querySelector('#myGrid');
 	
 
 		// create the grid passing in the div to use together with the columns & data we want to use
