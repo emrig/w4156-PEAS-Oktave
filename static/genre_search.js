@@ -3,6 +3,8 @@ $(document).ready(function() {
 
 	//$("#search-results").hide();
 
+	new agGrid.Grid();
+
 	var genres = [
 	'adult standards',
 	 'afrobeat',
@@ -119,11 +121,12 @@ $(document).ready(function() {
 		//$("#search-results").show();
 		//$("#search-results").hide();
 
-		var json = $.get("/song_search_test_temp", json_object, function(json) {parse(json);});
+		var json = $.get("/attribute_search", json_object, function(json) {parse(json);});
 	});
 
 	function parse(json)
 	{
+
 		// specify the columns
 		var columnDefs = [
 		{headerName: "Album Art", field: "album_art", cellRenderer: function(params) {
@@ -151,15 +154,15 @@ $(document).ready(function() {
     		columnDefs: columnDefs,
     		enableSorting: true,
     		enableFilter: true,
-    		refreshCells: true
     	};
 
-		// lookup the container we want the Grid to use
-		var eGridDiv = document.querySelector('#myGrid');
+		// loo	var eGridDiv = document.querySelector('#myGrid');kup the container we want the Grid to use
+	
 
 		// create the grid passing in the div to use together with the columns & data we want to use
-		new agGrid.Grid(eGridDiv, gridOptions);
-		console.log(json["data"]);
+		agGrid.Grid(eGridDiv, gridOptions);
+		//console.log(json["data"]);
+		aggridOptions.api.setRowData([]);
 		gridOptions.api.setRowData(json["data"]);
 		gridOptions.rowHeight = 600;
 
