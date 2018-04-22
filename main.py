@@ -58,7 +58,7 @@ def about():
 #     return render_template("track_search.html", **context)
 
 @app.route('/attribute_search', methods=['GET'])
-def search_test(input = None):
+def search_test(input = None, songInfo = None):
     start_firestore()
 
     if (input == None):
@@ -73,7 +73,7 @@ def search_test(input = None):
         input.pop('time_sig', None)
 
     search = trackQuery.trackQuery()
-    results = search.searchTracks(input)
+    results = search.searchTracks(input, songInfo)
 
     stop_firestore()
 
@@ -119,15 +119,35 @@ def search_for_id():
 
     choices = search.audio_features(track_id)
 
-    # songInfo = {}
-    # for i in info:
-    #     if (i == '')
+    songInfo = {}
+    songInfo['name'] = info[u'name']
+    songInfo['artist_name'] = info[u'artists'][0][u'name']
+    songInfo['album_name'] = info[u'album'][u'name']
+    songInfo['id'] = info[u'id']
+    songInfo['album_id'] = info[u'album'][u'id']
+    songInfo['album_art'] = info[u'album'][u'images'][0][u'url']
+    songInfo['artist_id'] = info[u'artists'][0][u'id']
+    songInfo['preview_url'] = info[u'preview_ur']
+    songInfo['duration_ms'] = info[u'duration_ms']
+    songInfo['uri'] = info[u'uri']
 
+    choiceList = {}
+    choiceList['danceability'] = choices[u'danceability']
+    choiceList['energy'] = choices[u'energy']
+    choiceList['key'] = choices [u'key']
+    choiceList['loudness'] = choices[u'loudness']
+    choiceList['mode'] = choices['mode']
+    choiceList['speechiness'] = choices['speechiness']
+    choiceList['acousticness'] = choices['acousticness']
+    choiceList['instrumentalness'] = choices['instrumentalness']
+    choiceList['liveness'] = choices['liveness']
+    choiceList['valence'] = choices['valence']
+    choiceList['tempo'] = choices['tempo']
+    choiceList['time_signature'] = choices['time_signature']
 
+    results = search_test(choiceList, songInfo)
 
-
-
-
+    return results
 
 
 if __name__ == '__main__':
