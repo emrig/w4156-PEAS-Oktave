@@ -114,18 +114,18 @@ def search_for_id():
     songInfo['uri'] = info[u'uri']
 
     choiceList = {}
-    choiceList['danceability'] = choices[u'danceability']
-    choiceList['energy'] = choices[u'energy']
-    choiceList['key'] = choices [u'key']
-    choiceList['loudness'] = choices[u'loudness']
-    choiceList['mode'] = choices['mode']
-    choiceList['speechiness'] = choices['speechiness']
-    choiceList['acousticness'] = choices['acousticness']
-    choiceList['instrumentalness'] = choices['instrumentalness']
-    choiceList['liveness'] = choices['liveness']
-    choiceList['valence'] = choices['valence']
-    choiceList['tempo'] = choices['tempo']
-    choiceList['time_signature'] = choices['time_signature']
+    choiceList['danceability'] = choices[0]['danceability']
+    choiceList['energy'] = choices[0]['energy']
+    choiceList['key'] = choices[0]['key']
+    choiceList['loudness'] = choices[0]['loudness']
+    choiceList['mode'] = choices[0]['mode']
+    choiceList['speechiness'] = choices[0]['speechiness']
+    choiceList['acousticness'] = choices[0]['acousticness']
+    choiceList['instrumentalness'] = choices[0]['instrumentalness']
+    choiceList['liveness'] = choices[0]['liveness']
+    choiceList['valence'] = choices[0]['valence']
+    choiceList['tempo'] = choices[0]['tempo']
+    choiceList['time_signature'] = choices[0]['time_signature']
 
     results = search_test(choiceList, songInfo)
 
