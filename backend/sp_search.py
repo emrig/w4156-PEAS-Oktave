@@ -102,8 +102,12 @@ class sp_search:
 
         return result
 
+    def track_by_id(self, track_id):
 
+        spotify = spotipy.Spotify(client_credentials_manager=self.client_credentials_manager)
+        result = spotify.track(track_id)
 
+        return result
 if __name__ == '__main__':
 
     # Use this for local testing, reference for how this works
