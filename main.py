@@ -38,24 +38,6 @@ def homePage():
 def about():
   return render_template("about.html")
 
-# @app.route('/song_search', methods=['POST'])
-# def search():
-#     start_firestore()
-#
-#     input = {
-#         "tempo": int(request.form['tempo']),
-#         "key": int(request.form['key']),
-#         "time_signature": int(request.form['time_sig'])
-#     }
-#
-#     search = trackQuery.trackQuery()
-#     results = search.searchTracks(input)
-#
-#     context = dict(data=results)
-#
-#     stop_firestore()
-#
-#     return render_template("track_search.html", **context)
 
 @app.route('/attribute_search', methods=['GET'])
 def search_test(input = None, songInfo = None):
@@ -111,7 +93,7 @@ def search_by_track():
 
 @app.route('/id_search', methods=['GET'])
 def search_for_id():
-    track_id = request.values['track_uri']
+    track_id = request.values['track_id']
     #TODO check format of ID
 
     search = sp_search.sp_search()
