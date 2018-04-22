@@ -86,6 +86,7 @@
       "max_time_signature": 0
     },
     "searchAlg": {
+      "max_accuracy": 0.80,
       "weights": {
         "danceability": 0.0832,
         "energy": 0.1248,
@@ -203,6 +204,7 @@
       "max_time_signature": 0
     },
     "searchAlg": {
+      "max_accuracy": 0.80,
       "weights": {
         "danceability": 0.0832,
         "energy": 0.1248,
@@ -320,6 +322,7 @@
       "max_time_signature": 0
     },
     "searchAlg": {
+      "max_accuracy": 0.80,
       "weights": {
         "danceability": 0.0832,
         "energy": 0.1248,

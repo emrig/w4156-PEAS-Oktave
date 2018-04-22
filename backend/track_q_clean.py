@@ -53,7 +53,7 @@ class trackCleanup:
         while(True):
 
             query = self.trackReference.where(u'energy', u'>=', energy).order_by(
-                u'energy', direction=firestore.Query.ASCENDING).limit(20000)
+                u'energy', direction=firestore.Query.ASCENDING).limit(10000)
 
             try:
                 docs = query.get()
@@ -92,6 +92,9 @@ class trackCleanup:
                 if 'album_art' in attributes and 'album_art' not in results[result]:
                     album_search_result = self.search.album(results[result]['album_id'])
                     values['album_art'] = album_search_result['images'][0]['url']
+
+                if 'preview_url' in attributes and 'preview_url' not in results[result]:
+                    values['preview_url'] = search_result['preview_url']
 
                 #print(results[result]['name'] + ": " + str(values))
                 doc_ref = self.db.collection(u'track_q').document(u'{0}'.format(result))
@@ -154,6 +157,6 @@ class trackCleanup:
 if __name__ == '__main__':
 
     test = trackCleanup(test=True)
-    test.add_track_attributes(attributes=['album_art'])
+    test.add_track_attributes(attributes=['preview_url'])
     #test.extract_artist_q()
     #print(test.extract_track_q())

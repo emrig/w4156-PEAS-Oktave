@@ -45,7 +45,7 @@ class trackQuery:
     #
     #     matchingArtists = self.artistReference.where(u'genre',)
 
-    def searchTracks(self, choiceList):
+    def searchTracks(self, choiceList, songInfo=None):
 
         if self.verbose:
             print("[searchTracks] choiceList:{0}".format(choiceList))
@@ -93,8 +93,32 @@ class trackQuery:
                     pass
 
         results.sort(key=lambda x: x[0], reverse=True)
-        ranked_results = [x[1] for x in results]
-        return ranked_results
+
+        ranked_results = [x[1] for x in results if x[0] >= self.searchAlgConfig['max_accuracy']]
+
+        # Collect genres in scope
+        genres = set()
+
+        for inx, result in enumerate(ranked_results):
+            if 'genres' in result:
+                if type(result['genres']) != list:
+                    result['genres'] = [str(x) for x in eval(result['genres'])]
+                    ranked_results[inx]['genres'] = result['genres']
+
+                for genre in list(result['genres']):
+                    genres.add(genre)
+
+        payload = {
+            'genres': list(genres),
+            'results': ranked_results,
+            'search_song_features': None
+        }
+
+        if songInfo:
+            songInfo.update(choiceList)
+            payload['search_song_features'] = songInfo
+
+        return payload
 
     # Set +/- ranges based on configuration file
     def setRanges(self, choiceList):
@@ -123,7 +147,7 @@ if __name__ == '__main__':
 
     # Test song input
     search = sp_search.sp_search()
-    song_results = search.track("stairway to heaven")
+    song_results = search.track("here comes the sun")
     song_id = song_results['tracks']['items'][0]['id']
     attibutes = search.audio_features([song_id])[0]
 
@@ -142,4 +166,4 @@ if __name__ == '__main__':
         "speechiness": attibutes['speechiness'],
     }
     test = trackQuery(True)
-    print(test.searchTracks(input))
+    print(test.searchTracks(input, None))
