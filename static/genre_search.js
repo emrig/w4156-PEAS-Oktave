@@ -1,6 +1,28 @@
 
 $(document).ready(function() {
 
+	// specify the columns
+		var columnDefs = [
+		{headerName: "Album Art", field: "album_art", cellRenderer: function(params) {
+      return '<img src="'+ params.value + '" height="200" width="200">'
+  }, autoHeight:true},
+		{headerName: "Song", field: "name"},
+		{headerName: "Artist Name", field: "artist_name"},
+		{headerName: "Tempo", field: "tempo"},
+		{headerName: "Key", field: "key"},
+		{headerName: "Time Signature", field: "time_signature"},
+		{headerName: "Acousticness", field: "acousticness"},
+		{headerName: "Danceability", field: "danceability"},
+		{headerName: "Energy", field: "energy"},
+		{headerName: "Instrumentalness", field: "instrumentalness"},
+		{headerName: "Liveness", field: "liveness"},
+		{headerName: "Loudness", field: "loudness"},
+		{headerName: "Speechiness", field: "speechiness"},
+		{headerName: "Happiness", field: "valence"},
+		{headerName: "Duration (ms)", field: "duration_ms"}
+
+	    ];
+
 	// let the grid know which columns and what data to use
 	var gridOptions = {
 		columnDefs: columnDefs,
@@ -116,27 +138,27 @@ $(document).ready(function() {
 	function parse(json)
 	{
 
-		// specify the columns
-		var columnDefs = [
-		{headerName: "Album Art", field: "album_art", cellRenderer: function(params) {
-      return '<img src="'+ params.value + '" height="200" width="200">'
-  }, autoHeight:true},
-		{headerName: "Song", field: "name"},
-		{headerName: "Artist Name", field: "artist_name"},
-		{headerName: "Tempo", field: "tempo"},
-		{headerName: "Key", field: "key"},
-		{headerName: "Time Signature", field: "time_signature"},
-		{headerName: "Acousticness", field: "acousticness"},
-		{headerName: "Danceability", field: "danceability"},
-		{headerName: "Energy", field: "energy"},
-		{headerName: "Instrumentalness", field: "instrumentalness"},
-		{headerName: "Liveness", field: "liveness"},
-		{headerName: "Loudness", field: "loudness"},
-		{headerName: "Speechiness", field: "speechiness"},
-		{headerName: "Happiness", field: "valence"},
-		{headerName: "Duration (ms)", field: "duration_ms"}
+		// // specify the columns
+		// var columnDefs = [
+		// {headerName: "Album Art", field: "album_art", cellRenderer: function(params) {
+  //     return '<img src="'+ params.value + '" height="200" width="200">'
+  // }, autoHeight:true},
+		// {headerName: "Song", field: "name"},
+		// {headerName: "Artist Name", field: "artist_name"},
+		// {headerName: "Tempo", field: "tempo"},
+		// {headerName: "Key", field: "key"},
+		// {headerName: "Time Signature", field: "time_signature"},
+		// {headerName: "Acousticness", field: "acousticness"},
+		// {headerName: "Danceability", field: "danceability"},
+		// {headerName: "Energy", field: "energy"},
+		// {headerName: "Instrumentalness", field: "instrumentalness"},
+		// {headerName: "Liveness", field: "liveness"},
+		// {headerName: "Loudness", field: "loudness"},
+		// {headerName: "Speechiness", field: "speechiness"},
+		// {headerName: "Happiness", field: "valence"},
+		// {headerName: "Duration (ms)", field: "duration_ms"}
 
-	    ];
+	 //    ];
 
 	    // // let the grid know which columns and what data to use
     	// var gridOptions = {
