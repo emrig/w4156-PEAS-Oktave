@@ -99,6 +99,7 @@ def search_for_id():
     search = sp_search.sp_search()
     info = search.track_by_id(track_id)
 
+    track_id = str(track_id)
     choices = search.audio_features(track_id)
 
     songInfo = {}
@@ -114,18 +115,10 @@ def search_for_id():
     songInfo['uri'] = info[u'uri']
 
     choiceList = {}
-    choiceList['danceability'] = choices[0]['danceability']
-    choiceList['energy'] = choices[0]['energy']
-    choiceList['key'] = choices[0]['key']
-    choiceList['loudness'] = choices[0]['loudness']
-    choiceList['mode'] = choices[0]['mode']
-    choiceList['speechiness'] = choices[0]['speechiness']
-    choiceList['acousticness'] = choices[0]['acousticness']
-    choiceList['instrumentalness'] = choices[0]['instrumentalness']
-    choiceList['liveness'] = choices[0]['liveness']
-    choiceList['valence'] = choices[0]['valence']
-    choiceList['tempo'] = choices[0]['tempo']
-    choiceList['time_signature'] = choices[0]['time_signature']
+    for attribute in choices[0]:
+        if attribute == 'id' or attribute == 'type' or attribute == 'duration_ms' or attribute == 'uri' or attribute == 'analysis_url' or attribute == 'track_href':
+            continue
+        choiceList[attribute] = choices[0][attribute]
 
     results = search_test(choiceList, songInfo)
 
