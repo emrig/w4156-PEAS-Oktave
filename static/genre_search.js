@@ -1,39 +1,6 @@
 
 $(document).ready(function() {
 
-	// specify the columns
-		var columnDefs = [
-		{headerName: "Album Art", field: "album_art", cellRenderer: function(params) {
-      return '<img src="'+ params.value + '" height="200" width="200">'
-  }, autoHeight:true},
-		{headerName: "Song", field: "name"},
-		{headerName: "Artist Name", field: "artist_name"},
-		{headerName: "Tempo", field: "tempo"},
-		{headerName: "Key", field: "key"},
-		{headerName: "Time Signature", field: "time_signature"},
-		{headerName: "Acousticness", field: "acousticness"},
-		{headerName: "Danceability", field: "danceability"},
-		{headerName: "Energy", field: "energy"},
-		{headerName: "Instrumentalness", field: "instrumentalness"},
-		{headerName: "Liveness", field: "liveness"},
-		{headerName: "Loudness", field: "loudness"},
-		{headerName: "Speechiness", field: "speechiness"},
-		{headerName: "Happiness", field: "valence"},
-		{headerName: "Duration (ms)", field: "duration_ms"}
-
-	    ];
-
-	// let the grid know which columns and what data to use
-	var gridOptions = {
-		columnDefs: columnDefs,
-	    enableSorting: true,
-	    enableFilter: true,
-	};
-
-	var eGridDiv = document.querySelector('#myGrid');
-
-	new agGrid.Grid(eGridDiv, gridOptions);
-
 	var genres = [
 	'adult standards',
 	 'afrobeat',
@@ -109,7 +76,6 @@ $(document).ready(function() {
 	});
 
 
-
 	$("#search-form-master").submit(function(event) {
 		//console.log("Button clicked");
 		//var genre = $("#genre-search-bar").val();
@@ -140,43 +106,42 @@ $(document).ready(function() {
 	function parse(json)
 	{
 
-		// // specify the columns
-		// var columnDefs = [
-		// {headerName: "Album Art", field: "album_art", cellRenderer: function(params) {
-  //     return '<img src="'+ params.value + '" height="200" width="200">'
-  // }, autoHeight:true},
-		// {headerName: "Song", field: "name"},
-		// {headerName: "Artist Name", field: "artist_name"},
-		// {headerName: "Tempo", field: "tempo"},
-		// {headerName: "Key", field: "key"},
-		// {headerName: "Time Signature", field: "time_signature"},
-		// {headerName: "Acousticness", field: "acousticness"},
-		// {headerName: "Danceability", field: "danceability"},
-		// {headerName: "Energy", field: "energy"},
-		// {headerName: "Instrumentalness", field: "instrumentalness"},
-		// {headerName: "Liveness", field: "liveness"},
-		// {headerName: "Loudness", field: "loudness"},
-		// {headerName: "Speechiness", field: "speechiness"},
-		// {headerName: "Happiness", field: "valence"},
-		// {headerName: "Duration (ms)", field: "duration_ms"}
+		// specify the columns
+		var columnDefs = [
+		{headerName: "Album Art", field: "album_art", cellRenderer: function(params) {
+      return '<img src="'+ params.value + '" height="200" width="200">'
+  }, autoHeight:true},
+		{headerName: "Song", field: "name"},
+		{headerName: "Artist Name", field: "artist_name"},
+		{headerName: "Tempo", field: "tempo"},
+		{headerName: "Key", field: "key"},
+		{headerName: "Time Signature", field: "time_signature"},
+		{headerName: "Acousticness", field: "acousticness"},
+		{headerName: "Danceability", field: "danceability"},
+		{headerName: "Energy", field: "energy"},
+		{headerName: "Instrumentalness", field: "instrumentalness"},
+		{headerName: "Liveness", field: "liveness"},
+		{headerName: "Loudness", field: "loudness"},
+		{headerName: "Speechiness", field: "speechiness"},
+		{headerName: "Happiness", field: "valence"},
+		{headerName: "Duration (ms)", field: "duration_ms"}
 
-	 //    ];
+	    ];
 
-	    // // let the grid know which columns and what data to use
-    	// var gridOptions = {
-    	// 	columnDefs: columnDefs,
-    	// 	enableSorting: true,
-    	// 	enableFilter: true,
-    	// };
+	    // let the grid know which columns and what data to use
+    	var gridOptions = {
+    		columnDefs: columnDefs,
+    		enableSorting: true,
+    		enableFilter: true,
+    	};
 
-		// // lookup the container we want the Grid to use
-		// var eGridDiv = document.querySelector('#myGrid');
+		// lookup the container we want the Grid to use
+		var eGridDiv = document.querySelector('#myGrid');
 	
 
 		// create the grid passing in the div to use together with the columns & data we want to use
 		// new agGrid.Grid(eGridDiv, gridOptions);
 		//console.log(json["data"]);
-		gridOptions.api.setRowData([]);
 		gridOptions.api.setRowData(json["data"]);
 		gridOptions.rowHeight = 600;
 	}
