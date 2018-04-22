@@ -83,7 +83,10 @@ class trackQuery:
 
         results.sort(key=lambda x: x[0], reverse=True)
 
-        ranked_results = [x[1] for x in results if x[0] >= self.searchAlgConfig['max_accuracy']]
+        if songInfo:
+            ranked_results = [x[1] for x in results if x[0] >= self.searchAlgConfig['max_accuracy']]
+        else:
+            ranked_results = [x[1] for x in results]
 
         # Collect genres in scope
         genres = set()
