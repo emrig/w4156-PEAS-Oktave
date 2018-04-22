@@ -150,7 +150,8 @@ $(document).ready(function() {
     	var gridOptions = {
     		columnDefs: columnDefs,
     		enableSorting: true,
-    		enableFilter: true
+    		enableFilter: true,
+    		refreshCells: true
     	};
 
 		// lookup the container we want the Grid to use
