@@ -123,19 +123,28 @@ class trackQuery:
 
         formatted_result = result
 
-        formatted_result['tempo'] = int(formatted_result['tempo'])
-        formatted_result['danceability'] = int(formatted_result['danceability'] * 100)
-        formatted_result['energy'] = int(formatted_result['energy'] * 100)
-        formatted_result['speechiness'] = int(formatted_result['speechiness'] * 100)
-        formatted_result['acousticness'] = int(formatted_result['acousticness'] * 100)
-        formatted_result['instrumentalness'] = int(formatted_result['instrumentalness'] * 100)
-        formatted_result['liveness'] = int(formatted_result['liveness'] * 100)
-        formatted_result['valence'] = int(formatted_result['valence'] * 100)
-
-        formatted_result['loudness'] = int(formatted_result['loudness'])
-        formatted_result['duration_ms'] = "{0}:{1}".format(int(formatted_result['duration_ms'] / 1000) / 60, str(int(formatted_result['duration_ms'] % 60)).zfill(2))
-
-        formatted_result['key'] = "{0} {1}".format(key_map[int(formatted_result['key'])], mode_map[int(formatted_result['mode'])])
+        if 'tempo' in formatted_result:
+            formatted_result['tempo'] = int(formatted_result['tempo'])
+        if 'danceability' in formatted_result:
+            formatted_result['danceability'] = int(formatted_result['danceability'] * 100)
+        if 'energy' in formatted_result:
+            formatted_result['energy'] = int(formatted_result['energy'] * 100)
+        if 'speechiness' in formatted_result:
+            formatted_result['speechiness'] = int(formatted_result['speechiness'] * 100)
+        if 'acousticness' in formatted_result:
+            formatted_result['acousticness'] = int(formatted_result['acousticness'] * 100)
+        if 'instrumentalness' in formatted_result:
+            formatted_result['instrumentalness'] = int(formatted_result['instrumentalness'] * 100)
+        if 'liveness' in formatted_result:
+            formatted_result['liveness'] = int(formatted_result['liveness'] * 100)
+        if 'valence' in formatted_result:
+            formatted_result['valence'] = int(formatted_result['valence'] * 100)
+        if 'loudness' in formatted_result:
+            formatted_result['loudness'] = int(formatted_result['loudness'])
+        if 'duration_ms' in formatted_result:
+            formatted_result['duration_ms'] = "{0}:{1}".format(int(formatted_result['duration_ms'] / 1000) / 60, str(int(formatted_result['duration_ms'] % 60)).zfill(2))
+        if 'key' in formatted_result and 'mode' in formatted_result:
+            formatted_result['key'] = "{0} {1}".format(key_map[int(formatted_result['key'])], mode_map[int(formatted_result['mode'])])
 
         return formatted_result
 
