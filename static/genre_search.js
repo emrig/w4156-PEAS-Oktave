@@ -8,7 +8,10 @@ $(document).ready(function() {
 
 		var tempo = $("#tempo-search-bar").val();
 		var key = $("#key-list").val();
+		var mode = $("#mode-list").val();
 		var time_signature = $("#time-sig-list").val();
+
+		console.log(mode);
 
 		// Create empty array
 		var array = [];
@@ -17,6 +20,7 @@ $(document).ready(function() {
 		var json_object = {
 			tempo: tempo,
 			key: key,
+			mode: mode,
 			time_signature: time_signature
 		}
 
@@ -67,7 +71,10 @@ $(document).ready(function() {
     		enableSorting: true,
     		enableFilter: true,
     		rowSelection: 'single',
-    		onSelectionChanged: onSelectionChanged
+    		onSelectionChanged: onSelectionChanged,
+    		 onGridReady: function(params) {
+        params.api.sizeColumnsToFit();
+    }
     	};
 
     	// lookup the container we want the Grid to use
@@ -113,27 +120,36 @@ $(document).ready(function() {
 		// specify the columns
 		var columnDefs = [
 
-		{headerName: "Album Art", field: "album_art", cellRenderer: function(params) {
+		{headerName: "Album Art", field: "album_art", suppressSizeToFit: true, cellRenderer: function(params) {
       return '<img src="'+ params.value + '" height="200" width="200">'
   }, autoHeight:true},
   		
-  		{headerName: "Preview Song", field: "preview_url", cellRenderer: function(params) {
+  		{headerName: "Song Preview", field: "preview_url", suppressSizeToFit: true, cellRenderer: function(params) {
       return '<audio id="player" controls="false" name="media"><source src="'+ params.value +'" type="audio/mpeg"></audio>'
   }, autoHeight:true},
 
 		{headerName: "Song", field: "name"},
 		{headerName: "Artist Name", field: "artist_name"},
-		{headerName: "Tempo", field: "tempo"},
-		{headerName: "Key", field: "key"},
-		{headerName: "Time Signature", field: "time_signature"},
-		{headerName: "Acousticness", field: "acousticness"},
-		{headerName: "Danceability", field: "danceability"},
-		{headerName: "Energy", field: "energy"},
-		{headerName: "Instrumentalness", field: "instrumentalness"},
-		{headerName: "Liveness", field: "liveness"},
-		{headerName: "Loudness", field: "loudness"},
-		{headerName: "Speechiness", field: "speechiness"},
-		{headerName: "Happiness", field: "valence"},
+		{headerName: "Tempo", field: "tempo", headerTooltip: "The speed or pace of a given piece. Measured in beats per minute (BPM)."},
+		{headerName: "Key", field: "key", headerTooltip: "The group of pitches, or scale, that forms the basis of a musical composition."},
+		{headerName: "Time Signature", field: "time_signature", headerTooltip: "The number of beats contained in each measure (bar)."},
+		{headerName: "Acousticness", field: "acousticness", headerTooltip: "A confidence measure from 0 to 100 of whether the track is acoustic.", cellStyle: function(params) {
+			if (params.value > 0 && params.value < 0.33) {
+				return {color: 'red', backgroundColor: 'green'};
+			}
+		}
+	},
+
+
+
+
+		{headerName: "Danceability", field: "danceability", headerTooltip: "Describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity."},
+		{headerName: "Energy", field: "energy", headerTooltip: "A measure from 0 to 100 that represents a perceptual measure of intensity and activity."},
+		{headerName: "Instrumentalness", field: "instrumentalness", headerTooltip: "Predicts whether a track contains no vocals. Confidence is higher as the value approaches 100."},
+		{headerName: "Liveness", field: "liveness", headerTooltip: "Detects the presence of an audience in the recording. A value above 80 provides strong likelihood that the track is live."},
+		{headerName: "Loudness", field: "loudness", headerTooltip: "The overall loudness of a track in decibels (dB). Values typical range between -60 and 0 db."},
+		{headerName: "Speechiness", field: "speechiness", headerTooltip: "Detects the presence of spoken words in a track. The more exclusively speech-like the recording (e.g. talk show, audio book, poetry), the closer to 100 the attribute value."},
+		{headerName: "Positivity", field: "valence", headerTooltip: "A measure from 0 to 100 describing the musical positiveness conveyed by a track. Tracks with high positivity sound more cheerful or euphoric, while tracks with low positivity sound more sad, depressed, or angry."},
 		{headerName: "Length (ms)", field: "duration_ms"}
 
 	    ];
@@ -143,6 +159,9 @@ $(document).ready(function() {
     		columnDefs: columnDefs,
     		enableSorting: true,
     		enableFilter: true,
+    		 onGridReady: function(params) {
+        params.api.sizeColumnsToFit();
+    }
     	};
 
 		// lookup the container we want the Grid to use
