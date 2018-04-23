@@ -153,9 +153,9 @@
         "liveness": 0.12,
         "valence": 0.08,
         "tempo": 7.0,
-        "key": 1.0,
-        "mode": 1.0,
-        "time_signature": 1.0
+        "key": 0.0,
+        "mode": 0.0,
+        "time_signature": 0.0
       }
     }
   },
@@ -313,9 +313,9 @@
         "liveness": 0.12,
         "valence": 0.08,
         "tempo": 7.0,
-        "key": 1.0,
-        "mode": 1.0,
-        "time_signature": 1.0
+        "key": 0.0,
+        "mode": 0.0,
+        "time_signature": 0.0
       }
     }
   },
@@ -473,9 +473,9 @@
         "liveness": 0.12,
         "valence": 0.08,
         "tempo": 7.0,
-        "key": 1.0,
-        "mode": 1.0,
-        "time_signature": 1.0
+        "key": 0.0,
+        "mode": 0.0,
+        "time_signature": 0.0
       }
     }
   }
