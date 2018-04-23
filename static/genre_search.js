@@ -11,18 +11,34 @@ $(document).ready(function() {
 		var mode = $("#mode-list").val();
 		var time_signature = $("#time-sig-list").val();
 
-		console.log(mode);
-
 		// Create empty array
 		var array = [];
 
 		// Create JSON object with property "genre_label"
-		var json_object = {
-			tempo: tempo,
-			key: key,
-			mode: mode,
-			time_signature: time_signature
+		var json_object = {};
+
+		if (tempo.length !== 0) {
+			json_object['tempo'] = tempo;
 		}
+
+		if (key != null) {
+			json_object['key'] = key;
+		}	
+
+		if (mode != null) {
+			json_object['mode'] = mode;
+		}				
+
+		if (time_signature != null) {
+			json_object['time_signature'] = time_signature;
+		}	
+
+		// var json_object = {
+		// 	tempo: tempo,
+		// 	key: key,
+		// 	mode: mode,
+		// 	time_signature: time_signature
+		// }
 
 		// Add object to array
 		array.push(json_object);
