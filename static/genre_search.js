@@ -2,6 +2,12 @@
 $(document).ready(function() {
 
 	$("#search-form-master").submit(function(event) {
+		var tempo_input = $("#tempo-search-bar").val();
+		if (isNaN(tempo_input)) {
+		    window.alert("Tempo must be a number.");
+    		return;	
+		}
+
 		document.getElementById("myGrid").remove();
 		var grid_element = $("<div id='myGrid' style='height: 600px;width:auto;' class='ag-theme-balham'>");
 		$("#search-results").append(grid_element);
@@ -50,6 +56,13 @@ $(document).ready(function() {
 	});
 
 	$("#song-search-form-master").submit(function(event) {
+		var song_input = document.getElementById("song-search-bar").value; 
+		if (song_input.length == 0)
+    	{
+    		window.alert("You must input a song title.");
+    		return;
+    	}
+
 		document.getElementById("myGrid").remove();
 		var grid_element = $("<div id='myGrid' class='ag-theme-balham'>");
 		$("#search-results").append(grid_element);
@@ -114,7 +127,7 @@ $(document).ready(function() {
     	    });
     	   
     	   // Create JSON object with property "genre_label"
-    	   console.log(selectedRowsString);
+    	   //console.log(selectedRowsString);
     	   var json_object = {
     	   track_id: selectedRowsString
     	}
