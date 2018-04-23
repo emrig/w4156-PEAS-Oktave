@@ -7,6 +7,7 @@ import  firebase_admin
 
 app = Flask(__name__)
 
+
 def start_firestore():
 
     # Disable app if happens to be enabled
@@ -127,4 +128,4 @@ def search_for_id():
 
 if __name__ == '__main__':
     #TODO turn this off?
-    app.run(debug=True)
+    app.run(debug=False)
