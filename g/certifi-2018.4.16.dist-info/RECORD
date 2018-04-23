@@ -10,6 +10,6 @@ certifi-2018.4.16.dist-info/WHEEL,sha256=5wvfB7GvgZAbKBSE9uX9Zbi6LCL-_KgezgHblXh
 certifi-2018.4.16.dist-info/metadata.json,sha256=ayQwq1S2ID9f_MxGU0ZEouhzp5UoCwVtNT3ZLM23p7g,1006
 certifi-2018.4.16.dist-info/top_level.txt,sha256=KMu4vUCfsjLrkPbSNdgdekS-pVJzBAJFO__nI8NF6-U,8
 certifi-2018.4.16.dist-info/INSTALLER,sha256=zuuue4knoyJ-UwPPXg8fezS7VCrXJQrAP7zeNuwvFQg,4
-certifi/__pycache__/core.cpython-36.pyc,,
-certifi/__pycache__/__main__.cpython-36.pyc,,
-certifi/__pycache__/__init__.cpython-36.pyc,,
+certifi/core.pyc,,
+certifi/__main__.pyc,,
+certifi/__init__.pyc,,

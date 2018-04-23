@@ -19,6 +19,8 @@ Classifier: Programming Language :: Python :: 3.6
 Classifier: License :: OSI Approved :: Apache Software License
 Requires-Dist: six (>=1.5.2)
 Requires-Dist: protobuf (>=3.5.0.post1)
+Requires-Dist: futures (>=2.2.0)
+Requires-Dist: enum34 (>=1.0.4)
 
 gRPC Python
 ===========

@@ -26,6 +26,8 @@ skip_files:
 libraries:
 - name: grpcio
   version: latest
+- name: ssl
+  version: latest
 
 env_variables:
   DEPLOYMENT: "prod"
