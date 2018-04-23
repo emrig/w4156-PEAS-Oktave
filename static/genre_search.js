@@ -140,9 +140,6 @@ $(document).ready(function() {
 		}
 	},
 
-
-
-
 		{headerName: "Danceability", field: "danceability", headerTooltip: "Describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity."},
 		{headerName: "Energy", field: "energy", headerTooltip: "A measure from 0 to 100 that represents a perceptual measure of intensity and activity."},
 		{headerName: "Instrumentalness", field: "instrumentalness", headerTooltip: "Predicts whether a track contains no vocals. Confidence is higher as the value approaches 100."},
@@ -160,7 +157,7 @@ $(document).ready(function() {
     		enableSorting: true,
     		enableFilter: true,
     		 onGridReady: function(params) {
-        params.api.sizeColumnsToFit();
+        // params.api.sizeColumnsToFit();
     }
     	};
 
