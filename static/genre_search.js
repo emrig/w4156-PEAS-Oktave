@@ -130,6 +130,7 @@ $(document).ready(function() {
 		var selectedRows = gridOptions.api.getSelectedRows();
 
     	function onSelectionChanged() {
+
     	    var selectedRows = gridOptions.api.getSelectedRows();
     	    var selectedRowsString = '';
     	    selectedRows.forEach( function(selectedRow, index) {
@@ -159,6 +160,18 @@ $(document).ready(function() {
 
 	function parse(json)
 	{
+
+		//console.log(json["data"]["search_song_features"]);
+		var name = json["data"]["search_song_features"].name;
+		var artist_name = json["data"]["search_song_features"].artist_name;
+
+		var new_row = $("<div class='row'>");
+		$(new_row).append(name);
+		$("#song-search-features").append(new_row);
+
+		//console.log(name);
+
+
 		// specify the columns
 		var columnDefs = [
 
