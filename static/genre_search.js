@@ -1,21 +1,30 @@
 
 $(document).ready(function() {
 
-	$("#search-form-master").submit(function(event) {
-		var tempo_input = $("#tempo-search-bar").val();
-		if (isNaN(tempo_input)) {
-		    window.alert("Tempo must be a number.");
-    		return;	
-		}
+	$(".loader").hide();
 
-		document.getElementById("myGrid").remove();
-		var grid_element = $("<div id='myGrid' style='height: 600px;width:auto;' class='ag-theme-balham'>");
-		$("#search-results").append(grid_element);
+	$("#search-form-master").submit(function(event) {
 
 		var tempo = $("#tempo-search-bar").val();
 		var key = $("#key-list").val();
 		var mode = $("#mode-list").val();
 		var time_signature = $("#time-sig-list").val();
+
+		if (!key && !mode && !time_signature && (tempo.length == 0)) {
+			window.alert("You must input at least one musical characteristic.");
+			return;
+		}
+
+		if (isNaN(tempo)) {
+		    window.alert("Tempo must be a number.");
+    		return;	
+		}
+
+		document.getElementById("myGrid").remove();
+		$(".loader").show();
+
+		var grid_element = $("<div id='myGrid' style='height: 600px;width:auto;' class='ag-theme-balham'>");
+		$("#search-results").append(grid_element);
 
 		// Create empty array
 		var array = [];
@@ -56,6 +65,7 @@ $(document).ready(function() {
 	});
 
 	$("#song-search-form-master").submit(function(event) {
+
 		var song_input = document.getElementById("song-search-bar").value; 
 		if (song_input.length == 0)
     	{
@@ -64,6 +74,8 @@ $(document).ready(function() {
     	}
 
 		document.getElementById("myGrid").remove();
+    	$(".loader").show();
+
 		var grid_element = $("<div id='myGrid' class='ag-theme-balham'>");
 		$("#search-results").append(grid_element);
 
@@ -100,6 +112,7 @@ $(document).ready(function() {
     		enableSorting: true,
     		enableFilter: true,
     		rowSelection: 'single',
+    		overlayLoadingTemplate: '<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>',
     		onSelectionChanged: onSelectionChanged,
     		 onGridReady: function(params) {
         params.api.sizeColumnsToFit();
@@ -133,7 +146,7 @@ $(document).ready(function() {
     	}
 
     		document.getElementById("myGrid").remove();
-			var grid_element = $("<div id='myGrid' class='ag-theme-balham' style='margin: auto; height: 600px; width: 100%;'>");
+			var grid_element = $("<div id='myGrid' class='ag-theme-balham' style='margin: auto; height: 600px; width: 100%; margin-top: -120px;'>");
 			$("#search-results").append(grid_element);
 
     	   // Encode JSON string
@@ -185,6 +198,7 @@ $(document).ready(function() {
     		columnDefs: columnDefs,
     		enableSorting: true,
     		enableFilter: true,
+    		overlayLoadingTemplate: '<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>',
     		 onGridReady: function(params) {
         // params.api.sizeColumnsToFit();
     }
