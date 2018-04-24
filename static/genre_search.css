@@ -91,6 +91,18 @@ body {
   margin-top: 2%;
 }
 
+#song-search-features {
+  font-family: Helvetica;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#song-search-features-row {
+  font-family: Helvetica;
+  margin-left: auto;
+  margin-right: auto; 
+}
+
 .song_result {
 }
 
