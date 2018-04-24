@@ -110,7 +110,8 @@ class trackQuery:
 
         if songInfo:
             songInfo.update(choiceList)
-            payload['search_song_features'] = songInfo
+            formatted_songInfo = self.format_result(songInfo)
+            payload['search_song_features'] = formatted_songInfo
 
         return payload
 
