@@ -44,7 +44,7 @@ class MainTest(unittest.TestCase):
 
             "tempo": 100,
             "key": 4,
-            "time_sig": 4
+            "time_signature": 4
         }
 
         self.push_assertResult(100, 4, 4)
@@ -68,9 +68,9 @@ class MainTest(unittest.TestCase):
     def push_assertResult(self, tempo, key, time_sig):
 
         input = {
-            "tempo_label": tempo,
-            "key_label": key,
-            "time_sig_label": time_sig
+            "tempo": tempo,
+            "key": key,
+            "time_signature": time_sig
         }
 
         #print("Testing: tempo:{0} key:{1} time_sig:{2}".format(tempo, key, time_sig))

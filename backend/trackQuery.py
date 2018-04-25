@@ -160,39 +160,3 @@ class trackQuery:
             maxRange[attribute] = choiceList[attribute] + self.searchAlgConfig['plusMinus'][attribute]
 
         return minRange, maxRange
-
-if __name__ == '__main__':
-
-    # Testing
-
-    # Test Audio Attributes only
-    """
-    input = {
-        "tempo": 150,
-        "key": 4,
-        "time_signature": 4
-    }
-    """
-
-    # Test song input
-    search = sp_search.sp_search()
-    song_results = search.track("here comes the sun")
-    song_id = song_results['tracks']['items'][0]['id']
-    attibutes = search.audio_features([song_id])[0]
-
-    input = {
-        "tempo": attibutes['tempo'],
-        "key": attibutes['key'],
-        "time_signature": attibutes['time_signature'],
-        "acousticness": attibutes['acousticness'],
-        "danceability": attibutes['danceability'],
-        "energy": attibutes['energy'],
-        "instrumentalness": attibutes['instrumentalness'],
-        "liveness": attibutes['liveness'],
-        "loudness": attibutes['loudness'],
-        "mode": attibutes['mode'],
-        "valence": attibutes['valence'],
-        "speechiness": attibutes['speechiness'],
-    }
-    test = trackQuery(True)
-    print(test.searchTracks(input, {"hi":"hi"}))
