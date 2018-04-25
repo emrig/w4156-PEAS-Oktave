@@ -29,7 +29,7 @@ class MainTest(unittest.TestCase):
 
     def setUp(self):
         self.app = main.app.test_client()
-        self.performance_time_seconds = 10.0
+        self.performance_time_seconds = 5.0
         self.search = sp_search.sp_search()
 
     def test_performance_attr_search(self):
@@ -94,6 +94,11 @@ class MainTest(unittest.TestCase):
         rv2 = self.app.get('/id_search', data={"track_id": json.loads(rv1.data)['data'][0]['id']})
         stop = datetime.datetime.now()
         execution_time = stop-start
+
+        if rv2.status_code != 200:
+            print(rv2.data)
+            assert rv2.status_code == 200
+
         #print("Search of tempo={0}, key={1}, time={2} took {3} seconds with {4} results".format(input['tempo'], input['key'], input['time_signature'], execution_time, len(eval(rv.data)['data'])))
         self.assertGreater(self.performance_time_seconds*2, execution_time.seconds)
 

@@ -43,17 +43,31 @@ class trackQuery:
 
         minRange, maxRange = self.setRanges(choiceList)
         results = []
+        duplicate_check = {}
+
+        attribute_search = True
+        query_limit = 25
+        query_iterations = 1
+
+        if songInfo:
+            attribute_search = False
+            query_limit = 10
+            duplicate_check[songInfo['artist_name']] = [songInfo['name']]
+            query_iterations = 2
 
         # Collect results based on +/-
         for attribute in self.searchAlgConfig['plusMinus'].keys():
             if attribute in choiceList.keys():
 
-                try:
+                # Get exact results first
+                query = self.trackReference.where(attribute, u'==', choiceList[attribute]).limit(query_limit)
 
-                    # TODO decide limit
-                    query = self.trackReference.where(attribute, u'>=', minRange[attribute]).where(attribute, u'<=', maxRange[attribute]).limit(15)
+                for i in range(0,query_iterations):
 
-                    docs = query.get()
+                    try:
+                        docs = query.get()
+                    except NotFound:
+                        continue
 
                     for doc in docs:
                         result = doc.to_dict()
@@ -61,8 +75,18 @@ class trackQuery:
 
                         # Calculate score based on weights
                         score = 0.0
+
+                        if result['artist_name'] in duplicate_check:
+                            if result['name'] in duplicate_check[result['artist_name']]:
+                                continue
+                            else:
+                                duplicate_check[result['artist_name']].append(result['name'])
+
+                        else:
+                            duplicate_check[result['artist_name']] = [result['name']]
+
                         for attribute in choiceList.keys():
-                            
+
                             # TODO omit results that have a very similar name: saw results with [song name] original, [song name] remastered, etc.
                             # TODO omit zero values for now and missing attibutes.. log instead?
                             # TODO maybe filter very short songs, this would mean adding track length to DB
@@ -73,14 +97,15 @@ class trackQuery:
                                     score += difference * self.searchAlgConfig['weights'][attribute]
 
                             except:
-                                pass
+                                continue
 
                         if (score, result) not in results:
                             clean_result = self.format_result(result)
                             results.append((score, clean_result))
 
-                except NotFound:
-                    pass
+                    # then try +/-
+                    if attribute_search:
+                        query = self.trackReference.where(attribute, u'>=', minRange[attribute]).where(attribute, u'<=', maxRange[attribute]).limit(query_limit)
 
         results.sort(key=lambda x: x[0], reverse=True)
 
@@ -160,3 +185,4 @@ class trackQuery:
             maxRange[attribute] = choiceList[attribute] + self.searchAlgConfig['plusMinus'][attribute]
 
         return minRange, maxRange
+

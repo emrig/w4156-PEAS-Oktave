@@ -51,7 +51,7 @@ class MainTest(unittest.TestCase):
 
     def test_all_inputs(self):
 
-        tempos = range(60,200)
+        tempos = [100,150]
         keys = range(0,12)
         time_sigs = range(1,8)
         no_result_list = []
@@ -76,7 +76,7 @@ class MainTest(unittest.TestCase):
         #print("Testing: tempo:{0} key:{1} time_sig:{2}".format(tempo, key, time_sig))
         results = self.test_trackQuery.searchTracks(input)
 
-        self.assertGreater(len(results), -1)
+        self.assertGreater(len(results), 0)
 
         return len(results)
 

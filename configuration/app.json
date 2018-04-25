@@ -131,17 +131,17 @@
       "max_accuracy": 0.60,
       "weights": {
         "danceability": 0.0832,
-        "energy": 0.1248,
-        "loudness": 0.1248,
+        "energy": 0.0832,
+        "loudness": 0.0832,
         "speechiness": 0.0416,
         "acousticness": 0.0832,
         "instrumentalness": 0.0416,
         "liveness": 0.0832,
         "valence": 0.1248,
-        "tempo": 0.1248,
-        "key": 0.1248,
+        "tempo": 0.1648,
+        "key": 0.1448,
         "mode": 0.0416,
-        "time_signature": 0.1248
+        "time_signature": 0.1448
       },
       "plusMinus": {
         "danceability": 0.05,
@@ -152,7 +152,7 @@
         "instrumentalness": 0.07,
         "liveness": 0.12,
         "valence": 0.08,
-        "tempo": 0.0,
+        "tempo": 1.0,
         "key": 0.0,
         "mode": 0.0,
         "time_signature": 0.0
