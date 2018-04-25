@@ -2,6 +2,8 @@
 $(document).ready(function() {
 
 	$(".loader").hide();
+	
+	//submit search fields
 
 	$("#search-form-master").submit(function(event) {
 
@@ -9,12 +11,13 @@ $(document).ready(function() {
 		var key = $("#key-list").val();
 		var mode = $("#mode-list").val();
 		var time_signature = $("#time-sig-list").val();
-
+		
+      //error check for user entry
 		if (!key && !mode && !time_signature && (tempo.length == 0)) {
 			window.alert("You must input at least one musical characteristic.");
 			return;
 		}
-
+       //error check for number
 		if (isNaN(tempo)) {
 		    window.alert("Tempo must be a number.");
     		return;	
@@ -22,6 +25,8 @@ $(document).ready(function() {
 
 		document.getElementById("myGrid").remove();
 		$(".loader").show();
+		
+        //specify grid for results to be returned, using ag-grid
 
 		var grid_element = $("<div id='myGrid' style='height: 600px;width:auto;' class='ag-theme-balham'>");
 		$("#search-results").append(grid_element);
@@ -63,10 +68,13 @@ $(document).ready(function() {
 
 		var json = $.get("/attribute_search", json_object, function(json) {parse(json);});
 	});
-
+     //collect user field for song search
+     
 	$("#song-search-form-master").submit(function(event) {
 
 		var song_input = document.getElementById("song-search-bar").value; 
+		
+		//error checking for song title entered
 		if (song_input.length == 0)
     	{
     		window.alert("You must input a song title.");
@@ -75,6 +83,8 @@ $(document).ready(function() {
 
 		document.getElementById("myGrid").remove();
     	$(".loader").show();
+    	
+    	//specify grid for song search results
 
 		var grid_element = $("<div id='myGrid' style='height: 600px;width:800px;' class='ag-theme-balham'>");
 		$("#search-results").append(grid_element);
@@ -96,6 +106,7 @@ $(document).ready(function() {
 	function parse_song(json) 
 	{
 		// specify the columns
+		//specify header names
 		var columnDefs = [
 		{headerName: "Album Art", field: "album_art", suppressSizeToFit: true, width: 220, cellRenderer: function(params) {
       return '<img src="'+ params.value + '" height="200" width="200">'
@@ -129,7 +140,8 @@ $(document).ready(function() {
 		gridOptions.rowHeight = 600;
 
 		var selectedRows = gridOptions.api.getSelectedRows();
-
+        
+        //allow user to select the song they were looking for and click on the row
     	function onSelectionChanged() {
 
     	    var selectedRows = gridOptions.api.getSelectedRows();
@@ -142,7 +154,7 @@ $(document).ready(function() {
     	    });
     	   
     	   // Create JSON object with property "genre_label"
-    	   //console.log(selectedRowsString);
+    	   
     	   var json_object = {
     	   track_id: selectedRowsString
     	}
@@ -158,6 +170,7 @@ $(document).ready(function() {
 		}
 	}
 
+          //return to grid from JSON
 	function parse(json)
 	{
 
@@ -192,7 +205,7 @@ $(document).ready(function() {
   		{headerName: "", field: "preview_url", suppressSizeToFit: true, width: 45, cellRenderer: function(params) {
       return '<audio id="player" controls="false" name="media"><source src="'+ params.value +'" type="audio/mpeg"></audio>'
   }, autoHeight:true},
-
+        //specify grid header names
 		{headerName: "Song", field: "name", cellStyle: {'white-space': 'normal'}},
 		{headerName: "Artist Name", field: "artist_name"},
 		{headerName: "Tempo", field: "tempo", width: 80, headerTooltip: "The speed or pace of a given piece. Measured in beats per minute (BPM)."},
