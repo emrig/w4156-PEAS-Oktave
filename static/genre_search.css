@@ -3,10 +3,12 @@ body {
   width: 90%;
   margin-left: auto;
   margin-right: auto;
+  height: auto;
+  min-height: 100%;
 }
 
 #title-space {
-  margin-top: 10%
+  margin-top: 2%
 }
 
 #title {
@@ -21,6 +23,23 @@ body {
   font-size: 30px;
 }
 
+#heading-1 {
+  font: Helvetica;
+  font-size: 30px;
+}
+
+#hr {
+  border: solid;
+  border-width: thin;
+  color: lightgrey;
+}
+
+#heading-2 {
+  font: Helvetica;
+  font-size: 30px;
+  text-align: right;
+}
+
 #about {
   font-family: Helvetica;
   text-align: center;
@@ -29,7 +48,7 @@ body {
 
 #song-search-form {
   width: 100%;
-  margin-top: 10%;
+  margin-top: 2%;
 }
 
 #song-search-bar {
@@ -92,15 +111,24 @@ body {
 }
 
 #song-search-features {
-  font-family: Helvetica;
+  font: Helvetica;
+  font-size: 20px;
   margin-left: auto;
   margin-right: auto;
 }
 
 #song-search-features-row {
-  font-family: Helvetica;
+  text-align:center;
+  margin:0 auto;
+  font: Helvetica;
+  font-size: 15px;
   margin-left: auto;
   margin-right: auto; 
+  border-top: thin solid; 
+  border-bottom: thin solid;
+  border-left: thin solid;
+  border-right: thin solid;
+  border-color: grey;
 }
 
 .song_result {

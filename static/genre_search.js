@@ -5,6 +5,14 @@ $(document).ready(function() {
 
 	$("#search-form-master").submit(function(event) {
 
+		$('html,body').animate({
+			scrollTop: $("#search-results").offset().top},
+			'slow');
+
+		if ($('#song-search-features-row').length) {
+			document.getElementById("song-search-features-row").remove();
+		}
+
 		var tempo = $("#tempo-search-bar").val();
 		var key = $("#key-list").val();
 		var mode = $("#mode-list").val();
@@ -65,6 +73,15 @@ $(document).ready(function() {
 	});
 
 	$("#song-search-form-master").submit(function(event) {
+
+		$('html,body').animate({
+			scrollTop: $("#search-results").offset().top},
+			'slow');
+
+		if ($('#song-search-features-row').length) {
+			document.getElementById("song-search-features-row").remove();
+
+		}
 
 		var song_input = document.getElementById("song-search-bar").value; 
 		if (song_input.length == 0)
@@ -164,6 +181,9 @@ $(document).ready(function() {
 		if ( (json["data"]["search_song_features"]) !== null) {
 			var name = json["data"]["search_song_features"].name;
 			var artist_name = json["data"]["search_song_features"].artist_name;
+			var tempo = json["data"]["search_song_features"].tempo;
+			var key = json["data"]["search_song_features"].key;
+			var time_signature = json["data"]["search_song_features"].time_signature;
 
 			var new_row = $("<div class='row' id='song-search-features-row'>");
 
@@ -171,14 +191,26 @@ $(document).ready(function() {
 			$(col1).text("Selected song:");
 			
 			var col2 = $("<div class='col-xs-2'>");
-			$(col2).text(name);
+			$(col2).text("Song: " + name);
 
 			var col3 = $("<div class='col-xs-2'>");
-			$(col3).text(artist_name);
+			$(col3).text("Artist: " + artist_name);
+
+			var col4 = $("<div class='col-xs-2'>");
+			$(col4).text("Tempo: " + tempo);			
+
+			var col5 = $("<div class='col-xs-2'>");
+			$(col5).text("Key: " + key);	
+
+			var col6 = $("<div class='col-xs-2'>");
+			$(col6).text("Time Signature: " + time_signature);	
 
 			$(new_row).append(col1);
 			$(new_row).append(col2);
 			$(new_row).append(col3);
+			$(new_row).append(col4);
+			$(new_row).append(col5);
+			$(new_row).append(col6);
 			$("#song-search-features").append(new_row);
 		}
 
