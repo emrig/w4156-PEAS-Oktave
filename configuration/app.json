@@ -128,7 +128,7 @@
           "low": [0.0, 0.33]
         }
       },
-      "max_accuracy": 0.80,
+      "max_accuracy": 0.60,
       "weights": {
         "danceability": 0.0832,
         "energy": 0.1248,
@@ -152,7 +152,7 @@
         "instrumentalness": 0.07,
         "liveness": 0.12,
         "valence": 0.08,
-        "tempo": 7.0,
+        "tempo": 0.0,
         "key": 0.0,
         "mode": 0.0,
         "time_signature": 0.0

@@ -51,7 +51,7 @@ class trackQuery:
                 try:
 
                     # TODO decide limit
-                    query = self.trackReference.where(attribute, u'>=', minRange[attribute]).where(attribute, u'<=', maxRange[attribute]).limit(200)
+                    query = self.trackReference.where(attribute, u'>=', minRange[attribute]).where(attribute, u'<=', maxRange[attribute]).limit(15)
 
                     docs = query.get()
 
