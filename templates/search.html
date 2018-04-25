@@ -52,7 +52,7 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="input-group" id="song-search-form">
-              <input type="text" class="form-control" id="song-search-bar" placeholder="Search for songs by title.">
+              <input type="text" class="form-control" id="song-search-bar" placeholder="Search for songs by title. Click on the track you want to discover similar music.">
           </div>
         </div>  
       </div>    
@@ -60,7 +60,7 @@
       <!-- Submit button -->
       <div class="row">
         <div class="col-xs-12">
-          <center><button class="btn btn-lg" type="submit" id="song-search-button">Search by title</button></center>
+          <center><button class="btn btn-lg" type="submit" id="song-search-button">Search</button></center>
         </div>  
       </div>
 
@@ -70,24 +70,21 @@
   <br><hr id='hr'>
 
 
-<!-- Search bar, drop-downs, etc. -->
+  <!-- Search bar, drop-downs, etc. -->
   <div>
 
     <h5 id="heading-2">Search by musical characteristics</h5>
 
     <form class="form-inline" onsubmit="return false;" id="search-form-master">
       
-
-
       <!-- Tempo search bar -->
       <div class="row">
       	<div class="col-xs-12">
       		<div class="input-group" id="tempo-search-form">
-              <input type="text" class="form-control" id="tempo-search-bar" placeholder="Search by tempo (enter BPM)">
+              <input type="text" class="form-control" id="tempo-search-bar" placeholder="Search by tempo (enter BPM).">
           	</div>
       	</div>
       </div>
-
 
       <!-- Time signature drop-down menu -->
       <div class="row">
@@ -109,9 +106,8 @@
       			<option value='11'>B</option>
       		</select>
 
-      <!--major/minor toggle-->
-
-          <select id="mode-list" name="mode">
+         <!-- Mode selection -->
+         <select id="mode-list" name="mode">
             <option value="" disabled selected><center>Major/Minor:</center></option>
             <option value='0'>Minor</option>
             <option value='1'>Major</option>
@@ -120,6 +116,7 @@
       	</div>	  		
 	  </div>	
 
+  <!-- Time signature selection -->
 	<div class="row">
 		<div class="col-xs-12">
 			<select name="time_sig" id="time-sig-list">
@@ -147,13 +144,14 @@
   <div id="song-search-features"></div>
 
   <br></br>
-<!--div for results returned-->
+
+  <!-- Parent div for search results -->
   <div id="search-results">
 
+    <!-- "Loading" animation/circle -->
     <center><div class="loader"></div></center>
     
     <!--ag-grid div-->
-
     <div id="myGrid" class="ag-theme-balham"></div>
 
   </div> 

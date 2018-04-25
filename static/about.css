@@ -21,10 +21,16 @@ body {
   margin-bottom: 0px;
 }
 
+.about-text {
+  font: Helvetica;
+  font-size: 25px;
+  text-align: center;
+}
+
 #back {
   font-family: Helvetica;
   text-align: center;
-  font-size: 20px;
+  font-size: 30px;
   margin-top: 10%;
 }
 
