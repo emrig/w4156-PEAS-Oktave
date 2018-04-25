@@ -38,7 +38,7 @@ class trackCleanup:
         self.search = sp_search.sp_search()
 
 
-    def add_track_attributes(self, attributes=['artist_name']):
+    def add_track_attributes(self, attributes=['artist_name'], test=False):
 
         energy = 0
         results = {}
@@ -107,6 +107,9 @@ class trackCleanup:
                     batch = self.db.batch()
 
             results = {}
+
+            if (test):
+                return True
 
         return
 

@@ -3,5 +3,4 @@ test_demo.py
 test_all_tests.py
 test_fail_bool.py
 test_fail_str.py
-test_trackQuery.py
 matplotlib_results.py

@@ -29,7 +29,7 @@ class MainTest(unittest.TestCase):
 
     def setUp(self):
         self.app = main.app.test_client()
-        self.performance_time_seconds = 5.0
+        self.performance_time_seconds = 10.0
         self.search = sp_search.sp_search()
 
     def test_performance_attr_search(self):
@@ -42,12 +42,15 @@ class MainTest(unittest.TestCase):
                 }
             self.push_assertTime(input, '/song_search_test_temp')
 
+
+
     def test_performance_track_search(self):
 
         songs = ["childish gambino redbone", "beatles here comes the sun", "nirvana smells like teen spirit",
                  "darude sandstorm", "george clinton atomic dog"]
 
         for song in songs:
+            """
             song_results = self.search.track(song)
             song_id = song_results['tracks']['items'][0]['id']
             attibutes = self.search.audio_features([song_id])[0]
@@ -66,7 +69,13 @@ class MainTest(unittest.TestCase):
                 "valence": attibutes['valence'],
                 "speechiness": attibutes['speechiness'],
             }
-            self.push_assertTime(input, '/song_search_test_temp')
+            """
+
+            input = {
+                "track_name": song
+            }
+            self.push_assertTime_tracksearch(input, '/track_search')
+
 
 
     def push_assertTime(self, input, route):
@@ -75,9 +84,18 @@ class MainTest(unittest.TestCase):
         rv = self.app.get(route, data=input)
         stop = datetime.datetime.now()
         execution_time = stop-start
-        print("Search of tempo={0}, key={1}, time={2} took {3} seconds with {4} results".format(
-            input['tempo'], input['key'], input['time_signature'], execution_time, len(eval(rv.data)['data'])))
+        #print("Search of tempo={0}, key={1}, time={2} took {3} seconds with {4} results".format(input['tempo'], input['key'], input['time_signature'], execution_time, len(eval(rv.data)['data'])))
         self.assertGreater(self.performance_time_seconds, execution_time.seconds)
+
+    def push_assertTime_tracksearch(self, input, route):
+
+        start = datetime.datetime.now()
+        rv1 = self.app.get(route, data=input)
+        rv2 = self.app.get('/id_search', data={"track_id": json.loads(rv1.data)['data'][0]['id']})
+        stop = datetime.datetime.now()
+        execution_time = stop-start
+        #print("Search of tempo={0}, key={1}, time={2} took {3} seconds with {4} results".format(input['tempo'], input['key'], input['time_signature'], execution_time, len(eval(rv.data)['data'])))
+        self.assertGreater(self.performance_time_seconds*2, execution_time.seconds)
 
 if __name__ == '__main__':
     unittest.main()
