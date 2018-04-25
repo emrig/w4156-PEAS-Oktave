@@ -119,11 +119,15 @@ body {
 
 #song-search-features-row {
   text-align:center;
+  font-weight: bold;
   margin:0 auto;
   font: Helvetica;
   font-size: 15px;
   margin-left: auto;
   margin-right: auto; 
+}
+
+.feature-col {
   border-top: thin solid; 
   border-bottom: thin solid;
   border-left: thin solid;

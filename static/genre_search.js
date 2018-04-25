@@ -100,6 +100,13 @@ $(document).ready(function() {
     	// Get rid of existing grid (if any); display "loading" circle
 		document.getElementById("myGrid").remove();
     	$(".loader").show();
+
+    	// Directions to click on track row
+		var new_row = $("<div class='row' id='song-search-features-row'>");
+		var col1 = $("<div class='col-xs-12 feature-col'>");
+		$(col1).text("Click on a track row to discover tracks with similar characteristics.");
+		$(new_row).append(col1);
+		$("#song-search-features").append(new_row);
     	
     	// Specify grid for song search results
 		var grid_element = $("<div id='myGrid' style='height: 600px;width:800px;' class='ag-theme-balham'>");
@@ -174,6 +181,11 @@ $(document).ready(function() {
     	   track_id: selectedRowsString
     	}
 
+    		// Remove displayed song features (if any)
+    		if ($('#song-search-features-row').length) {
+    			document.getElementById("song-search-features-row").remove();
+    		}
+
     		// Remove existing grid; append new grid
     		document.getElementById("myGrid").remove();
 			var grid_element = $("<div id='myGrid' class='ag-theme-balham' style='margin: auto; height: 600px; width: 100%; margin-top: -120px;'>");
@@ -202,22 +214,22 @@ $(document).ready(function() {
 			// Dynamically create row/Bootstrap columns with track info
 			var new_row = $("<div class='row' id='song-search-features-row'>");
 
-			var col1 = $("<div class='col-xs-2'>");
+			var col1 = $("<div class='col-xs-2 feature-col'>");
 			$(col1).text("Selected song:");
 			
-			var col2 = $("<div class='col-xs-2'>");
+			var col2 = $("<div class='col-xs-2 feature-col'>");
 			$(col2).text("Song: " + name);
 
-			var col3 = $("<div class='col-xs-2'>");
+			var col3 = $("<div class='col-xs-2 feature-col'>");
 			$(col3).text("Artist: " + artist_name);
 
-			var col4 = $("<div class='col-xs-2'>");
+			var col4 = $("<div class='col-xs-2 feature-col'>");
 			$(col4).text("Tempo: " + tempo);			
 
-			var col5 = $("<div class='col-xs-2'>");
+			var col5 = $("<div class='col-xs-2 feature-col'>");
 			$(col5).text("Key: " + key);	
 
-			var col6 = $("<div class='col-xs-2'>");
+			var col6 = $("<div class='col-xs-2 feature-col'>");
 			$(col6).text("Time Signature: " + time_signature);	
 
 			$(new_row).append(col1);
@@ -239,7 +251,6 @@ $(document).ready(function() {
   		{headerName: "", field: "preview_url", suppressSizeToFit: true, width: 45, cellRenderer: function(params) {
       return '<audio id="player" controls="false" name="media"><source src="'+ params.value +'" type="audio/mpeg"></audio>'
   }, autoHeight:true},
-        //specify grid header names
 		{headerName: "Song", field: "name", cellStyle: {'white-space': 'normal'}},
 		{headerName: "Artist Name", field: "artist_name"},
 		{headerName: "Tempo", field: "tempo", width: 80, headerTooltip: "The speed or pace of a given piece. Measured in beats per minute (BPM)."},
@@ -251,8 +262,6 @@ $(document).ready(function() {
 			}
 		}
 	},
-
-		// Tooltips: header definitions show up when user hovers over column header
 		{headerName: "Danceability", field: "danceability", width: 115, headerTooltip: "Describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity."},
 		{headerName: "Energy", field: "energy", width: 90, headerTooltip: "A measure from 0 to 100 that represents a perceptual measure of intensity and activity."},
 		{headerName: "Instrumentalness", field: "instrumentalness", width: 135, headerTooltip: "Predicts whether a track contains no vocals. Confidence is higher as the value approaches 100."},
