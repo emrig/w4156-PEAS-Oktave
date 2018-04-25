@@ -163,7 +163,7 @@ $(document).ready(function() {
 		// specify the columns
 		var columnDefs = [
 
-		{headerName: "Album Art", field: "album_art", suppressSizeToFit: true, width:200, cellRenderer: function(params) {
+		{headerName: "Album Art", field: "album_art", suppressSizeToFit: true, width:240, cellRenderer: function(params) {
       return '<img src="'+ params.value + '" height="200" width="200">'
   }, autoHeight:true},
   		
