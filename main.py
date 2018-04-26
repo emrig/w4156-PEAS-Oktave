@@ -3,7 +3,7 @@ from backend import trackQuery
 from backend import environment
 from backend import sp_search
 from firebase_admin import credentials
-import  firebase_admin
+import firebase_admin
 
 app = Flask(__name__)
 
@@ -33,12 +33,15 @@ def stop_firestore():
 
 @app.route('/')
 def homePage():
-    return render_template('search.html')
+    return render_template('index.html')
 
 @app.route('/about')
 def about():
   return render_template("about.html")
 
+@app.route('/search')
+def search():
+  return render_template("search.html")
 
 @app.route('/attribute_search', methods=['GET'])
 def search_test(input = None, songInfo = None):
