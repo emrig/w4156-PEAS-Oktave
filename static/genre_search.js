@@ -249,19 +249,20 @@ $(document).ready(function() {
   }, autoHeight:true},
   		
   		{headerName: "", field: "preview_url", suppressSizeToFit: true, width: 45, cellRenderer: function(params) {
-      return '<audio id="player" controls="false" name="media"><source src="'+ params.value +'" type="audio/mpeg"></audio>'
+  			if (params.value) {
+  				return '<audio id="player" controls="false" name="media"><source src="'+ params.value +'" type="audio/mpeg"></audio>'
+  			}
+  			if (!params.value) {
+  				return 'N/A'
+  			}
+      
   }, autoHeight:true},
 		{headerName: "Song", field: "name", cellStyle: {'white-space': 'normal'}},
 		{headerName: "Artist Name", field: "artist_name"},
 		{headerName: "Tempo", field: "tempo", width: 80, headerTooltip: "The speed or pace of a given piece. Measured in beats per minute (BPM)."},
 		{headerName: "Key", field: "key", width: 90, headerTooltip: "The group of pitches, or scale, that forms the basis of a musical composition."},
 		{headerName: "Time Signature", width: 130, field: "time_signature", headerTooltip: "The number of beats contained in each measure (bar)."},
-		{headerName: "Acousticness", width: 120, field: "acousticness", headerTooltip: "A confidence measure from 0 to 100 of whether the track is acoustic.", cellStyle: function(params) {
-			if (params.value > 0 && params.value < 0.33) {
-				return {color: 'red', backgroundColor: 'green'};
-			}
-		}
-	},
+		{headerName: "Acousticness", width: 120, field: "acousticness", headerTooltip: "A confidence measure from 0 to 100 of whether the track is acoustic."},
 		{headerName: "Danceability", field: "danceability", width: 115, headerTooltip: "Describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity."},
 		{headerName: "Energy", field: "energy", width: 90, headerTooltip: "A measure from 0 to 100 that represents a perceptual measure of intensity and activity."},
 		{headerName: "Instrumentalness", field: "instrumentalness", width: 135, headerTooltip: "Predicts whether a track contains no vocals. Confidence is higher as the value approaches 100."},
