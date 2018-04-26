@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>OKTAVE</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--use bootstrap-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <!--styling-->
+  <link rel="stylesheet" type="text/css" href="../static/index.css">
+  <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+  <!--use jquery-->
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+  integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+  crossorigin="anonymous"></script>
+
+  <!-- ag-Grid -->
+  <script src="https://unpkg.com/ag-grid/dist/ag-grid.min.noStyle.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/ag-grid/dist/styles/ag-grid.css">
+  <link rel="stylesheet" href="https://unpkg.com/ag-grid/dist/styles/ag-theme-balham.css">
+</head>
+    
+<body>
+    
+    <div id="title-space">
+        <h1 id="title">OKTAVE</h1>
+
+        <h2 id="subtitle">
+            Discover new music based on tempo, key, and time signature.
+            
+            <br><br>
+            
+            Or, search for a track, and discover similar tunes with one click.
+            
+            <br><br>
+            
+            Perfect for dancers, choreographers, and music fans everywhere.
+        </h2>
+        
+        <br><br>
+
+        <button type="button" class="btn btn-primary btn-lg" id="go-button">Let's Go!</button>
+        
+        <script type="text/javascript">
+            document.getElementById("go-button").onclick = function () {
+                location.href = "search.html";
+            };
+        </script>
+
+<!--        <h3 id="about"><a href="about">Learn more about OKTAVE and musical characteristics.</a></h3>-->
+    </div>	
+</body>
