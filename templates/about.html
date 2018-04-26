@@ -198,7 +198,13 @@
 	<hr>
 
 	<!-- Link to return to home page -->
-	<h4 id="back"><a href="/search">HOME</a></h3>
+    <button type="button" class="btn btn-primary btn-lg" id="go-button">HOME</button>
+        
+    <script type="text/javascript">
+        document.getElementById("go-button").onclick = function () {
+            location.href = "/search";
+        };
+    </script>
 </body>	
 
 
